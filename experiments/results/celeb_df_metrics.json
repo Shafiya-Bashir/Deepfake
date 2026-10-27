@@ -1,0 +1,40 @@
+{
+  "dataset": "Celeb-DF_v2",
+  "models": {
+    "MesoInception4": {
+      "auc": 0.536,
+      "acc": 0.542,
+      "eer": 0.468,
+      "f1": 0.521,
+      "log_loss": 0.692
+    },
+    "XceptionNet": {
+      "auc": 0.655,
+      "acc": 0.662,
+      "eer": 0.345,
+      "f1": 0.654,
+      "log_loss": 0.589
+    },
+    "DualStreamFrequency": {
+      "auc": 0.684,
+      "acc": 0.691,
+      "eer": 0.312,
+      "f1": 0.682,
+      "log_loss": 0.543
+    },
+    "SpatioTemporal": {
+      "auc": 0.824,
+      "acc": 0.815,
+      "eer": 0.182,
+      "f1": 0.812,
+      "log_loss": 0.395
+    },
+    "UnifiedEnsemble": {
+      "auc": 0.875,
+      "acc": 0.862,
+      "eer": 0.128,
+      "f1": 0.861,
+      "log_loss": 0.284
+    }
+  }
+}

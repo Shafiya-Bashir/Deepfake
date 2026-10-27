@@ -1,0 +1,19 @@
+{
+  "dataset": "FakeAVCeleb",
+  "models": {
+    "VisualOnly_Xception": {
+      "auc": 0.784,
+      "acc": 0.772,
+      "eer": 0.224,
+      "f1": 0.769,
+      "log_loss": 0.448
+    },
+    "AudioVisual_Synchrony": {
+      "auc": 0.958,
+      "acc": 0.946,
+      "eer": 0.052,
+      "f1": 0.945,
+      "log_loss": 0.165
+    }
+  }
+}

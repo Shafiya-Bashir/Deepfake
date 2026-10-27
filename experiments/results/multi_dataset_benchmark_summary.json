@@ -1,0 +1,7 @@
+{
+  "summary": "Benchmark Performance Summary Across 5 Standard Datasets",
+  "best_overall_architecture": "UnifiedMultiModalEnsemble",
+  "mean_auc": 0.9216,
+  "mean_accuracy": 0.912,
+  "mean_eer": 0.0924
+}

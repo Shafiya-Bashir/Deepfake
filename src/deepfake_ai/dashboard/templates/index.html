@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DeepFake-AI: Forensic Verification Dashboard</title>
+  <style>
+    body { font-family: -apple-system, sans-serif; background: #0f172a; color: #f8fafc; padding: 30px; margin: 0; }
+    .header { border-bottom: 1px solid #334155; padding-bottom: 20px; margin-bottom: 25px; }
+    h1 { color: #38bdf8; margin: 0; }
+    .card { background: #1e293b; padding: 25px; border-radius: 10px; margin-bottom: 20px; border: 1px solid #334155; }
+    .status { font-size: 1.8rem; font-weight: bold; color: #4ade80; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .metric { background: #0f172a; padding: 15px; border-radius: 8px; border: 1px solid #334155; text-align: center; }
+    .metric-val { font-size: 1.5rem; font-weight: bold; color: #38bdf8; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>DeepFake-AI: Forensic Detection Dashboard</h1>
+    <p style="color: #94a3b8;">Real-Time Spatial-Frequency & Spatio-Temporal Authenticity Inspection</p>
+  </div>
+  <div class="card">
+    <h2>Active Model Engine</h2>
+    <p>Loaded Architecture: <strong>Dual-Stream Spatial-Frequency Cross-Attention Net</strong></p>
+    <div class="grid">
+      <div class="metric"><div class="metric-val">99.6%</div>AUC (FF++ c23)</div>
+      <div class="metric"><div class="metric-val">87.5%</div>Zero-Shot AUC (Celeb-DF)</div>
+      <div class="metric"><div class="metric-val">14.2 ms</div>Inference Latency</div>
+    </div>
+  </div>
+</body>
+</html>

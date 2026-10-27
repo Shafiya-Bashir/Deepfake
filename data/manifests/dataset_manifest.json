@@ -1,0 +1,68 @@
+{
+  "version": "1.0.0",
+  "last_updated": "2026-10-27",
+  "datasets": {
+    "faceforensics_pp": {
+      "name": "FaceForensics++",
+      "version": "v1.0",
+      "manipulations": [
+        "Deepfakes",
+        "Face2Face",
+        "FaceSwap",
+        "NeuralTextures",
+        "FaceShifter"
+      ],
+      "compressions": [
+        "raw",
+        "c23",
+        "c40"
+      ],
+      "total_videos": 5000,
+      "real_videos": 1000,
+      "fake_videos": 4000,
+      "actor_count": 1000,
+      "status": "verified"
+    },
+    "celeb_df": {
+      "name": "Celeb-DF v2",
+      "version": "v2.0",
+      "total_videos": 6229,
+      "real_videos": 590,
+      "fake_videos": 5639,
+      "actor_count": 59,
+      "status": "verified"
+    },
+    "dfdc": {
+      "name": "DFDC Preview",
+      "version": "preview-1.0",
+      "total_videos": 5214,
+      "real_videos": 1133,
+      "fake_videos": 4081,
+      "actor_count": 66,
+      "status": "verified"
+    },
+    "fakeavceleb": {
+      "name": "FakeAVCeleb",
+      "version": "v1.0",
+      "modalities": [
+        "video",
+        "audio",
+        "multimodal"
+      ],
+      "total_videos": 21566,
+      "actor_count": 500,
+      "status": "verified"
+    },
+    "genimage": {
+      "name": "GenImage Diffusion Benchmark",
+      "version": "v1.0",
+      "generators": [
+        "StableDiffusion",
+        "Midjourney",
+        "DALL-E3"
+      ],
+      "total_images": 1300000,
+      "status": "verified"
+    }
+  }
+}

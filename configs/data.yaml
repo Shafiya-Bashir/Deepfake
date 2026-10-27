@@ -1,0 +1,74 @@
+datasets:
+  primary: "FaceForensics++"
+  supported:
+    - id: "FaceForensics++"
+      name: "FaceForensics++ Benchmark"
+      institution: "Technical University of Munich"
+      year: 2019
+      manipulation_methods:
+        - "Deepfakes"
+        - "Face2Face"
+        - "FaceSwap"
+        - "NeuralTextures"
+        - "FaceShifter"
+      compression_levels: ["raw", "c23", "c40"]
+      total_videos: 5000
+    - id: "Celeb-DF_v2"
+      name: "Celeb-DF (v2) High-Quality DeepFake Dataset"
+      institution: "State University of New York at Albany"
+      year: 2020
+      total_videos: 6229
+    - id: "DFDC"
+      name: "Deepfake Detection Challenge"
+      institution: "Meta AI / AWS"
+      year: 2020
+      total_videos: 124000
+    - id: "FakeAVCeleb"
+      name: "FakeAVCeleb Multimodal Dataset"
+      institution: "KAIST / NUS"
+      year: 2022
+      modalities: ["video", "audio", "multimodal"]
+    - id: "GenImage"
+      name: "GenImage: 1 Million Diffusion-Generated Image Benchmark"
+      institution: "Chinese Academy of Sciences"
+      year: 2023
+      generators: ["StableDiffusion", "Midjourney", "DALL-E3", "ADM", "Wukong", "Glide"]
+
+preprocessing:
+  face_detection:
+    detector: "mtcnn" # mtcnn, retinaface, opencv
+    confidence_threshold: 0.95
+    margin_ratio: 1.3
+    target_size: [224, 224]
+    align_faces: true
+
+  frequency_domain:
+    dct_enabled: true
+    dct_block_size: 8
+    high_pass_filter: true
+    fft_spectrum_enabled: true
+    srm_filters_enabled: true
+
+  temporal_sampling:
+    sequence_length: 16
+    frame_stride: 2
+    optical_flow: true
+
+  augmentation:
+    horizontal_flip_prob: 0.5
+    gaussian_blur_prob: 0.2
+    compression_artifact_simulation: true
+    jpeg_quality_range: [40, 95]
+    color_jitter:
+      brightness: 0.1
+      contrast: 0.1
+      saturation: 0.1
+
+splitting:
+  train_ratio: 0.70
+  val_ratio: 0.15
+  test_ratio: 0.15
+  strategy: "identity_disjoint" # identity_disjoint, stratified, random
+  target_column: "label"
+  identity_column: "actor_id"
+  random_state: 42

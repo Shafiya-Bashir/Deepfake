@@ -1,0 +1,42 @@
+benchmark:
+  name: "SOTA DeepFake Detection Benchmark Suite"
+  version: "1.0.0"
+  random_seed: 42
+  identity_disjoint: true
+
+datasets:
+  - id: "FaceForensics++"
+    split: "test"
+    compressions: ["c23", "c40"]
+  - id: "Celeb-DF_v2"
+    split: "test"
+  - id: "DFDC"
+    split: "test"
+  - id: "FakeAVCeleb"
+    split: "test"
+  - id: "GenImage"
+    split: "test"
+
+models_to_evaluate:
+  - "mesonet"
+  - "xception"
+  - "efficientnet"
+  - "dual_stream_frequency"
+  - "spatiotemporal_detector"
+  - "diffusion_residual_detector"
+  - "unified_ensemble"
+
+metrics:
+  - "roc_auc"
+  - "equal_error_rate"
+  - "accuracy"
+  - "precision"
+  - "recall"
+  - "f1_score"
+  - "log_loss"
+  - "brier_score"
+
+reporting:
+  output_csv: "reports/evaluation/model_benchmark_report.csv"
+  plot_roc: true
+  plot_confusion_matrix: true

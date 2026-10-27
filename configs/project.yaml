@@ -1,0 +1,44 @@
+project:
+  name: "DeepFake-AI"
+  description: "Advanced Multi-Modal Deepfake Detection, Media Forensics, and Synthetic Artifact Analysis Platform"
+  version: "1.0.0"
+  authors:
+    - name: "Dar Rehan Rasool"
+      role: "Student & Research Contributor"
+    - name: "Dr. Riyaz"
+      role: "Faculty Research Supervisor"
+    - name: "Dr. Javad"
+      role: "Faculty Research Supervisor"
+  institution: "Islamic University of Science and Technology (IUST), Kashmir"
+  license: "MIT"
+  created_at: "2026-10-27"
+
+environment:
+  seed: 42
+  deterministic: true
+  benchmark: false
+  precision: "float32" # float32, mixed_float16, bfloat16
+
+paths:
+  data_dir: "data"
+  raw_dir: "data/raw"
+  interim_dir: "data/interim"
+  processed_dir: "data/processed"
+  splits_dir: "data/splits"
+  manifest_dir: "data/manifests"
+  checkpoints_dir: "checkpoints"
+  models_dir: "models"
+  outputs_dir: "outputs"
+  logs_dir: "logs"
+  reports_dir: "reports"
+  visualizations_dir: "visualizations"
+  papers_dir: "papers"
+  experiments_dir: "experiments"
+
+logging:
+  level: "INFO"
+  format: "%(asctime)s - %(name)s - %(levelname)s - [%(filename)s:%(lineno)d] - %(message)s"
+  handlers:
+    - "console"
+    - "file"
+  file_path: "logs/application/deepfake_ai.log"

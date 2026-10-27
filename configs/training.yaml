@@ -1,0 +1,41 @@
+training:
+  batch_size: 32
+  eval_batch_size: 64
+  epochs: 30
+  num_workers: 4
+  pin_memory: true
+  gradient_accumulation_steps: 1
+  max_grad_norm: 1.0
+
+optimizer:
+  name: "AdamW" # Adam, AdamW, SGD
+  lr: 0.0002
+  weight_decay: 0.01
+  betas: [0.9, 0.999]
+  eps: 1e-8
+
+scheduler:
+  name: "CosineAnnealingWarmRestarts" # StepLR, ReduceLROnPlateau, CosineAnnealingWarmRestarts
+  T_0: 10
+  T_mult: 2
+  eta_min: 1e-6
+  warmup_epochs: 2
+
+loss:
+  name: "FocalLoss" # BCEWithLogitsLoss, FocalLoss, LabelSmoothingCrossEntropy
+  gamma: 2.0
+  alpha: [0.3, 0.7] # weights for [Real: 0, Fake: 1]
+  reduction: "mean"
+
+early_stopping:
+  enabled: true
+  monitor: "val_auc"
+  mode: "max"
+  patience: 6
+  min_delta: 0.001
+
+checkpointing:
+  enabled: true
+  save_best_only: false
+  save_frequency_epochs: 5
+  checkpoint_dir: "checkpoints"

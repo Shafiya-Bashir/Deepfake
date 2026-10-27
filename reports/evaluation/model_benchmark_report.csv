@@ -1,0 +1,9 @@
+model,dataset,auc,eer,accuracy,precision,recall,f1
+MesoInception4,FaceForensics++ c23,0.8312,0.1745,0.824,0.815,0.835,0.8248
+XceptionNet,FaceForensics++ c23,0.9934,0.0261,0.9785,0.979,0.978,0.9785
+DualStreamFrequencyNet,FaceForensics++ c23,0.9875,0.034,0.965,0.962,0.968,0.965
+UnifiedMultiModalEnsemble,FaceForensics++ c23,0.9961,0.0152,0.984,0.985,0.983,0.984
+XceptionNet,Celeb-DF v2 (Zero-Shot),0.655,0.345,0.662,0.658,0.665,0.6615
+UnifiedMultiModalEnsemble,Celeb-DF v2 (Zero-Shot),0.875,0.128,0.862,0.864,0.86,0.862
+DIRE Diffusion Detector,GenImage (Diffusion),0.942,0.068,0.931,0.934,0.928,0.931
+UnifiedMultiModalEnsemble,GenImage (Diffusion),0.958,0.051,0.947,0.949,0.945,0.947

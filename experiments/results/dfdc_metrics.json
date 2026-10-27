@@ -1,0 +1,26 @@
+{
+  "dataset": "DFDC",
+  "models": {
+    "XceptionNet": {
+      "auc": 0.701,
+      "acc": 0.689,
+      "eer": 0.298,
+      "f1": 0.685,
+      "log_loss": 0.564
+    },
+    "DualStreamFrequency": {
+      "auc": 0.695,
+      "acc": 0.682,
+      "eer": 0.304,
+      "f1": 0.679,
+      "log_loss": 0.571
+    },
+    "UnifiedEnsemble": {
+      "auc": 0.794,
+      "acc": 0.781,
+      "eer": 0.215,
+      "f1": 0.779,
+      "log_loss": 0.412
+    }
+  }
+}

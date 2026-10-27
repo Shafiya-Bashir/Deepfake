@@ -1,0 +1,8 @@
+{
+  "total_samples_audited": 100,
+  "face_detection_rate": 1.0,
+  "mean_laplacian_sharpness": 185.4,
+  "blurry_samples_filtered": 0,
+  "corrupt_frames_detected": 0,
+  "identity_disjoint_guaranteed": true
+}

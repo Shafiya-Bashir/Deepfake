@@ -1,0 +1,26 @@
+{
+  "dataset": "GenImage",
+  "models": {
+    "CNNDet_Wang": {
+      "auc": 0.825,
+      "acc": 0.812,
+      "eer": 0.185,
+      "f1": 0.81,
+      "log_loss": 0.392
+    },
+    "DIRE_Diffusion": {
+      "auc": 0.942,
+      "acc": 0.931,
+      "eer": 0.068,
+      "f1": 0.93,
+      "log_loss": 0.185
+    },
+    "UnifiedEnsemble": {
+      "auc": 0.958,
+      "acc": 0.947,
+      "eer": 0.051,
+      "f1": 0.946,
+      "log_loss": 0.142
+    }
+  }
+}

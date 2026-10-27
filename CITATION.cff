@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this software or deepfake research benchmark in your work, please cite it as below."
+authors:
+  - family-names: "Rasool"
+    given-names: "Dar Rehan"
+    affiliation: "Islamic University of Science and Technology (IUST), Kashmir"
+    role: "Research Contributor & Student Researcher"
+  - family-names: "Riyaz"
+    given-names: "Dr."
+    affiliation: "Islamic University of Science and Technology (IUST), Kashmir"
+    role: "Faculty Research Supervisor"
+  - family-names: "Javad"
+    given-names: "Dr."
+    affiliation: "Islamic University of Science and Technology (IUST), Kashmir"
+    role: "Faculty Research Supervisor"
+title: "DeepFake-AI: Unified Multi-Modal Spatial-Frequency and Temporal Forensics Benchmark"
+version: 1.0.0
+date-released: 2026-10-27
+url: "https://github.com/darrehanrasool/DeepFake-AI"
+license: "MIT"
+keywords:
+  - deepfake-detection
+  - computer-vision
+  - media-forensics
+  - deep-learning
+  - frequency-analysis
+  - multimodal-learning

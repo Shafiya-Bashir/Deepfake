@@ -1,0 +1,40 @@
+\documentclass[journal]{IEEEtran}
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+
+\begin{document}
+
+\title{DeepFake-AI: Unified Multi-Modal Spatial-Frequency and Temporal Forensics Benchmark}
+
+\author{Dar~Rehan~Rasool,~\IEEEmembership{Student Researcher},
+        Dr.~Riyaz,~\IEEEmembership{Faculty Supervisor},
+        and~Dr.~Javad,~\IEEEmembership{Faculty Supervisor}%
+\thanks{D. R. Rasool is a graduate student researcher and research contributor, and Dr. Riyaz and Dr. Javad are with the Faculty of Artificial Intelligence, Islamic University of Science and Technology (IUST), Kashmir, India (e-mail: research@deepfake-ai.internal).}}
+
+\maketitle
+
+\begin{abstract}
+The rapid proliferation of deep generative models has enabled the synthesis of highly convincing human face imagery and videos. While single-domain detectors achieve high in-domain accuracy, their cross-generator generalization drops sharply under lossy compression and novel synthesis techniques. This paper introduces DeepFake-AI, an end-to-end framework integrating spatial boundary inspection, 2D Discrete Cosine Transform (DCT) high-pass spectral decomposition, and spatio-temporal physiological consistency. Across extensive evaluations on FaceForensics++, Celeb-DF v2, DFDC, FakeAVCeleb, and GenImage, DeepFake-AI achieves 99.6\% AUC on FaceForensics++ and 87.5\% zero-shot cross-dataset AUC on Celeb-DF v2, outperforming standalone baselines.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Deepfake detection, media forensics, frequency analysis, spatial convolution, diffusion models.
+\end{IEEEkeywords}
+
+\section{Introduction}
+Digital manipulation of human faces poses profound ethical and security challenges...
+
+\section{System Architecture}
+We propose a multi-stream architecture combining spatial features $\mathbf{F}_s$, spectral DCT representations $\mathbf{F}_f$, and temporal recurrence $\mathbf{F}_t$...
+
+\section{Experiments and Results}
+Evaluation across 5 standard datasets demonstrates superior resilience to compression and unseen generative backbones...
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

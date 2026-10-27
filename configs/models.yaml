@@ -1,0 +1,80 @@
+models:
+  classical:
+    logistic_regression:
+      penalty: "l2"
+      C: 1.0
+      solver: "lbfgs"
+      max_iter: 1000
+      class_weight: "balanced"
+      random_state: 42
+
+    random_forest:
+      n_estimators: 200
+      max_depth: 20
+      min_samples_split: 5
+      min_samples_leaf: 2
+      max_features: "sqrt"
+      class_weight: "balanced_subsample"
+      n_jobs: -1
+      random_state: 42
+
+    gradient_boosting:
+      learning_rate: 0.05
+      n_estimators: 300
+      max_depth: 6
+      subsample: 0.8
+      random_state: 42
+
+    svm:
+      C: 1.0
+      kernel: "rbf"
+      gamma: "scale"
+      probability: true
+      random_state: 42
+
+  deep_learning:
+    mesonet:
+      variant: "MesoInception4" # Meso4, MesoInception4
+      input_channels: 3
+      dropout_rate: 0.5
+      num_classes: 2
+
+    xception:
+      pretrained: true
+      dropout_rate: 0.5
+      num_classes: 2
+      freeze_backbone_epochs: 2
+
+    efficientnet:
+      model_name: "efficientnet_b4"
+      pretrained: true
+      dropout_rate: 0.4
+      num_classes: 2
+
+    dual_stream_frequency:
+      spatial_backbone: "resnet34"
+      frequency_channels: 3
+      fusion_strategy: "cross_attention" # concat, add, cross_attention
+      num_classes: 2
+
+    spatiotemporal_detector:
+      spatial_feature_extractor: "resnet18"
+      temporal_model: "lstm" # lstm, gru, transformer
+      hidden_size: 256
+      num_layers: 2
+      bidirectional: true
+      dropout_rate: 0.3
+      num_classes: 2
+
+    diffusion_residual_detector:
+      backbone: "resnet50"
+      residual_mode: "dire" # dire, laplacian, highpass
+      num_classes: 2
+
+  ensemble:
+    voting:
+      weights: [0.35, 0.35, 0.30] # Xception, DualStreamFrequency, SpatioTemporal
+      voting_type: "soft"
+    stacking:
+      meta_learner: "logistic_regression"
+      cv_folds: 5
