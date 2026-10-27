@@ -2,3 +2,15 @@
 [2026-10-27T12:25:26.612861+00:00] [INFO] [InferenceAPI] Worker thread pool allocated: 8 workers.
 [2026-10-27T19:59:16Z] [INFERENCE] Type=Video | File=dfdc_manipulated_face_sample.mp4 | Verdict=FAKE | FakeProb=0.6174 | Latency=1.8ms
 [2026-10-27T19:59:20Z] [INFERENCE] Type=Audio / Voice | File=human_natural_speech.wav | Verdict=REAL | FakeProb=0.2135 | Latency=2.42ms
+[2026-10-27T20:11:07Z] [INFERENCE] Type=Image | File=real_portrait_camera.jpg | Verdict=REAL | FakeProb=0.4029 | Latency=860.19ms
+[2026-10-27T20:11:07Z] [INFERENCE] Type=Image | File=fake_gan_diffusion_face.png | Verdict=FAKE | FakeProb=0.85 | Latency=5.13ms
+[2026-10-27T20:11:07Z] [INFERENCE] Type=Audio / Voice | File=real_human_voice.wav | Verdict=FAKE | FakeProb=0.7572 | Latency=0.59ms
+[2026-10-27T20:11:07Z] [INFERENCE] Type=Audio / Voice | File=fake_cloned_tts_voice.wav | Verdict=FAKE | FakeProb=0.8737 | Latency=0.38ms
+[2026-10-27T20:11:07Z] [INFERENCE] Type=Video | File=real_video_sample.mp4 | Verdict=FAKE | FakeProb=0.5612 | Latency=0.22ms
+[2026-10-27T20:11:07Z] [INFERENCE] Type=Video | File=fake_video_faceswap.mp4 | Verdict=REAL | FakeProb=0.4609 | Latency=0.29ms
+[2026-10-27T20:11:59Z] [INFERENCE] Type=Image | File=real_portrait_camera.jpg | Verdict=REAL | FakeProb=0.4029 | Latency=559.37ms
+[2026-10-27T20:11:59Z] [INFERENCE] Type=Image | File=fake_gan_diffusion_face.png | Verdict=FAKE | FakeProb=0.85 | Latency=4.43ms
+[2026-10-27T20:11:59Z] [INFERENCE] Type=Audio / Voice | File=real_human_voice.wav | Verdict=REAL | FakeProb=0.3233 | Latency=0.73ms
+[2026-10-27T20:11:59Z] [INFERENCE] Type=Audio / Voice | File=fake_cloned_tts_voice.wav | Verdict=FAKE | FakeProb=0.8192 | Latency=0.53ms
+[2026-10-27T20:11:59Z] [INFERENCE] Type=Video | File=real_video_sample.mp4 | Verdict=REAL | FakeProb=0.2515 | Latency=0.12ms
+[2026-10-27T20:11:59Z] [INFERENCE] Type=Video | File=fake_video_faceswap.mp4 | Verdict=FAKE | FakeProb=0.7286 | Latency=0.15ms
