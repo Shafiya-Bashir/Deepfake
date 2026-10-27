@@ -72,7 +72,8 @@ def run_kaggle_training(
     epochs: int = 10,
     batch_size: int = 32,
     learning_rate: float = 1e-4,
-    max_samples: Optional[int] = None
+    max_samples: Optional[int] = None,
+    github_token: Optional[str] = None
 ):
     print("=" * 80)
     print("        DEEPFAKE-AI: KAGGLE GPU PRODUCTION TRAINING PIPELINE")
@@ -246,6 +247,10 @@ def run_kaggle_training(
                 "author": "Dar Rehan Rasool, Dr. Riyaz, Dr. Javad (IUST)"
             }
             torch.save(chk_payload, chk_dir / f"{model_name}_best.pt")
+            repo_best = PROJECT_ROOT / "checkpoints" / "best" / f"{model_name}_best.pt"
+            repo_best.parent.mkdir(parents=True, exist_ok=True)
+            if repo_best != (chk_dir / f"{model_name}_best.pt"):
+                torch.save(chk_payload, repo_best)
             print(f"  [★] New best checkpoint saved: {chk_dir / f'{model_name}_best.pt'} (AUC: {val_auc:.4f})")
 
         history.append({
@@ -281,6 +286,19 @@ def run_kaggle_training(
     print(f"    - Downloadable Zip:    {out_path / 'deepfake_ai_logs.zip'}")
     print("=" * 80)
 
+    # 8. Optional Automated GitHub Sync
+    token_to_use = github_token or os.environ.get("GITHUB_TOKEN")
+    if token_to_use:
+        try:
+            print("\n[*] Initiating automated GitHub synchronization...")
+            from scripts.kaggle_sync_github import sync_to_github
+            sync_to_github(
+                token=token_to_use,
+                message=f"Auto-sync from Kaggle GPU: {model_name} Epoch {epochs} (AUC: {best_val_auc:.4f})"
+            )
+        except Exception as e:
+            print(f"[!] Warning: GitHub automated push encountered an issue: {e}", file=sys.stderr)
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Kaggle GPU Training Runner")
@@ -291,6 +309,7 @@ if __name__ == "__main__":
     parser.add_argument("--batch-size", type=int, default=32, help="Batch size")
     parser.add_argument("--lr", type=float, default=1e-4, help="Learning rate")
     parser.add_argument("--max-samples", type=int, default=None, help="Maximum videos to train on (e.g. 500, 1000, 5000)")
+    parser.add_argument("--github-token", default=os.environ.get("GITHUB_TOKEN", None), help="GitHub token for auto-pushing checkpoints")
     args = parser.parse_args()
 
     run_kaggle_training(
@@ -300,5 +319,6 @@ if __name__ == "__main__":
         epochs=args.epochs,
         batch_size=args.batch_size,
         learning_rate=args.lr,
-        max_samples=args.max_samples
+        max_samples=args.max_samples,
+        github_token=args.github_token
     )

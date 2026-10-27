@@ -1,0 +1,162 @@
+#!/usr/bin/env python3
+"""
+kaggle_sync_github.py
+======================
+Automated GitHub Synchronization for Kaggle GPU Training Workflows.
+Syncs trained model checkpoints (.pt) and forensic logs from Kaggle directly to GitHub.
+
+Author: Dar Rehan Rasool
+Supervisors: Dr. Riyaz, Dr. Javad (IUST)
+"""
+
+import argparse
+import os
+import shutil
+import subprocess
+import sys
+from pathlib import Path
+
+
+def run_cmd(cmd_list, cwd=None, mask_secret=None):
+    """Executes a command safely without leaking secrets into printed outputs."""
+    display_cmd = " ".join(cmd_list)
+    if mask_secret:
+        display_cmd = display_cmd.replace(mask_secret, "********")
+    print(f"[*] Executing: {display_cmd}")
+    
+    result = subprocess.run(cmd_list, cwd=cwd, capture_output=True, text=True)
+    if result.returncode != 0:
+        err_msg = result.stderr.strip()
+        if mask_secret:
+            err_msg = err_msg.replace(mask_secret, "********")
+        print(f"[!] Warning/Error during execution: {err_msg}", file=sys.stderr)
+    return result
+
+
+def sync_to_github(token: str, username: str = "darrehanrasool", repo: str = "Deepfake", branch: str = "main", message: str = None):
+    if not token or not token.strip():
+        print("[!] Error: GitHub Personal Access Token is required.", file=sys.stderr)
+        sys.exit(1)
+
+    token = token.strip()
+    
+    # 1. Determine Repository Root
+    # In Kaggle, the repo is usually /kaggle/working/Deepfake or current directory
+    cwd = Path.cwd()
+    if (cwd / ".git").exists():
+        repo_root = cwd
+    elif (Path("/kaggle/working/Deepfake") / ".git").exists():
+        repo_root = Path("/kaggle/working/Deepfake")
+    elif (cwd / "Deepfake" / ".git").exists():
+        repo_root = cwd / "Deepfake"
+    else:
+        # Search parent directories
+        repo_root = None
+        for p in [cwd] + list(cwd.parents):
+            if (p / ".git").exists():
+                repo_root = p
+                break
+        if repo_root is None:
+            print("[!] Error: Could not locate a Git repository in or around current working directory.", file=sys.stderr)
+            sys.exit(1)
+
+    print(f"[✓] Detected Git Repository Root: {repo_root}")
+
+    # 2. Collect artifacts from Kaggle working directory if distinct from repo
+    kaggle_working = Path("/kaggle/working")
+    if kaggle_working.exists():
+        # Checkpoints
+        kaggle_chk = kaggle_working / "checkpoints"
+        repo_chk = repo_root / "checkpoints"
+        if kaggle_chk.exists() and kaggle_chk != repo_chk:
+            print(f"[*] Copying checkpoints from {kaggle_chk} to {repo_chk}...")
+            repo_chk.mkdir(parents=True, exist_ok=True)
+            for pt_file in kaggle_chk.rglob("*.pt"):
+                rel = pt_file.relative_to(kaggle_chk)
+                dest = repo_chk / rel
+                dest.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(str(pt_file), str(dest))
+                print(f"    - Synced: {rel} ({dest.stat().st_size / (1024*1024):.2f} MB)")
+
+        # Logs & CSV histories
+        kaggle_logs = kaggle_working / "logs"
+        repo_logs = repo_root / "logs"
+        if kaggle_logs.exists() and kaggle_logs != repo_logs:
+            print(f"[*] Copying logs from {kaggle_logs} to {repo_logs}...")
+            repo_logs.mkdir(parents=True, exist_ok=True)
+            for log_file in kaggle_logs.rglob("*"):
+                if log_file.is_file():
+                    rel = log_file.relative_to(kaggle_logs)
+                    dest = repo_logs / rel
+                    dest.parent.mkdir(parents=True, exist_ok=True)
+                    shutil.copy2(str(log_file), str(dest))
+
+        history_csv = kaggle_working / "kaggle_training_history.csv"
+        if history_csv.exists():
+            dest = repo_root / "logs" / "training" / "kaggle_training_history.csv"
+            dest.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copy2(str(history_csv), str(dest))
+
+    # 3. Configure Git credentials locally for this repository
+    run_cmd(["git", "config", "user.name", "Dar Rehan Rasool"], cwd=repo_root)
+    run_cmd(["git", "config", "user.email", "darrehanrasool@users.noreply.github.com"], cwd=repo_root)
+
+    # 4. Set remote URL with authentication
+    remote_auth_url = f"https://{username}:{token}@github.com/{username}/{repo}.git"
+    run_cmd(["git", "remote", "set-url", "origin", remote_auth_url], cwd=repo_root, mask_secret=token)
+
+    # 5. Ensure branch
+    run_cmd(["git", "checkout", "-B", branch], cwd=repo_root)
+
+    # 6. Pull latest remote changes first to avoid non-fast-forward rejection
+    print("[*] Fetching and integrating latest remote commits...")
+    run_cmd(["git", "pull", "--rebase", "origin", branch], cwd=repo_root, mask_secret=token)
+
+    # 7. Stage checkpoints, logs, and artifacts
+    print("[*] Staging trained checkpoints, models, and training logs...")
+    run_cmd(["git", "add", "checkpoints/", "logs/", "models/weights/"], cwd=repo_root)
+
+    # 8. Check for changes
+    status_res = run_cmd(["git", "status", "--porcelain"], cwd=repo_root)
+    if not status_res.stdout.strip():
+        print("[*] No new changes to commit. Everything is already up to date with GitHub!")
+        return
+
+    # 9. Commit
+    commit_msg = message or "Auto-sync trained model checkpoints and training logs from Kaggle GPU"
+    run_cmd(["git", "commit", "-m", commit_msg], cwd=repo_root)
+
+    # 10. Push to remote
+    print(f"[*] Pushing synchronized checkpoints to GitHub: {username}/{repo} ({branch})...")
+    push_res = run_cmd(["git", "push", "origin", branch], cwd=repo_root, mask_secret=token)
+
+    if push_res.returncode == 0:
+        print("\n" + "=" * 80)
+        print(f"[★] SUCCESS! Checkpoints and logs are now live on GitHub:")
+        print(f"    https://github.com/{username}/{repo}")
+        print("-" * 80)
+        print("[★] TO SYNC ON YOUR LOCAL MAC / VS CODE:")
+        print(f"    Run this command in your VS Code terminal:")
+        print(f"        git pull origin {branch}")
+        print("=" * 80 + "\n")
+    else:
+        print("[!] Push encountered an issue. See output above.", file=sys.stderr)
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Sync Kaggle training checkpoints and logs to GitHub")
+    parser.add_argument("--token", default=os.environ.get("GITHUB_TOKEN", ""), help="GitHub Personal Access Token")
+    parser.add_argument("--username", default="darrehanrasool", help="GitHub username")
+    parser.add_argument("--repo", default="Deepfake", help="GitHub repository name")
+    parser.add_argument("--branch", default="main", help="Git branch to push to")
+    parser.add_argument("--message", default=None, help="Commit message")
+    args = parser.parse_args()
+
+    token_val = args.token or os.environ.get("GITHUB_TOKEN", "")
+    sync_to_github(
+        token=token_val,
+        username=args.username,
+        repo=args.repo,
+        branch=args.branch,
+        message=args.message
+    )
