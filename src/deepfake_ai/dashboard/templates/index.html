@@ -363,6 +363,12 @@
       <div class="trace-steps" id="traceStepsContainer">
         <div style="color: #64748b; font-style: italic;">Detailed mathematical trace will populate upon forensic execution.</div>
       </div>
+
+      <!-- Preserved to Project Notification Badge -->
+      <div id="savedBadge" style="display: none; margin-top: 14px; padding: 10px 14px; background: rgba(34, 197, 94, 0.12); border: 1px solid rgba(34, 197, 94, 0.35); border-radius: 8px; font-size: 0.82rem; color: #86efac; align-items: center; justify-content: space-between;">
+        <span>💾 <strong>Preserved to Project:</strong> <code id="savedPathText" style="color: #38bdf8; font-family: monospace; font-size: 0.85rem;"></code></span>
+        <button class="btn" style="padding: 3px 8px; font-size: 0.72rem; background: rgba(56, 189, 248, 0.2); border: 1px solid #38bdf8; color: #38bdf8;" onclick="switchTab('savedTab')">View in Library ➜</button>
+      </div>
     </div>
 
     <!-- Bottom Section: Logs Inspector & Kaggle Voice Datasets -->
@@ -370,6 +376,7 @@
       <div class="tabs-nav">
         <button class="tab-btn active" onclick="switchTab('logsTab')">📜 Bit-by-Bit VS Code Logs</button>
         <button class="tab-btn" onclick="switchTab('voiceTab')">🎙️ Kaggle Audio & Voice Datasets</button>
+        <button class="tab-btn" onclick="switchTab('savedTab')">💾 Saved Captured Media (<span id="savedTestsCount">0</span>)</button>
       </div>
 
       <!-- Tab 1: VS Code Bit-by-Bit Logs -->
@@ -411,6 +418,17 @@
           <div class="dataset-info-desc">
             Modern zero-shot multi-speaker generative speech synthesis. Used in this dashboard to measure high-frequency phase dispersion and vocoder periodicities.
           </div>
+        </div>
+      </div>
+
+      <!-- Tab 3: Saved Captured Media -->
+      <div id="savedTab" class="tab-content">
+        <div class="log-path-banner">
+          <span>Project Storage: <code style="color: #38bdf8;">/Users/darrehanrasool/Desktop/Deep/data/captured_tests/</code></span>
+          <button class="btn" style="padding: 3px 8px; font-size: 0.75rem;" onclick="fetchSavedTests()">🔄 Refresh Saved Media</button>
+        </div>
+        <div id="savedMediaContainer" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; margin-top: 14px;">
+          <div style="color: #94a3b8; font-style: italic; padding: 20px;">Loading captured test library...</div>
         </div>
       </div>
 
@@ -937,6 +955,100 @@
           div.innerText = step;
           traceContainer.appendChild(div);
         });
+      }
+
+      // Preserved to Project Notification Badge
+      const savedBadge = document.getElementById('savedBadge');
+      const savedPathText = document.getElementById('savedPathText');
+      if (res.saved_to) {
+        savedPathText.innerText = res.saved_to;
+        savedBadge.style.display = 'flex';
+        fetchSavedTests();
+      } else {
+        savedBadge.style.display = 'none';
+      }
+    }
+
+    // -------------------------------------------------------------
+    // Saved Captured Media Management
+    // -------------------------------------------------------------
+    async function fetchSavedTests() {
+      try {
+        const res = await fetch('/api/saved-tests');
+        const data = await res.json();
+        if (data.status === 'success') {
+          document.getElementById('savedTestsCount').innerText = data.count || '0';
+          const container = document.getElementById('savedMediaContainer');
+          if (!data.tests || data.tests.length === 0) {
+            container.innerHTML = '<div style="color: #94a3b8; font-style: italic; padding: 20px;">No captured media in library yet. Take a selfie or record your voice above to automatically preserve it here.</div>';
+            return;
+          }
+          container.innerHTML = data.tests.map(t => {
+            const isFake = (t.verdict === 'FAKE');
+            const badgeColor = isFake ? '#ef4444' : '#22c55e';
+            const fileUrl = `/api/saved-file?path=${encodeURIComponent(t.relative_path)}`;
+
+            let mediaPreview = '';
+            if (t.media_type.includes('Image')) {
+              mediaPreview = `<img src="${fileUrl}" style="width: 100%; height: 140px; object-fit: cover; border-radius: 6px; margin-bottom: 8px;" />`;
+            } else if (t.media_type.includes('Audio')) {
+              mediaPreview = `<audio controls src="${fileUrl}" style="width: 100%; margin-bottom: 8px;"></audio>`;
+            } else {
+              mediaPreview = `<video controls src="${fileUrl}" style="width: 100%; max-height: 140px; border-radius: 6px; margin-bottom: 8px;"></video>`;
+            }
+
+            return `
+              <div style="background: rgba(30, 41, 59, 0.7); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 12px; display: flex; flex-direction: column;">
+                ${mediaPreview}
+                <div style="font-weight: 600; font-size: 0.85rem; color: #f1f5f9; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;" title="${t.filename}">${t.filename}</div>
+                <div style="font-size: 0.72rem; color: #94a3b8; margin-top: 2px;">📁 <code>${t.relative_path}</code></div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 8px;">
+                  <span style="font-size: 0.72rem; font-weight: 700; color: ${badgeColor}; background: ${isFake ? 'rgba(239, 68, 68, 0.15)' : 'rgba(34, 197, 94, 0.15)'}; padding: 2px 8px; border-radius: 4px;">${t.verdict} (${(t.fake_probability * 100).toFixed(1)}%)</span>
+                  <span style="font-size: 0.7rem; color: #64748b;">${(t.size_bytes / 1024).toFixed(1)} KB</span>
+                </div>
+                <div style="display: flex; gap: 6px; margin-top: 10px;">
+                  <button class="btn" style="flex: 1; padding: 5px 8px; font-size: 0.75rem; background: rgba(56, 189, 248, 0.2); border: 1px solid #38bdf8; color: #38bdf8;" onclick="retestSavedFile('${t.relative_path}', '${t.media_type}', '${t.filename}')">⚡ Re-Test</button>
+                  <a href="${fileUrl}" download="${t.filename}" class="btn" style="padding: 5px 10px; font-size: 0.75rem; text-decoration: none; display: inline-flex; align-items: center;">📥</a>
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+      } catch (err) {
+        console.error('Failed to load saved tests:', err);
+      }
+    }
+
+    async function retestSavedFile(relPath, mediaType, filename) {
+      try {
+        const res = await fetch(`/api/saved-file?path=${encodeURIComponent(relPath)}`);
+        const blob = await res.blob();
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          currentBase64 = e.target.result;
+          currentFile = { name: filename, type: blob.type, size: blob.size };
+          currentSampleToken = null;
+          document.getElementById('previewFilename').innerText = `Loaded Saved Capture: ${filename}`;
+          document.getElementById('previewBox').style.display = 'block';
+
+          const imgP = document.getElementById('imagePreview');
+          const vidP = document.getElementById('videoPreview');
+          const audP = document.getElementById('audioPreview');
+          imgP.style.display = 'none'; vidP.style.display = 'none'; audP.style.display = 'none';
+
+          if (mediaType.includes('Image')) {
+            imgP.src = currentBase64; imgP.style.display = 'inline-block';
+          } else if (mediaType.includes('Audio')) {
+            audP.src = currentBase64; audP.style.display = 'block';
+          } else {
+            vidP.src = currentBase64; vidP.style.display = 'inline-block';
+          }
+          switchIngestMode('upload');
+          submitCurrentMedia();
+        };
+        reader.readAsDataURL(blob);
+      } catch (e) {
+        alert('Failed to load saved capture: ' + e);
       }
     }
 

@@ -28,6 +28,70 @@ logger = logging.getLogger(__name__)
 # Base project paths
 PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent.parent
 LOGS_DIR = PROJECT_ROOT / "logs"
+CAPTURED_TESTS_DIR = PROJECT_ROOT / "data" / "captured_tests"
+MANIFEST_FILE = CAPTURED_TESTS_DIR / "manifest.json"
+
+# Ensure storage directories exist
+CAPTURED_TESTS_DIR.mkdir(parents=True, exist_ok=True)
+(CAPTURED_TESTS_DIR / "images").mkdir(parents=True, exist_ok=True)
+(CAPTURED_TESTS_DIR / "audio").mkdir(parents=True, exist_ok=True)
+(CAPTURED_TESTS_DIR / "video").mkdir(parents=True, exist_ok=True)
+
+
+def save_tested_media(media_bytes: bytes, original_filename: str, media_type: str, verdict: str, fake_prob: float) -> str:
+    """Saves live captured and tested media to data/captured_tests/ with audit manifest."""
+    if not media_bytes or len(media_bytes) < 32:
+        return ""
+    # Avoid re-saving simulated mock tokens
+    if media_bytes.startswith(b'FAKE_') or media_bytes.startswith(b'REAL_'):
+        return ""
+
+    if "Image" in media_type:
+        subfolder = "images"
+        ext = Path(original_filename).suffix if Path(original_filename).suffix.lower() in ['.jpg', '.jpeg', '.png', '.webp'] else ".jpg"
+    elif "Audio" in media_type:
+        subfolder = "audio"
+        ext = Path(original_filename).suffix if Path(original_filename).suffix.lower() in ['.wav', '.mp3', '.aac', '.ogg', '.flac'] else ".wav"
+    else:
+        subfolder = "video"
+        ext = Path(original_filename).suffix if Path(original_filename).suffix.lower() in ['.mp4', '.avi', '.mov', '.mkv'] else ".mp4"
+
+    timestamp_str = time.strftime('%Y%m%d_%H%M%S')
+    clean_stem = "".join(c for c in Path(original_filename).stem if c.isalnum() or c in ('_', '-'))
+    if not clean_stem:
+        clean_stem = "capture"
+    save_filename = f"{timestamp_str}_{verdict}_{clean_stem}{ext}"
+
+    target_dir = CAPTURED_TESTS_DIR / subfolder
+    target_dir.mkdir(parents=True, exist_ok=True)
+    target_file = target_dir / save_filename
+    target_file.write_bytes(media_bytes)
+
+    relative_path = f"data/captured_tests/{subfolder}/{save_filename}"
+
+    # Update persistent manifest
+    manifest_data = []
+    if MANIFEST_FILE.exists():
+        try:
+            manifest_data = json.loads(MANIFEST_FILE.read_text(encoding="utf-8"))
+        except Exception:
+            manifest_data = []
+
+    entry = {
+        "timestamp": time.strftime('%Y-%m-%dT%H:%M:%SZ'),
+        "filename": save_filename,
+        "original_filename": original_filename,
+        "relative_path": relative_path,
+        "media_type": media_type,
+        "verdict": verdict,
+        "fake_probability": fake_prob,
+        "size_bytes": len(media_bytes)
+    }
+    manifest_data.insert(0, entry)
+    manifest_data = manifest_data[:200]
+    MANIFEST_FILE.write_text(json.dumps(manifest_data, indent=2), encoding="utf-8")
+
+    return relative_path
 
 
 class DashboardHandler(SimpleHTTPRequestHandler):
@@ -94,6 +158,52 @@ class DashboardHandler(SimpleHTTPRequestHandler):
                 "logs_directory": str(LOGS_DIR),
                 "data": logs_payload
             })
+
+        elif path == '/api/saved-tests':
+            manifest_data = []
+            if MANIFEST_FILE.exists():
+                try:
+                    manifest_data = json.loads(MANIFEST_FILE.read_text(encoding="utf-8"))
+                except Exception:
+                    manifest_data = []
+            self._send_json({
+                "status": "success",
+                "count": len(manifest_data),
+                "directory": "data/captured_tests",
+                "tests": manifest_data
+            })
+
+        elif path == '/api/saved-file':
+            from urllib.parse import parse_qs
+            query = parse_qs(parsed.query)
+            rel_path = query.get('path', [''])[0]
+            if rel_path:
+                target = PROJECT_ROOT / rel_path
+                try:
+                    resolved = target.resolve()
+                    if CAPTURED_TESTS_DIR.resolve() in resolved.parents and resolved.is_file():
+                        suffix = resolved.suffix.lower()
+                        content_type = "application/octet-stream"
+                        if suffix in ['.jpg', '.jpeg']:
+                            content_type = "image/jpeg"
+                        elif suffix == '.png':
+                            content_type = "image/png"
+                        elif suffix in ['.wav', '.wave']:
+                            content_type = "audio/wav"
+                        elif suffix == '.mp4':
+                            content_type = "video/mp4"
+
+                        self.send_response(200)
+                        self.send_header('Content-Type', content_type)
+                        self.send_header('Content-Length', str(resolved.stat().st_size))
+                        self.send_header('Access-Control-Allow-Origin', '*')
+                        self.end_headers()
+                        with open(resolved, 'rb') as f:
+                            self.wfile.write(f.read())
+                        return
+                except Exception as e:
+                    logger.error(f"Error serving saved file: {e}")
+            self.send_error(404, "Saved file not found")
 
         elif path == '/api/sample-media':
             # Pre-calibrated representative test samples for instant demonstration
@@ -186,6 +296,16 @@ class DashboardHandler(SimpleHTTPRequestHandler):
                 analysis = ForensicAnalyzer.analyze_media(media_bytes, filename=filename, mime_type=mime_type)
                 latency_ms = round((time.time() - t0) * 1000.0, 2)
                 analysis['latency_ms'] = latency_ms
+
+                # Automatically save tested media to data/captured_tests/
+                saved_to_path = save_tested_media(
+                    media_bytes=media_bytes,
+                    original_filename=filename,
+                    media_type=analysis['media_type'],
+                    verdict=analysis['verdict'],
+                    fake_prob=analysis['fake_probability']
+                )
+                analysis['saved_to'] = saved_to_path
 
                 # Update State
                 DASHBOARD_STATE['total_inferences'] += 1
