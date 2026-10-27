@@ -41,7 +41,8 @@ In the first cell, simply paste:
 !rm -rf Deepfake
 !git clone https://github.com/darrehanrasool/Deepfake.git
 %cd /kaggle/working/Deepfake
-!pip install -q -r requirements.txt
+# Kaggle already has PyTorch, NumPy, Pandas, Scikit-learn pre-installed
+!pip install -q --no-deps facenet-pytorch || true
 
 # 2. Launch ST2-SyncNet Training on Dual T4 GPUs
 !python3 scripts/kaggle_runner.py \
