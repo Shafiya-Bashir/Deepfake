@@ -18,13 +18,19 @@ from pathlib import Path
 
 
 def run_cmd(cmd_list, cwd=None, mask_secret=None):
-    """Executes a command safely without leaking secrets into printed outputs."""
+    """Executes a command safely without leaking secrets into printed outputs (Python 3.6+ compatible)."""
     display_cmd = " ".join(cmd_list)
     if mask_secret:
         display_cmd = display_cmd.replace(mask_secret, "********")
     print(f"[*] Executing: {display_cmd}")
     
-    result = subprocess.run(cmd_list, cwd=cwd, capture_output=True, text=True)
+    result = subprocess.run(
+        cmd_list,
+        cwd=cwd,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.PIPE,
+        universal_newlines=True
+    )
     if result.returncode != 0:
         err_msg = result.stderr.strip()
         if mask_secret:
