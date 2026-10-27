@@ -14,3 +14,4 @@
 [2026-10-27T20:11:59Z] [INFERENCE] Type=Audio / Voice | File=fake_cloned_tts_voice.wav | Verdict=FAKE | FakeProb=0.8192 | Latency=0.53ms
 [2026-10-27T20:11:59Z] [INFERENCE] Type=Video | File=real_video_sample.mp4 | Verdict=REAL | FakeProb=0.2515 | Latency=0.12ms
 [2026-10-27T20:11:59Z] [INFERENCE] Type=Video | File=fake_video_faceswap.mp4 | Verdict=FAKE | FakeProb=0.7286 | Latency=0.15ms
+[2026-10-27T20:19:23Z] [INFERENCE] Type=Image | File=my_live_webcam_selfie.jpg | Verdict=REAL | FakeProb=0.2328 | Latency=37.7ms
