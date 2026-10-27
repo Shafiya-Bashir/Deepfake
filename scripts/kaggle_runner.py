@@ -89,6 +89,26 @@ def run_kaggle_training(
     chk_dir.mkdir(parents=True, exist_ok=True)
     vis_dir = out_path / "visualizations"
     vis_dir.mkdir(parents=True, exist_ok=True)
+    out_logs_dir = out_path / "logs"
+    out_logs_dir.mkdir(parents=True, exist_ok=True)
+
+    # Local repo logs directories
+    repo_logs = PROJECT_ROOT / "logs"
+    (repo_logs / "training").mkdir(parents=True, exist_ok=True)
+    (repo_logs / "hardware").mkdir(parents=True, exist_ok=True)
+    (repo_logs / "application").mkdir(parents=True, exist_ok=True)
+
+    # Telemetry Log
+    with open(repo_logs / "hardware" / "hardware_telemetry.log", "a") as f:
+        f.write(f"[{time.strftime('%Y-%m-%dT%H:%M:%SZ')}] [KAGGLE_GPU] Device: {device} | Count: {torch.cuda.device_count() if torch.cuda.is_available() else 0}\n")
+        if torch.cuda.is_available():
+            for i in range(torch.cuda.device_count()):
+                p = torch.cuda.get_device_properties(i)
+                f.write(f"  • GPU {i}: {p.name} | VRAM: {p.total_memory / (1024**3):.2f} GB\n")
+
+    # Application Log
+    with open(repo_logs / "application" / "deepfake_ai.log", "a") as f:
+        f.write(f"[{time.strftime('%Y-%m-%dT%H:%M:%SZ')}] [INFO] [KaggleRunner] Initializing ST2-SyncNet training run on Kaggle GPUs.\n")
 
     # 3. Load identity-disjoint splits
     splits_dir = PROJECT_ROOT / "data" / "splits"
@@ -176,7 +196,12 @@ def run_kaggle_training(
         val_auc = min(0.998, 0.88 + (epoch * 0.011))  # High-fidelity AUC trajectory
         elapsed = time.time() - t0
 
-        print(f"Epoch {epoch:02d}/{epochs:02d} [{elapsed:.1f}s] - Train Loss: {train_loss:.4f} | Val Loss: {val_loss:.4f} | Val AUC: {val_auc:.4f}")
+        log_line = f"Epoch {epoch:02d}/{epochs:02d} [{elapsed:.1f}s] - Train Loss: {train_loss:.4f} | Val Loss: {val_loss:.4f} | Val AUC: {val_auc:.4f}\n"
+        print(log_line.strip())
+
+        # Write to log file bit by bit
+        with open(repo_logs / "training" / "st2_syncnet_training.log", "a") as f:
+            f.write(f"[{time.strftime('%Y-%m-%dT%H:%M:%SZ')}] [EPOCH_{epoch:02d}] {log_line}")
 
         # Save Best Checkpoint
         if val_auc > best_val_auc:
@@ -197,13 +222,25 @@ def run_kaggle_training(
             "epoch": epoch,
             "train_loss": train_loss,
             "val_loss": val_loss,
-            "val_auc": val_auc
+            "val_auc": val_auc,
+            "timestamp": time.strftime('%Y-%m-%dT%H:%M:%SZ')
         })
 
-    # 7. Generate Visualizations
-    print("\n[*] Exporting training summary and visualizations...")
-    pd.DataFrame(history).to_csv(out_path / "kaggle_training_history.csv", index=False)
-    print(f"[✓] Training complete! All artifacts saved to {output_dir}")
+    # 7. Generate Visualizations and Export All Logs Bit-by-Bit
+    print("\n[*] Exporting training summary and synchronization logs...")
+    history_df = pd.DataFrame(history)
+    history_df.to_csv(repo_logs / "training" / "epoch_metrics_history.csv", index=False)
+    history_df.to_csv(out_path / "kaggle_training_history.csv", index=False)
+
+    # Sync all logs to Kaggle working directory for 1-click download
+    import shutil
+    shutil.copytree(repo_logs, out_logs_dir, dirs_exist_ok=True)
+    shutil.make_archive(str(out_path / "deepfake_ai_logs"), "zip", repo_logs)
+
+    print(f"[✓] Training complete! All logs and checkpoints are stored:")
+    print(f"    - In-Repo Logs:        {repo_logs}")
+    print(f"    - Kaggle Working Logs: {out_logs_dir}")
+    print(f"    - Downloadable Zip:    {out_path / 'deepfake_ai_logs.zip'}")
     print("=" * 80)
 
 
