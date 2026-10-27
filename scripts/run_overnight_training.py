@@ -269,6 +269,19 @@ def run_overnight_training(
     except Exception:
         pass
 
+    # 9. Automatic GitHub Synchronization
+    if github_token:
+        print("\n[*] Initializing Automated Git Push to GitHub...")
+        try:
+            from scripts.kaggle_sync_github import sync_to_github
+            sync_to_github(
+                token=github_token,
+                message=f"Auto-sync {model_name} best checkpoint (AUC {best_val_auc:.4f}) and overnight logs from Kaggle GPU"
+            )
+        except Exception as e:
+            print(f"[!] Warning: GitHub sync failed with error: {e}", file=sys.stderr)
+            print("[*] Note: Checkpoint is still safely saved locally at /kaggle/working/checkpoints/best/")
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="DeepFake-AI Overnight Training Runner")
@@ -279,6 +292,7 @@ if __name__ == "__main__":
     parser.add_argument("--epochs", type=int, default=15, help="Epoch count")
     parser.add_argument("--batch-size", type=int, default=32, help="Batch size")
     parser.add_argument("--lr", type=float, default=1e-4, help="Learning rate")
+    parser.add_argument("--github-token", default=os.environ.get("GITHUB_TOKEN", None), help="GitHub token for automatic push")
     args = parser.parse_args()
 
     run_overnight_training(
@@ -288,5 +302,6 @@ if __name__ == "__main__":
         max_samples=args.max_samples,
         epochs=args.epochs,
         batch_size=args.batch_size,
-        learning_rate=args.lr
+        learning_rate=args.lr,
+        github_token=args.github_token
     )

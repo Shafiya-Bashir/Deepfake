@@ -149,6 +149,55 @@ def sync_to_github(token: str, username: str = "darrehanrasool", repo: str = "De
         print("[!] Push encountered an issue. See output above.", file=sys.stderr)
 
 
+def test_token_permissions(token: str, username: str = "darrehanrasool", repo: str = "Deepfake", branch: str = "main") -> bool:
+    """Pre-flight check: Verifies if the GitHub token has push permissions using git dry-run."""
+    token = token.strip()
+    cwd = Path.cwd()
+    repo_root = cwd if (cwd / ".git").exists() else None
+    if not repo_root:
+        for p in [cwd] + list(cwd.parents):
+            if (p / ".git").exists():
+                repo_root = p
+                break
+    if not repo_root and (Path("/kaggle/working/Deepfake") / ".git").exists():
+        repo_root = Path("/kaggle/working/Deepfake")
+    if not repo_root and (cwd / "Deepfake" / ".git").exists():
+        repo_root = cwd / "Deepfake"
+
+    if not repo_root:
+        print("[!] Error: No Git repository found to test token against.", file=sys.stderr)
+        return False
+
+    print("=" * 70)
+    print("      GITHUB TOKEN PRE-FLIGHT WRITE PERMISSION TEST")
+    print("=" * 70)
+    remote_auth_url = f"https://{username}:{token}@github.com/{username}/{repo}.git"
+    run_cmd(["git", "remote", "set-url", "origin", remote_auth_url], cwd=repo_root, mask_secret=token)
+    
+    print("[*] Performing live test push with --dry-run (zero changes made)...")
+    res = run_cmd(["git", "push", "--dry-run", "origin", branch], cwd=repo_root, mask_secret=token)
+
+    if res.returncode == 0:
+        print("\n" + "=" * 70)
+        print("[✓] SUCCESS! Your GitHub token has 100% verified WRITE permissions!")
+        print(f"    Target Repo: https://github.com/{username}/{repo} ({branch})")
+        print("    You can safely run overnight training and go to sleep.")
+        print("    In the morning, just run 'git pull origin main' in VS Code!")
+        print("=" * 70 + "\n")
+        return True
+    else:
+        print("\n" + "=" * 70)
+        print("[!] PERMISSION DENIED (403): Token lacks write permission.")
+        print("-" * 70)
+        print("HOW TO FIX IN 30 SECONDS ON GITHUB:")
+        print("1. Open: https://github.com/settings/tokens/new")
+        print("2. Note: 'Kaggle Overnight Training'")
+        print("3. Scopes: CHECK THE 'repo' BOX (Full control of private repositories).")
+        print("4. Click 'Generate token' at bottom and copy the new token.")
+        print("=" * 70 + "\n")
+        return False
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Sync Kaggle training checkpoints and logs to GitHub")
     parser.add_argument("--token", default=os.environ.get("GITHUB_TOKEN", ""), help="GitHub Personal Access Token")
@@ -156,7 +205,12 @@ if __name__ == "__main__":
     parser.add_argument("--repo", default="Deepfake", help="GitHub repository name")
     parser.add_argument("--branch", default="main", help="Git branch to push to")
     parser.add_argument("--message", default=None, help="Commit message")
+    parser.add_argument("--test-token", default=None, help="Test token push permissions before training")
     args = parser.parse_args()
+
+    if args.test_token:
+        success = test_token_permissions(args.test_token, username=args.username, repo=args.repo, branch=args.branch)
+        sys.exit(0 if success else 1)
 
     token_val = args.token or os.environ.get("GITHUB_TOKEN", "")
     sync_to_github(
