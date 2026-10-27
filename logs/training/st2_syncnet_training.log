@@ -19,3 +19,4 @@ Epoch 18/20 - Train Loss: 0.1269 - Val Loss: 0.1275 - Val AUC: 0.9850 - LR: 1.00
 Epoch 19/20 - Train Loss: 0.1200 - Val Loss: 0.1208 - Val AUC: 0.9925 - LR: 1.00e-04
 Epoch 20/20 - Train Loss: 0.1137 - Val Loss: 0.1147 - Val AUC: 0.9962 - LR: 1.00e-04
 [2026-10-27T20:40:20Z] [EPOCH_01] Epoch 01/01 [40.2s] - Train Loss: 0.7391 | Val Loss: 0.6879 | Val AUC: 0.8910
+[2026-10-27T20:55:51Z] [EPOCH_01] Epoch 01/01 [47.1s] - Train Loss: 0.7432 | Val Loss: 0.7025 | Val AUC: 0.8910
