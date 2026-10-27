@@ -2,31 +2,684 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>DeepFake-AI: Forensic Verification Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeepFake-AI: Multi-Modal Cyber-Forensics Laboratory</title>
   <style>
-    body { font-family: -apple-system, sans-serif; background: #0f172a; color: #f8fafc; padding: 30px; margin: 0; }
-    .header { border-bottom: 1px solid #334155; padding-bottom: 20px; margin-bottom: 25px; }
-    h1 { color: #38bdf8; margin: 0; }
-    .card { background: #1e293b; padding: 25px; border-radius: 10px; margin-bottom: 20px; border: 1px solid #334155; }
-    .status { font-size: 1.8rem; font-weight: bold; color: #4ade80; }
-    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .metric { background: #0f172a; padding: 15px; border-radius: 8px; border: 1px solid #334155; text-align: center; }
-    .metric-val { font-size: 1.5rem; font-weight: bold; color: #38bdf8; }
+    :root {
+      --bg-dark: #0a0f1d;
+      --card-bg: rgba(22, 30, 49, 0.75);
+      --border-color: rgba(71, 85, 105, 0.4);
+      --accent-cyan: #38bdf8;
+      --accent-blue: #3b82f6;
+      --fake-red: #ef4444;
+      --fake-glow: rgba(239, 68, 68, 0.6);
+      --real-green: #22c55e;
+      --real-glow: rgba(34, 197, 94, 0.6);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    body { background: radial-gradient(circle at 50% 0%, #1e1b4b 0%, var(--bg-dark) 65%); color: var(--text-main); min-height: 100vh; padding: 24px; }
+    .container { max-width: 1280px; margin: 0 auto; }
+
+    /* Header */
+    .header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 20px; border-bottom: 1px solid var(--border-color); margin-bottom: 24px; flex-wrap: wrap; gap: 16px; }
+    .header-titles h1 { font-size: 1.85rem; font-weight: 800; background: linear-gradient(90deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .header-titles p { color: var(--text-muted); font-size: 0.9rem; margin-top: 4px; }
+    .author-badge { font-size: 0.8rem; background: rgba(56, 189, 248, 0.12); color: var(--accent-cyan); border: 1px solid rgba(56, 189, 248, 0.3); padding: 5px 12px; border-radius: 20px; }
+
+    /* Audio Alarm Controls */
+    .audio-controls { display: flex; align-items: center; gap: 10px; }
+    .btn { background: #1e293b; color: var(--text-main); border: 1px solid var(--border-color); padding: 8px 14px; border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; }
+    .btn:hover { background: #334155; border-color: var(--accent-cyan); }
+    .btn-red { border-color: var(--fake-red); color: #fca5a5; }
+    .btn-red:hover { background: rgba(239, 68, 68, 0.2); }
+    .btn-green { border-color: var(--real-green); color: #86efac; }
+    .btn-green:hover { background: rgba(34, 197, 94, 0.2); }
+    .btn-primary { background: linear-gradient(135deg, #2563eb, #0284c7); border: none; color: white; padding: 10px 20px; font-size: 0.95rem; border-radius: 8px; font-weight: 700; }
+    .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4); }
+
+    /* Top Grid */
+    .grid-2 { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 24px; margin-bottom: 24px; }
+    @media (max-width: 960px) { .grid-2 { grid-template-columns: 1fr; } }
+
+    /* Glass Cards */
+    .card { background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid var(--border-color); border-radius: 14px; padding: 22px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); position: relative; overflow: hidden; }
+    .card-title { font-size: 1.15rem; font-weight: 700; color: #e2e8f0; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; }
+
+    /* Dropzone */
+    .dropzone { border: 2px dashed rgba(56, 189, 248, 0.4); border-radius: 12px; padding: 28px 16px; text-align: center; background: rgba(15, 23, 42, 0.5); cursor: pointer; transition: all 0.25s; margin-bottom: 16px; }
+    .dropzone:hover, .dropzone.dragover { border-color: var(--accent-cyan); background: rgba(56, 189, 248, 0.08); }
+    .dropzone-icon { font-size: 2.5rem; margin-bottom: 8px; }
+    .dropzone-text { font-size: 0.95rem; font-weight: 600; color: var(--text-main); }
+    .dropzone-sub { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; }
+    #fileInput { display: none; }
+
+    /* Quick Test Preset Buttons */
+    .presets-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 8px; font-weight: 700; }
+    .presets-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
+    .preset-btn { background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-color); border-radius: 8px; padding: 8px 6px; text-align: center; font-size: 0.76rem; color: var(--text-main); cursor: pointer; transition: all 0.2s; }
+    .preset-btn:hover { border-color: var(--accent-cyan); background: rgba(56, 189, 248, 0.1); }
+    .preset-btn strong { display: block; font-size: 0.82rem; margin-bottom: 2px; }
+
+    /* Media Preview Area */
+    .preview-box { display: none; background: #0b1120; border-radius: 10px; padding: 12px; margin-bottom: 16px; border: 1px solid var(--border-color); text-align: center; }
+    .preview-media { max-width: 100%; max-height: 220px; border-radius: 8px; object-fit: contain; }
+
+    /* Detection Result Box */
+    .verdict-beacon-container { text-align: center; padding: 20px 10px; margin-bottom: 18px; border-radius: 12px; background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-color); }
+    .beacon { width: 90px; height: 90px; border-radius: 50%; margin: 0 auto 14px; display: flex; align-items: center; justify-content: center; font-size: 2.2rem; transition: all 0.4s; }
+    
+    /* Neon States */
+    .beacon-idle { background: #1e293b; border: 2px solid #475569; color: #94a3b8; }
+    
+    .beacon-fake {
+      background: radial-gradient(circle, #ef4444 20%, #991b1b 100%);
+      border: 3px solid #f87171;
+      color: white;
+      animation: pulseRed 1.1s infinite;
+    }
+    @keyframes pulseRed {
+      0% { box-shadow: 0 0 10px rgba(239, 68, 68, 0.5), inset 0 0 10px rgba(239, 68, 68, 0.5); transform: scale(1); }
+      50% { box-shadow: 0 0 45px rgba(239, 68, 68, 0.95), 0 0 70px rgba(239, 68, 68, 0.4), inset 0 0 20px rgba(255, 255, 255, 0.6); transform: scale(1.05); }
+      100% { box-shadow: 0 0 10px rgba(239, 68, 68, 0.5), inset 0 0 10px rgba(239, 68, 68, 0.5); transform: scale(1); }
+    }
+
+    .beacon-real {
+      background: radial-gradient(circle, #22c55e 20%, #166534 100%);
+      border: 3px solid #4ade80;
+      color: white;
+      animation: pulseGreen 1.8s infinite;
+    }
+    @keyframes pulseGreen {
+      0% { box-shadow: 0 0 10px rgba(34, 197, 94, 0.5), inset 0 0 10px rgba(34, 197, 94, 0.5); transform: scale(1); }
+      50% { box-shadow: 0 0 40px rgba(34, 197, 94, 0.9), 0 0 60px rgba(34, 197, 94, 0.35), inset 0 0 20px rgba(255, 255, 255, 0.6); transform: scale(1.03); }
+      100% { box-shadow: 0 0 10px rgba(34, 197, 94, 0.5), inset 0 0 10px rgba(34, 197, 94, 0.5); transform: scale(1); }
+    }
+
+    .verdict-title { font-size: 1.8rem; font-weight: 900; letter-spacing: 0.04em; text-transform: uppercase; margin-bottom: 4px; }
+    .verdict-title.fake { color: #f87171; text-shadow: 0 0 15px rgba(239, 68, 68, 0.7); }
+    .verdict-title.real { color: #4ade80; text-shadow: 0 0 15px rgba(34, 197, 94, 0.7); }
+    .verdict-desc { font-size: 0.88rem; color: #cbd5e1; max-width: 480px; margin: 0 auto; line-height: 1.4; }
+
+    /* Probabilities Bar */
+    .prob-bar-container { margin: 18px 0; }
+    .prob-bar-labels { display: flex; justify-content: space-between; font-size: 0.85rem; font-weight: 700; margin-bottom: 6px; }
+    .prob-track { height: 12px; background: #0f172a; border-radius: 6px; overflow: hidden; display: flex; border: 1px solid var(--border-color); }
+    .prob-fill-fake { background: linear-gradient(90deg, #f97316, #ef4444); width: 0%; transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+    .prob-fill-real { background: linear-gradient(90deg, #10b981, #22c55e); width: 0%; transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+
+    /* Advanced Calculation Details Section */
+    .math-card { margin-top: 10px; }
+    .formula-banner { background: rgba(15, 23, 42, 0.85); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 8px; padding: 12px 16px; font-family: 'Courier New', monospace; font-size: 0.95rem; color: #38bdf8; margin-bottom: 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+    .metrics-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 16px; }
+    @media (max-width: 768px) { .metrics-grid { grid-template-columns: repeat(2, 1fr); } }
+    .metric-subcard { background: rgba(15, 23, 42, 0.7); border: 1px solid var(--border-color); border-radius: 10px; padding: 12px; text-align: center; }
+    .metric-subcard-title { font-size: 0.74rem; text-transform: uppercase; color: var(--text-muted); font-weight: 700; margin-bottom: 4px; }
+    .metric-subcard-val { font-size: 1.35rem; font-weight: 800; color: #f8fafc; }
+    .metric-bar-bg { height: 5px; background: #1e293b; border-radius: 3px; margin-top: 8px; overflow: hidden; }
+    .metric-bar-fill { height: 100%; border-radius: 3px; width: 0%; transition: width 0.5s; }
+
+    /* Chronological Trace Steps */
+    .trace-steps { background: #090e17; border-radius: 8px; padding: 14px; border: 1px solid var(--border-color); font-family: 'Courier New', monospace; font-size: 0.82rem; color: #94a3b8; line-height: 1.6; }
+    .trace-step-item { margin-bottom: 6px; padding-left: 10px; border-left: 2px solid var(--accent-cyan); }
+
+    /* Logs & Kaggle Audio Info Tabs */
+    .tabs-nav { display: flex; gap: 8px; border-bottom: 1px solid var(--border-color); padding-bottom: 12px; margin-bottom: 16px; }
+    .tab-btn { background: transparent; border: none; color: var(--text-muted); font-size: 0.88rem; font-weight: 700; padding: 6px 14px; border-radius: 6px; cursor: pointer; transition: all 0.2s; }
+    .tab-btn.active { background: rgba(56, 189, 248, 0.15); color: var(--accent-cyan); }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* Log Console */
+    .log-terminal { background: #050811; border: 1px solid #1e293b; border-radius: 8px; padding: 16px; font-family: 'Courier New', monospace; font-size: 0.8rem; color: #38bdf8; max-height: 280px; overflow-y: auto; white-space: pre-wrap; word-break: break-all; }
+    .log-path-banner { font-size: 0.78rem; color: var(--text-muted); margin-bottom: 8px; display: flex; justify-content: space-between; }
+
+    /* Kaggle Voice Info Box */
+    .dataset-info-box { background: rgba(15, 23, 42, 0.8); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 10px; padding: 16px; margin-bottom: 12px; }
+    .dataset-info-title { font-size: 0.95rem; font-weight: 700; color: #93c5fd; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+    .dataset-info-desc { font-size: 0.85rem; color: #cbd5e1; line-height: 1.45; }
+    .dataset-pill { font-size: 0.72rem; background: rgba(59, 130, 246, 0.2); color: #bfdbfe; padding: 2px 8px; border-radius: 12px; }
   </style>
 </head>
 <body>
-  <div class="header">
-    <h1>DeepFake-AI: Forensic Detection Dashboard</h1>
-    <p style="color: #94a3b8;">Real-Time Spatial-Frequency & Spatio-Temporal Authenticity Inspection</p>
-  </div>
-  <div class="card">
-    <h2>Active Model Engine</h2>
-    <p>Loaded Architecture: <strong>Dual-Stream Spatial-Frequency Cross-Attention Net</strong></p>
-    <div class="grid">
-      <div class="metric"><div class="metric-val">99.6%</div>AUC (FF++ c23)</div>
-      <div class="metric"><div class="metric-val">87.5%</div>Zero-Shot AUC (Celeb-DF)</div>
-      <div class="metric"><div class="metric-val">14.2 ms</div>Inference Latency</div>
+  <div class="container">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="header-titles">
+        <h1>DeepFake-AI: Cyber-Forensics Laboratory</h1>
+        <p>Unified Real-Time Spatial, Spectral, Temporal & Acoustic Authenticity Verification</p>
+      </div>
+      <div class="header-right">
+        <div class="author-badge">Research Team: Dar Rehan Rasool | Dr. Riyaz & Dr. Javad (IUST)</div>
+      </div>
+    </header>
+
+    <!-- Audio & System Toolbar -->
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; flex-wrap: wrap; gap: 12px;">
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <span style="font-size: 0.82rem; color: var(--text-muted);">Hardware:</span>
+        <span style="font-size: 0.82rem; font-weight: 700; color: #4ade80;">Dual NVIDIA Tesla T4 / Apple Silicon Core</span>
+      </div>
+      <div class="audio-controls">
+        <button class="btn" id="audioToggleBtn" onclick="toggleAudio()"><span id="audioIcon">🔊</span> Audio Alerts: <strong id="audioStatus">ON</strong></button>
+        <button class="btn btn-red" onclick="testBeep()"><span style="color: #ef4444;">●</span> Test Fake Beep</button>
+        <button class="btn btn-green" onclick="testChime()"><span style="color: #22c55e;">●</span> Test Real Chime</button>
+      </div>
     </div>
+
+    <!-- Main Grid: Input Dropzone & Real-Time Verdict Beacon -->
+    <div class="grid-2">
+
+      <!-- Left Column: Media Uploader & Preset Triggers -->
+      <div class="card">
+        <div class="card-title">
+          <span>Multi-Modal Ingest Pipeline</span>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">Video / Image / Voice</span>
+        </div>
+
+        <!-- Dropzone -->
+        <div class="dropzone" id="dropzone" onclick="document.getElementById('fileInput').click()">
+          <div class="dropzone-icon">📁</div>
+          <div class="dropzone-text">Drop Media File or Click to Browse</div>
+          <div class="dropzone-sub">Supports .mp4, .mov, .avi (Video) | .jpg, .png, .webp (Image) | .wav, .mp3, .flac (Audio)</div>
+          <input type="file" id="fileInput" accept="image/*,video/*,audio/*" onchange="handleFileSelect(event)">
+        </div>
+
+        <!-- Media Preview -->
+        <div class="preview-box" id="previewBox">
+          <div style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 8px;" id="previewFilename"></div>
+          <img id="imagePreview" class="preview-media" style="display: none;">
+          <video id="videoPreview" class="preview-media" controls style="display: none;"></video>
+          <audio id="audioPreview" controls style="display: none; width: 100%;"></audio>
+        </div>
+
+        <!-- 1-Click Kaggle Benchmark Presets -->
+        <div class="presets-label">1-Click Representative Presets (Kaggle & DFDC Benchmarks)</div>
+        <div class="presets-grid">
+          <div class="preset-btn" onclick="runPreset('fake_video')">
+            <strong>🎬 Fake Video</strong>
+            <span>DFDC FaceSwap</span>
+          </div>
+          <div class="preset-btn" onclick="runPreset('real_video')">
+            <strong>🎬 Real Video</strong>
+            <span>DFDC Natural</span>
+          </div>
+          <div class="preset-btn" onclick="runPreset('fake_audio')">
+            <strong>🎙️ Fake Voice</strong>
+            <span>Telecom Scam TTS</span>
+          </div>
+          <div class="preset-btn" onclick="runPreset('real_audio')">
+            <strong>🎙️ Real Voice</strong>
+            <span>Human Speech</span>
+          </div>
+          <div class="preset-btn" onclick="runPreset('fake_image')">
+            <strong>🖼️ Fake Image</strong>
+            <span>GAN Diffusion</span>
+          </div>
+          <div class="preset-btn" onclick="runPreset('real_image')">
+            <strong>🖼️ Real Image</strong>
+            <span>DSLR Organic</span>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" style="width: 100%;" id="analyzeBtn" onclick="submitCurrentMedia()">⚡ EXECUTE FORENSIC VERIFICATION</button>
+      </div>
+
+      <!-- Right Column: Massive Visual Light Beacon & Authenticity Verdict -->
+      <div class="card">
+        <div class="card-title">
+          <span>Real-Time Detection Verdict</span>
+          <span id="latencyBadge" style="font-size: 0.75rem; color: var(--accent-cyan);">Latency: -- ms</span>
+        </div>
+
+        <div class="verdict-beacon-container" id="beaconContainer">
+          <!-- Dynamic Neon Beacon: RED for Fake, GREEN for Real -->
+          <div class="beacon beacon-idle" id="beaconLight">
+            <span id="beaconIcon">⬡</span>
+          </div>
+          <div class="verdict-title" id="verdictLabel" style="color: #94a3b8;">SYSTEM READY</div>
+          <div class="verdict-desc" id="verdictDesc">Awaiting media upload. The system will activate neon RED visual beacon with pulsing alarm beeps for deepfakes, or neon GREEN visual beacon with chime for authentic media.</div>
+        </div>
+
+        <!-- Probability Bar -->
+        <div class="prob-bar-container">
+          <div class="prob-bar-labels">
+            <span style="color: #f87171;" id="fakeProbLabel">Fake Probability: 0%</span>
+            <span style="color: #4ade80;" id="realProbLabel">Real Probability: 0%</span>
+          </div>
+          <div class="prob-track">
+            <div class="prob-fill-fake" id="probFillFake"></div>
+            <div class="prob-fill-real" id="probFillReal"></div>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--text-muted);">
+          <span>Classification Threshold: <strong>τ = 0.50</strong></span>
+          <span>Decision Confidence: <strong id="confidenceVal" style="color: #f8fafc;">--%</strong></span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Advanced Detail: How We Estimated The Calculation -->
+    <div class="card math-card">
+      <div class="card-title">
+        <span>🔬 Advanced Calculation Details: Mathematical Forensic Formulation</span>
+        <span style="font-size: 0.78rem; color: var(--accent-cyan);">Explainable AI (XAI)</span>
+      </div>
+
+      <div class="formula-banner">
+        <span>Ensemble Model: P(Fake) = σ(w₁·S_spatial + w₂·S_spectral + w₃·S_temporal + w₄·S_audio + b)</span>
+        <span style="font-size: 0.8rem; color: #94a3b8;">σ(z) = 1 / (1 + e⁻ᶻ)</span>
+      </div>
+
+      <!-- 4 Mathematical Sub-Scores -->
+      <div class="metrics-grid">
+        <div class="metric-subcard">
+          <div class="metric-subcard-title">S_spatial (Boundary)</div>
+          <div class="metric-subcard-val" id="metricSpatial">0.000</div>
+          <div class="metric-bar-bg"><div class="metric-bar-fill" id="barSpatial" style="background: #38bdf8;"></div></div>
+          <span style="font-size: 0.7rem; color: var(--text-muted); display: block; margin-top: 4px;">∇²I Laplacian Discontinuity</span>
+        </div>
+        <div class="metric-subcard">
+          <div class="metric-subcard-title">S_spectral (Frequency)</div>
+          <div class="metric-subcard-val" id="metricSpectral">0.000</div>
+          <div class="metric-bar-bg"><div class="metric-bar-fill" id="barSpectral" style="background: #818cf8;"></div></div>
+          <span style="font-size: 0.7rem; color: var(--text-muted); display: block; margin-top: 4px;">2D-DCT Power Ratio</span>
+        </div>
+        <div class="metric-subcard">
+          <div class="metric-subcard-title">S_temporal (Biology)</div>
+          <div class="metric-subcard-val" id="metricTemporal">0.000</div>
+          <div class="metric-bar-bg"><div class="metric-bar-fill" id="barTemporal" style="background: #fbbf24;"></div></div>
+          <span style="font-size: 0.7rem; color: var(--text-muted); display: block; margin-top: 4px;">EAR Blink Dynamic (dE/dt)</span>
+        </div>
+        <div class="metric-subcard">
+          <div class="metric-subcard-title">S_audio (Voice Clone)</div>
+          <div class="metric-subcard-val" id="metricAudio">0.000</div>
+          <div class="metric-bar-bg"><div class="metric-bar-fill" id="barAudio" style="background: #f43f5e;"></div></div>
+          <span style="font-size: 0.7rem; color: var(--text-muted); display: block; margin-top: 4px;">SFM Vocoder Flatness</span>
+        </div>
+      </div>
+
+      <!-- Chronological Step-by-Step Calculation Trace -->
+      <div class="trace-steps" id="traceStepsContainer">
+        <div style="color: #64748b; font-style: italic;">Detailed mathematical trace will populate upon forensic execution.</div>
+      </div>
+    </div>
+
+    <!-- Bottom Section: Logs Inspector & Kaggle Voice Datasets -->
+    <div class="card" style="margin-top: 24px;">
+      <div class="tabs-nav">
+        <button class="tab-btn active" onclick="switchTab('logsTab')">📜 Bit-by-Bit VS Code Logs</button>
+        <button class="tab-btn" onclick="switchTab('voiceTab')">🎙️ Kaggle Audio & Voice Datasets</button>
+      </div>
+
+      <!-- Tab 1: VS Code Bit-by-Bit Logs -->
+      <div id="logsTab" class="tab-content active">
+        <div class="log-path-banner">
+          <span>Local VS Code Path: <code style="color: #38bdf8;">/Users/darrehanrasool/Desktop/Deep/logs/</code></span>
+          <button class="btn" style="padding: 3px 8px; font-size: 0.75rem;" onclick="fetchLogs()">🔄 Refresh Live Logs</button>
+        </div>
+        <div class="log-terminal" id="logTerminal">Loading bit-by-bit execution logs from VS Code workspace...</div>
+      </div>
+
+      <!-- Tab 2: Kaggle Voice Datasets Info -->
+      <div id="voiceTab" class="tab-content">
+        <div class="dataset-info-box">
+          <div class="dataset-info-title">
+            <span>FakeAVCeleb Multimodal Dataset</span>
+            <span class="dataset-pill">Audio + Video</span>
+          </div>
+          <div class="dataset-info-desc">
+            Contains 20,000+ deepfake videos paired with cloned voices generated by SV2TTS (Real-Time Voice Cloning) and Tacotron 2 vocoded with WaveGlow. Perfect for validating audio-visual lip-sync delay and neural speech clone detection.
+          </div>
+        </div>
+
+        <div class="dataset-info-box">
+          <div class="dataset-info-title">
+            <span>Deepfake Audio Detection (Telecom Fraud / ASVspoof)</span>
+            <span class="dataset-pill">Kaggle Benchmark</span>
+          </div>
+          <div class="dataset-info-desc">
+            Real telephone customer audio versus automated AI voice clones used in banking/telecom fraud. Evaluates spectral flatness measure (SFM), linear prediction cepstral coefficients (LPCC), and vocal tract micro-tremors.
+          </div>
+        </div>
+
+        <div class="dataset-info-box">
+          <div class="dataset-info-title">
+            <span>In-The-Wild Voice Clone Dataset</span>
+            <span class="dataset-pill">ElevenLabs & Bark</span>
+          </div>
+          <div class="dataset-info-desc">
+            Modern zero-shot multi-speaker generative speech synthesis. Used in this dashboard to measure high-frequency phase dispersion and vocoder periodicities.
+          </div>
+        </div>
+      </div>
+
+    </div>
+
   </div>
+
+  <!-- Audio Synthesizer (Web Audio API) & Frontend Scripts -->
+  <script>
+    // -------------------------------------------------------------
+    // Web Audio API Sound Synthesizer (Zero external file dependencies)
+    // -------------------------------------------------------------
+    let audioCtx = null;
+    let audioEnabled = true;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function toggleAudio() {
+      audioEnabled = !audioEnabled;
+      document.getElementById('audioStatus').innerText = audioEnabled ? 'ON' : 'MUTED';
+      document.getElementById('audioIcon').innerText = audioEnabled ? '🔊' : '🔇';
+    }
+
+    // High-urgency Alarm Beep for Fake Media (Pulsed 880Hz square wave)
+    function playFakeAlarmBeep() {
+      if (!audioEnabled) return;
+      const ctx = getAudioContext();
+      const now = ctx.currentTime;
+
+      // 4 rapid alarm pulses
+      for (let i = 0; i < 4; i++) {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(880, now + (i * 0.14)); // 880 Hz High A
+        osc.frequency.setValueAtTime(440, now + (i * 0.14) + 0.05); // Step down to 440 Hz
+
+        gain.gain.setValueAtTime(0.3, now + (i * 0.14));
+        gain.gain.exponentialRampToValueAtTime(0.001, now + (i * 0.14) + 0.11);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        osc.start(now + (i * 0.14));
+        osc.stop(now + (i * 0.14) + 0.12);
+      }
+    }
+
+    // Soothing Harmonic Confirmation Chime for Real Media (C5 -> E5 sine wave)
+    function playRealChime() {
+      if (!audioEnabled) return;
+      const ctx = getAudioContext();
+      const now = ctx.currentTime;
+
+      // Tone 1: C5 (523.25 Hz)
+      const osc1 = ctx.createOscillator();
+      const gain1 = ctx.createGain();
+      osc1.type = 'sine';
+      osc1.frequency.setValueAtTime(523.25, now);
+      gain1.gain.setValueAtTime(0.25, now);
+      gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.5);
+      osc1.connect(gain1);
+      gain1.connect(ctx.destination);
+      osc1.start(now);
+      osc1.stop(now + 0.55);
+
+      // Tone 2: E5 (659.25 Hz)
+      const osc2 = ctx.createOscillator();
+      const gain2 = ctx.createGain();
+      osc2.type = 'sine';
+      osc2.frequency.setValueAtTime(659.25, now + 0.15);
+      gain2.gain.setValueAtTime(0.28, now + 0.15);
+      gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.8);
+      osc2.connect(gain2);
+      gain2.connect(ctx.destination);
+      osc2.start(now + 0.15);
+      osc2.stop(now + 0.85);
+    }
+
+    function testBeep() { playFakeAlarmBeep(); }
+    function testChime() { playRealChime(); }
+
+    // -------------------------------------------------------------
+    // File Handling & Drag-and-Drop
+    // -------------------------------------------------------------
+    let currentFile = null;
+    let currentBase64 = null;
+    let currentSampleToken = null;
+
+    const dropzone = document.getElementById('dropzone');
+    dropzone.addEventListener('dragover', (e) => { e.preventDefault(); dropzone.classList.add('dragover'); });
+    dropzone.addEventListener('dragleave', () => { dropzone.classList.remove('dragover'); });
+    dropzone.addEventListener('drop', (e) => {
+      e.preventDefault();
+      dropzone.classList.remove('dragover');
+      if (e.dataTransfer.files.length) {
+        processSelectedFile(e.dataTransfer.files[0]);
+      }
+    });
+
+    function handleFileSelect(e) {
+      if (e.target.files.length) {
+        processSelectedFile(e.target.files[0]);
+      }
+    }
+
+    function processSelectedFile(file) {
+      currentFile = file;
+      currentSampleToken = null;
+      document.getElementById('previewFilename').innerText = `Loaded: ${file.name} (${(file.size / 1024).toFixed(1)} KB)`;
+      document.getElementById('previewBox').style.display = 'block';
+
+      const imgP = document.getElementById('imagePreview');
+      const vidP = document.getElementById('videoPreview');
+      const audP = document.getElementById('audioPreview');
+      imgP.style.display = 'none'; vidP.style.display = 'none'; audP.style.display = 'none';
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        currentBase64 = e.target.result;
+        if (file.type.startsWith('image/')) {
+          imgP.src = currentBase64; imgP.style.display = 'inline-block';
+        } else if (file.type.startsWith('video/')) {
+          vidP.src = currentBase64; vidP.style.display = 'inline-block';
+        } else if (file.type.startsWith('audio/')) {
+          audP.src = currentBase64; audP.style.display = 'block';
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // -------------------------------------------------------------
+    // Presets Execution
+    // -------------------------------------------------------------
+    function runPreset(presetKey) {
+      const tokens = {
+        fake_video: { token: 'FAKE_VIDEO_STREAM_TOKEN_DFDC', name: 'dfdc_manipulated_face_sample.mp4', type: 'video/mp4' },
+        real_video: { token: 'REAL_VIDEO_STREAM_TOKEN_AUTHENTIC', name: 'dfdc_authentic_interview.mp4', type: 'video/mp4' },
+        fake_audio: { token: 'FAKE_AUDIO_STREAM_TOKEN_SYNTHETIC', name: 'telecom_fraud_voice_clone.wav', type: 'audio/wav' },
+        real_audio: { token: 'REAL_AUDIO_STREAM_TOKEN_NATURAL', name: 'human_natural_speech.wav', type: 'audio/wav' },
+        fake_image: { token: 'FAKE_IMAGE_STREAM_TOKEN_GAN', name: 'diffusion_gan_generated_face.png', type: 'image/png' },
+        real_image: { token: 'REAL_IMAGE_STREAM_TOKEN_ORGANIC', name: 'dslr_photographic_portrait.jpg', type: 'image/jpeg' }
+      };
+
+      const p = tokens[presetKey];
+      currentSampleToken = p.token;
+      currentFile = { name: p.name, type: p.type };
+      currentBase64 = null;
+
+      document.getElementById('previewFilename').innerText = `Preset Loaded: ${p.name}`;
+      document.getElementById('previewBox').style.display = 'block';
+      document.getElementById('imagePreview').style.display = 'none';
+      document.getElementById('videoPreview').style.display = 'none';
+      document.getElementById('audioPreview').style.display = 'none';
+
+      submitCurrentMedia();
+    }
+
+    // -------------------------------------------------------------
+    // Forensic Submission & API Call
+    // -------------------------------------------------------------
+    async function submitCurrentMedia() {
+      if (!currentFile && !currentSampleToken) {
+        alert('Please drop a media file or select a preset benchmark first!');
+        return;
+      }
+
+      const btn = document.getElementById('analyzeBtn');
+      btn.innerText = '⏳ ANALYZING SPATIAL & SPECTRAL COEFFICIENTS...';
+      btn.disabled = true;
+
+      const payload = {
+        filename: currentFile ? currentFile.name : 'media_sample.bin',
+        mime_type: currentFile ? currentFile.type : '',
+        file_data: currentBase64 || '',
+        sample_token: currentSampleToken || ''
+      };
+
+      try {
+        const response = await fetch('/api/analyze', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await response.json();
+        if (data.status === 'success') {
+          renderResults(data.result);
+        } else {
+          alert('Analysis error: ' + data.message);
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Network error connecting to Forensic API server.');
+      } finally {
+        btn.innerText = '⚡ EXECUTE FORENSIC VERIFICATION';
+        btn.disabled = false;
+        fetchLogs(); // Automatically refresh logs to show this run
+      }
+    }
+
+    // -------------------------------------------------------------
+    // Render Results & Trigger Sound / Visual Alerts
+    // -------------------------------------------------------------
+    function renderResults(res) {
+      const isFake = (res.verdict === 'FAKE');
+      const beaconLight = document.getElementById('beaconLight');
+      const beaconIcon = document.getElementById('beaconIcon');
+      const verdictLabel = document.getElementById('verdictLabel');
+      const verdictDesc = document.getElementById('verdictDesc');
+      const fakeProbLabel = document.getElementById('fakeProbLabel');
+      const realProbLabel = document.getElementById('realProbLabel');
+      const probFillFake = document.getElementById('probFillFake');
+      const probFillReal = document.getElementById('probFillReal');
+      const confidenceVal = document.getElementById('confidenceVal');
+      const latencyBadge = document.getElementById('latencyBadge');
+
+      latencyBadge.innerText = `Latency: ${res.latency_ms} ms`;
+
+      // Probabilities
+      const fakePct = (res.fake_probability * 100).toFixed(1);
+      const realPct = (res.real_probability * 100).toFixed(1);
+
+      fakeProbLabel.innerText = `Fake Probability: ${fakePct}%`;
+      realProbLabel.innerText = `Real Probability: ${realPct}%`;
+      probFillFake.style.width = `${fakePct}%`;
+      probFillReal.style.width = `${realPct}%`;
+      confidenceVal.innerText = `${res.confidence_percent}%`;
+
+      // Visual Light Beacon & Audio Alerts
+      if (isFake) {
+        // Red Pulsing Strobe Light
+        beaconLight.className = 'beacon beacon-fake';
+        beaconIcon.innerText = '⚠️';
+        verdictLabel.className = 'verdict-title fake';
+        verdictLabel.innerText = 'CRITICAL: FAKE DETECTED';
+        verdictDesc.innerText = res.alert.message;
+
+        // Play Beeping Alarm Sound
+        playFakeAlarmBeep();
+      } else {
+        // Green Glowing Aura
+        beaconLight.className = 'beacon beacon-real';
+        beaconIcon.innerText = '✓';
+        verdictLabel.className = 'verdict-title real';
+        verdictLabel.innerText = 'VERIFIED: AUTHENTIC';
+        verdictDesc.innerText = res.alert.message;
+
+        // Play Green Light Chime
+        playRealChime();
+      }
+
+      // Mathematical Sub-Scores
+      const m = res.advanced_metrics;
+      document.getElementById('metricSpatial').innerText = m.s_spatial.toFixed(3);
+      document.getElementById('metricSpectral').innerText = m.s_spectral.toFixed(3);
+      document.getElementById('metricTemporal').innerText = m.s_temporal.toFixed(3);
+      document.getElementById('metricAudio').innerText = m.s_audio.toFixed(3);
+
+      document.getElementById('barSpatial').style.width = `${Math.min(100, m.s_spatial * 100)}%`;
+      document.getElementById('barSpectral').style.width = `${Math.min(100, m.s_spectral * 100)}%`;
+      document.getElementById('barTemporal').style.width = `${Math.min(100, m.s_temporal * 100)}%`;
+      document.getElementById('barAudio').style.width = `${Math.min(100, m.s_audio * 100)}%`;
+
+      // Trace steps
+      const traceContainer = document.getElementById('traceStepsContainer');
+      traceContainer.innerHTML = '';
+      if (m.explanation_steps && m.explanation_steps.length) {
+        m.explanation_steps.forEach(step => {
+          const div = document.createElement('div');
+          div.className = 'trace-step-item';
+          div.innerText = step;
+          traceContainer.appendChild(div);
+        });
+      }
+    }
+
+    // -------------------------------------------------------------
+    // Tab Switching & Live Logs Polling
+    // -------------------------------------------------------------
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      event.target.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    async function fetchLogs() {
+      try {
+        const res = await fetch('/api/logs');
+        const data = await res.json();
+        if (data.status === 'success') {
+          const t = data.data;
+          let combined = `================================================================================\n`;
+          combined += `     BIT-BY-BIT VS CODE REPOSITORY LOGS [${new Date().toISOString()}]\n`;
+          combined += `================================================================================\n\n`;
+
+          combined += `--- [1] API INFERENCE SERVICE LOG (logs/application/api_service.log) ---\n`;
+          combined += (t.api_service_log || 'No API calls logged yet.\n') + `\n`;
+
+          combined += `--- [2] HARDWARE TELEMETRY LOG (logs/hardware/hardware_telemetry.log) ---\n`;
+          combined += (t.hardware_telemetry || 'No telemetry recorded.\n') + `\n`;
+
+          combined += `--- [3] ST2-SYNCNET TRAINING LOG (logs/training/st2_syncnet_training.log) ---\n`;
+          combined += (t.training_log || 'Training log clean.\n') + `\n`;
+
+          document.getElementById('logTerminal').innerText = combined;
+        }
+      } catch (e) {
+        document.getElementById('logTerminal').innerText = 'Error fetching logs from server: ' + e;
+      }
+    }
+
+    // Initial log load
+    fetchLogs();
+  </script>
 </body>
 </html>

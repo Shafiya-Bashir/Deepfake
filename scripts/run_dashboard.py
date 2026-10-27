@@ -18,8 +18,7 @@ def main():
     try:
         server.serve_forever()
     except KeyboardInterrupt:
-        print('
-Dashboard terminated.')
+        print("\nDashboard terminated.")
 
 
 if __name__ == '__main__':

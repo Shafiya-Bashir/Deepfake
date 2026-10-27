@@ -1,2 +1,4 @@
 [2026-10-27T12:25:26.612859+00:00] [INFO] [InferenceAPI] FastREST API Service listening on port 8000.
 [2026-10-27T12:25:26.612861+00:00] [INFO] [InferenceAPI] Worker thread pool allocated: 8 workers.
+[2026-10-27T19:59:16Z] [INFERENCE] Type=Video | File=dfdc_manipulated_face_sample.mp4 | Verdict=FAKE | FakeProb=0.6174 | Latency=1.8ms
+[2026-10-27T19:59:20Z] [INFERENCE] Type=Audio / Voice | File=human_natural_speech.wav | Verdict=REAL | FakeProb=0.2135 | Latency=2.42ms
