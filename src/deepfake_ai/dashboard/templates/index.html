@@ -41,12 +41,18 @@
     .btn-primary:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 4px 15px rgba(2, 132, 199, 0.4); }
 
     /* Top Grid */
-    .grid-2 { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 24px; margin-bottom: 24px; }
+    .grid-2 { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 24px; margin-bottom: 24px; }
     @media (max-width: 960px) { .grid-2 { grid-template-columns: 1fr; } }
 
     /* Glass Cards */
     .card { background: var(--card-bg); backdrop-filter: blur(12px); border: 1px solid var(--border-color); border-radius: 14px; padding: 22px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35); position: relative; overflow: hidden; }
     .card-title { font-size: 1.15rem; font-weight: 700; color: #e2e8f0; margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; }
+
+    /* Ingest Mode Tabs */
+    .ingest-tabs { display: flex; gap: 8px; margin-bottom: 16px; }
+    .ingest-tab { flex: 1; background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-color); color: var(--text-muted); padding: 9px 8px; border-radius: 8px; font-size: 0.82rem; font-weight: 700; cursor: pointer; transition: all 0.2s; text-align: center; }
+    .ingest-tab:hover { border-color: var(--accent-cyan); color: #f8fafc; }
+    .ingest-tab.active { background: rgba(56, 189, 248, 0.15); border-color: var(--accent-cyan); color: var(--accent-cyan); }
 
     /* Dropzone */
     .dropzone { border: 2px dashed rgba(56, 189, 248, 0.4); border-radius: 12px; padding: 28px 16px; text-align: center; background: rgba(15, 23, 42, 0.5); cursor: pointer; transition: all 0.25s; margin-bottom: 16px; }
@@ -56,16 +62,36 @@
     .dropzone-sub { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; }
     #fileInput { display: none; }
 
-    /* Quick Test Preset Buttons */
-    .presets-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 8px; font-weight: 700; }
-    .presets-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
-    .preset-btn { background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-color); border-radius: 8px; padding: 8px 6px; text-align: center; font-size: 0.76rem; color: var(--text-main); cursor: pointer; transition: all 0.2s; }
-    .preset-btn:hover { border-color: var(--accent-cyan); background: rgba(56, 189, 248, 0.1); }
-    .preset-btn strong { display: block; font-size: 0.82rem; margin-bottom: 2px; }
+    /* Live Webcam Box */
+    .camera-container { display: none; background: #000; border-radius: 12px; overflow: hidden; position: relative; border: 1px solid var(--border-color); margin-bottom: 16px; text-align: center; }
+    .camera-video { width: 100%; max-height: 240px; object-fit: cover; transform: scaleX(-1); display: block; }
+    .camera-reticle { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 130px; height: 160px; border: 2px dashed rgba(56, 189, 248, 0.65); border-radius: 65px; pointer-events: none; }
+    .camera-actions { padding: 10px; background: rgba(15, 23, 42, 0.95); display: flex; justify-content: center; gap: 10px; }
+
+    /* Live Voice Recorder Box */
+    .voice-container { display: none; background: rgba(15, 23, 42, 0.85); border-radius: 12px; border: 1px solid var(--border-color); padding: 22px 16px; text-align: center; margin-bottom: 16px; }
+    .mic-icon-wrapper { width: 68px; height: 68px; border-radius: 50%; background: #1e293b; border: 2px solid #475569; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 12px; transition: all 0.3s; }
+    .mic-recording { background: #ef4444 !important; border-color: #fca5a5 !important; animation: micPulse 1.2s infinite; }
+    @keyframes micPulse {
+      0% { transform: scale(1); box-shadow: 0 0 10px rgba(239, 68, 68, 0.5); }
+      50% { transform: scale(1.1); box-shadow: 0 0 30px rgba(239, 68, 68, 0.9); }
+      100% { transform: scale(1); box-shadow: 0 0 10px rgba(239, 68, 68, 0.5); }
+    }
+    .voice-timer { font-size: 1.4rem; font-weight: 800; font-family: 'Courier New', monospace; color: #f8fafc; margin-bottom: 4px; }
+    .voice-status { font-size: 0.82rem; color: var(--text-muted); margin-bottom: 12px; }
+    .audio-meter { height: 6px; width: 60%; background: #0f172a; border-radius: 3px; margin: 0 auto 16px; overflow: hidden; border: 1px solid var(--border-color); }
+    .audio-meter-fill { height: 100%; width: 0%; background: linear-gradient(90deg, #22c55e, #eab308, #ef4444); transition: width 0.08s; }
 
     /* Media Preview Area */
     .preview-box { display: none; background: #0b1120; border-radius: 10px; padding: 12px; margin-bottom: 16px; border: 1px solid var(--border-color); text-align: center; }
-    .preview-media { max-width: 100%; max-height: 220px; border-radius: 8px; object-fit: contain; }
+    .preview-media { max-width: 100%; max-height: 200px; border-radius: 8px; object-fit: contain; }
+
+    /* Quick Test Preset Buttons */
+    .presets-label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-muted); margin-bottom: 8px; font-weight: 700; }
+    .presets-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 16px; }
+    .preset-btn { background: rgba(15, 23, 42, 0.8); border: 1px solid var(--border-color); border-radius: 8px; padding: 7px 5px; text-align: center; font-size: 0.74rem; color: var(--text-main); cursor: pointer; transition: all 0.2s; }
+    .preset-btn:hover { border-color: var(--accent-cyan); background: rgba(56, 189, 248, 0.1); }
+    .preset-btn strong { display: block; font-size: 0.8rem; margin-bottom: 2px; }
 
     /* Detection Result Box */
     .verdict-beacon-container { text-align: center; padding: 20px 10px; margin-bottom: 18px; border-radius: 12px; background: rgba(15, 23, 42, 0.6); border: 1px solid var(--border-color); }
@@ -177,15 +203,43 @@
       <div class="card">
         <div class="card-title">
           <span>Multi-Modal Ingest Pipeline</span>
-          <span style="font-size: 0.75rem; color: var(--text-muted);">Video / Image / Voice</span>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">Live Camera • Live Mic • File Upload</span>
         </div>
 
-        <!-- Dropzone -->
+        <!-- Ingest Mode Tabs: File Upload | Live Webcam | Live Voice -->
+        <div class="ingest-tabs">
+          <button class="ingest-tab active" id="tabUploadBtn" onclick="switchIngestMode('upload')">📁 Upload File</button>
+          <button class="ingest-tab" id="tabCamBtn" onclick="switchIngestMode('camera')">📸 Live Webcam Selfie</button>
+          <button class="ingest-tab" id="tabMicBtn" onclick="switchIngestMode('voice')">🎙️ Record Live Voice</button>
+        </div>
+
+        <!-- Mode 1: Drag & Dropzone -->
         <div class="dropzone" id="dropzone" onclick="document.getElementById('fileInput').click()">
           <div class="dropzone-icon">📁</div>
           <div class="dropzone-text">Drop Media File or Click to Browse</div>
           <div class="dropzone-sub">Supports .mp4, .mov, .avi (Video) | .jpg, .png, .webp (Image) | .wav, .mp3, .flac (Audio)</div>
           <input type="file" id="fileInput" accept="image/*,video/*,audio/*" onchange="handleFileSelect(event)">
+        </div>
+
+        <!-- Mode 2: Live Webcam Container -->
+        <div class="camera-container" id="cameraBox">
+          <video id="webcamView" class="camera-video" autoplay playsinline muted></video>
+          <div class="camera-reticle"></div>
+          <div class="camera-actions">
+            <button class="btn btn-primary" onclick="captureWebcamPhoto()">📸 Snap Live Selfie</button>
+            <button class="btn btn-red" onclick="switchIngestMode('upload')">✕ Close Camera</button>
+          </div>
+        </div>
+
+        <!-- Mode 3: Live Microphone Recording Studio -->
+        <div class="voice-container" id="voiceBox">
+          <div class="mic-icon-wrapper" id="micIconWrapper">🎙️</div>
+          <div class="voice-timer" id="voiceTimer">00:00</div>
+          <div class="voice-status" id="voiceStatus">Click button below and speak into your Mac microphone for 3 to 10 seconds.</div>
+          <div class="audio-meter"><div class="audio-meter-fill" id="audioMeterFill"></div></div>
+          <div>
+            <button class="btn btn-primary" id="voiceRecordBtn" onclick="toggleVoiceRecording()">🔴 Start Voice Recording</button>
+          </div>
         </div>
 
         <!-- Media Preview -->
@@ -241,7 +295,7 @@
             <span id="beaconIcon">⬡</span>
           </div>
           <div class="verdict-title" id="verdictLabel" style="color: #94a3b8;">SYSTEM READY</div>
-          <div class="verdict-desc" id="verdictDesc">Awaiting media upload. The system will activate neon RED visual beacon with pulsing alarm beeps for deepfakes, or neon GREEN visual beacon with chime for authentic media.</div>
+          <div class="verdict-desc" id="verdictDesc">Awaiting media upload or live capture. The system will activate neon RED visual beacon with pulsing alarm beeps for deepfakes, or neon GREEN visual beacon with chime for authentic media.</div>
         </div>
 
         <!-- Probability Bar -->
@@ -448,6 +502,249 @@
     function testChime() { playRealChime(); }
 
     // -------------------------------------------------------------
+    // Ingest Mode Switching (Upload | Live Webcam | Live Voice)
+    // -------------------------------------------------------------
+    function switchIngestMode(mode) {
+      document.getElementById('tabUploadBtn').classList.remove('active');
+      document.getElementById('tabCamBtn').classList.remove('active');
+      document.getElementById('tabMicBtn').classList.remove('active');
+
+      document.getElementById('dropzone').style.display = 'none';
+      document.getElementById('cameraBox').style.display = 'none';
+      document.getElementById('voiceBox').style.display = 'none';
+
+      if (mode === 'upload') {
+        document.getElementById('tabUploadBtn').classList.add('active');
+        document.getElementById('dropzone').style.display = 'block';
+        stopWebcam();
+        if (isRecording) stopVoiceRecording();
+      } else if (mode === 'camera') {
+        document.getElementById('tabCamBtn').classList.add('active');
+        document.getElementById('cameraBox').style.display = 'block';
+        if (isRecording) stopVoiceRecording();
+        startWebcam();
+      } else if (mode === 'voice') {
+        document.getElementById('tabMicBtn').classList.add('active');
+        document.getElementById('voiceBox').style.display = 'block';
+        stopWebcam();
+      }
+    }
+
+    // -------------------------------------------------------------
+    // Live Webcam Implementation
+    // -------------------------------------------------------------
+    let webcamStream = null;
+
+    async function startWebcam() {
+      try {
+        const video = document.getElementById('webcamView');
+        webcamStream = await navigator.mediaDevices.getUserMedia({
+          video: { width: { ideal: 640 }, height: { ideal: 480 }, facingMode: 'user' }
+        });
+        video.srcObject = webcamStream;
+      } catch (err) {
+        console.error('Webcam permission or device error:', err);
+        alert('Webcam permission denied or camera not found. Please allow camera access in your browser settings.');
+        switchIngestMode('upload');
+      }
+    }
+
+    function stopWebcam() {
+      if (webcamStream) {
+        webcamStream.getTracks().forEach(t => t.stop());
+        webcamStream = null;
+      }
+    }
+
+    function captureWebcamPhoto() {
+      const video = document.getElementById('webcamView');
+      const canvas = document.createElement('canvas');
+      canvas.width = video.videoWidth || 640;
+      canvas.height = video.videoHeight || 480;
+      const ctx = canvas.getContext('2d');
+
+      // Unmirror image
+      ctx.translate(canvas.width, 0);
+      ctx.scale(-1, 1);
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+      currentBase64 = canvas.toDataURL('image/jpeg', 0.95);
+      currentFile = { name: 'my_live_webcam_selfie.jpg', type: 'image/jpeg' };
+      currentSampleToken = null;
+
+      stopWebcam();
+      switchIngestMode('upload');
+
+      // Show in preview box
+      document.getElementById('previewFilename').innerText = `📸 Captured Selfie: my_live_webcam_selfie.jpg`;
+      document.getElementById('previewBox').style.display = 'block';
+      const imgP = document.getElementById('imagePreview');
+      imgP.src = currentBase64;
+      imgP.style.display = 'inline-block';
+      document.getElementById('videoPreview').style.display = 'none';
+      document.getElementById('audioPreview').style.display = 'none';
+
+      submitCurrentMedia();
+    }
+
+    // -------------------------------------------------------------
+    // Live Microphone Voice Recording (WAV 16kHz Mono)
+    // -------------------------------------------------------------
+    let voiceStream = null;
+    let voiceAudioCtx = null;
+    let scriptNode = null;
+    let sourceNode = null;
+    let recordedSamples = [];
+    let isRecording = false;
+    let recordTimer = null;
+    let recordSeconds = 0;
+
+    function toggleVoiceRecording() {
+      if (!isRecording) {
+        startVoiceRecording();
+      } else {
+        stopVoiceRecording();
+      }
+    }
+
+    async function startVoiceRecording() {
+      try {
+        voiceStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        voiceAudioCtx = new (window.AudioContext || window.webkitAudioContext)({ sampleRate: 16000 });
+        sourceNode = voiceAudioCtx.createMediaStreamSource(voiceStream);
+        scriptNode = voiceAudioCtx.createScriptProcessor(4096, 1, 1);
+        recordedSamples = [];
+
+        const meterFill = document.getElementById('audioMeterFill');
+
+        scriptNode.onaudioprocess = (e) => {
+          if (!isRecording) return;
+          const input = e.inputBuffer.getChannelData(0);
+          recordedSamples.push(new Float32Array(input));
+
+          // Calculate instantaneous volume for live audio meter
+          let sum = 0;
+          for (let i = 0; i < input.length; i++) {
+            sum += input[i] * input[i];
+          }
+          const rms = Math.sqrt(sum / input.length);
+          const level = Math.min(100, Math.round(rms * 450));
+          if (meterFill) meterFill.style.width = level + '%';
+        };
+
+        sourceNode.connect(scriptNode);
+        scriptNode.connect(voiceAudioCtx.destination);
+
+        isRecording = true;
+        recordSeconds = 0;
+        document.getElementById('micIconWrapper').classList.add('mic-recording');
+        const btn = document.getElementById('voiceRecordBtn');
+        btn.innerText = '⏹️ Stop & Verify Voice';
+        btn.className = 'btn btn-red';
+        document.getElementById('voiceStatus').innerText = 'Recording live microphone... Speak naturally!';
+
+        recordTimer = setInterval(() => {
+          recordSeconds++;
+          const mins = String(Math.floor(recordSeconds / 60)).padStart(2, '0');
+          const secs = String(recordSeconds % 60).padStart(2, '0');
+          document.getElementById('voiceTimer').innerText = `${mins}:${secs}`;
+          if (recordSeconds >= 20) {
+            stopVoiceRecording();
+          }
+        }, 1000);
+
+      } catch (err) {
+        console.error('Microphone error:', err);
+        alert('Microphone permission denied or device not found. Please allow microphone access in your browser settings.');
+      }
+    }
+
+    function stopVoiceRecording() {
+      if (!isRecording) return;
+      isRecording = false;
+      clearInterval(recordTimer);
+
+      document.getElementById('micIconWrapper').classList.remove('mic-recording');
+      const btn = document.getElementById('voiceRecordBtn');
+      btn.innerText = '🔴 Start Voice Recording';
+      btn.className = 'btn btn-primary';
+      document.getElementById('voiceStatus').innerText = 'Voice recording captured! Executing forensic scan...';
+
+      if (scriptNode) scriptNode.disconnect();
+      if (sourceNode) sourceNode.disconnect();
+      if (voiceStream) {
+        voiceStream.getTracks().forEach(track => track.stop());
+        voiceStream = null;
+      }
+
+      // Flatten collected chunks
+      let totalLength = 0;
+      for (let i = 0; i < recordedSamples.length; i++) {
+        totalLength += recordedSamples[i].length;
+      }
+      const merged = new Float32Array(totalLength);
+      let offset = 0;
+      for (let i = 0; i < recordedSamples.length; i++) {
+        merged.set(recordedSamples[i], offset);
+        offset += recordedSamples[i].length;
+      }
+
+      // Encode to 16kHz 16-bit Mono WAV
+      const wavBlob = encodeWAV(merged, 16000);
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        currentBase64 = e.target.result;
+        currentFile = { name: 'my_live_recorded_voice.wav', type: 'audio/wav', size: wavBlob.size };
+        currentSampleToken = null;
+
+        // Show in preview box
+        document.getElementById('previewFilename').innerText = `🎙️ Recorded Voice: my_live_recorded_voice.wav (${(wavBlob.size / 1024).toFixed(1)} KB)`;
+        document.getElementById('previewBox').style.display = 'block';
+        const audP = document.getElementById('audioPreview');
+        audP.src = currentBase64;
+        audP.style.display = 'block';
+        document.getElementById('imagePreview').style.display = 'none';
+        document.getElementById('videoPreview').style.display = 'none';
+
+        switchIngestMode('upload');
+        submitCurrentMedia();
+      };
+      reader.readAsDataURL(wavBlob);
+    }
+
+    // Standard 44-byte RIFF WAV Encoder
+    function encodeWAV(samples, sampleRate = 16000) {
+      const buffer = new ArrayBuffer(44 + samples.length * 2);
+      const view = new DataView(buffer);
+
+      function writeStr(offset, str) {
+        for (let i = 0; i < str.length; i++) view.setUint8(offset + i, str.charCodeAt(i));
+      }
+
+      writeStr(0, 'RIFF');
+      view.setUint32(4, 36 + samples.length * 2, true);
+      writeStr(8, 'WAVE');
+      writeStr(12, 'fmt ');
+      view.setUint32(16, 16, true);
+      view.setUint16(20, 1, true); // PCM
+      view.setUint16(22, 1, true); // Mono
+      view.setUint32(24, sampleRate, true);
+      view.setUint32(28, sampleRate * 2, true);
+      view.setUint16(32, 2, true);
+      view.setUint16(34, 16, true);
+      writeStr(36, 'data');
+      view.setUint32(40, samples.length * 2, true);
+
+      let offset = 44;
+      for (let i = 0; i < samples.length; i++, offset += 2) {
+        const s = Math.max(-1, Math.min(1, samples[i]));
+        view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
+      }
+
+      return new Blob([view], { type: 'audio/wav' });
+    }
+
+    // -------------------------------------------------------------
     // File Handling & Drag-and-Drop
     // -------------------------------------------------------------
     let currentFile = null;
@@ -528,7 +825,7 @@
     // -------------------------------------------------------------
     async function submitCurrentMedia() {
       if (!currentFile && !currentSampleToken) {
-        alert('Please drop a media file or select a preset benchmark first!');
+        alert('Please drop a media file, take a live selfie, record voice, or select a preset benchmark first!');
         return;
       }
 
