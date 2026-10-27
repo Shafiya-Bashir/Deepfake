@@ -135,8 +135,8 @@ class ST2SyncNet(nn.Module):
         self.spectral_encoder = SpectralPhaseCoherenceModule(in_channels=12, out_dim=feature_dim)
         self.temporal_encoder = TemporalBiologicalConsistencyModule(feature_dim=feature_dim)
 
-        # Multi-Head Cross-Attention Fusion
-        self.cross_attention = nn.MultiheadAttention(embed_dim=feature_dim, num_heads=4, batch_first=True)
+        # Multi-Head Cross-Attention Fusion (Universal PyTorch compatibility without batch_first pin)
+        self.cross_attention = nn.MultiheadAttention(embed_dim=feature_dim, num_heads=4)
         self.norm = nn.LayerNorm(feature_dim)
 
         # Forensic Decision & Explainability Heads
@@ -158,10 +158,11 @@ class ST2SyncNet(nn.Module):
         f_spectral = self.spectral_encoder(subbands)  # (b, feature_dim)
 
         # 3. Cross-Attention: Spatial queries attend to Spectral keys/values
-        q = f_spatial.unsqueeze(1)  # (b, 1, d)
-        kv = torch.stack([f_spatial, f_spectral], dim=1)  # (b, 2, d)
+        # Shapes: (seq_len, batch_size, embed_dim) for universal backwards compatibility
+        q = f_spatial.unsqueeze(0)  # (1, b, d)
+        kv = torch.stack([f_spatial, f_spectral], dim=0)  # (2, b, d)
         attn_out, attn_weights = self.cross_attention(q, kv, kv)
-        f_fused = self.norm(q + attn_out).squeeze(1)
+        f_fused = self.norm(f_spatial + attn_out.squeeze(0))  # (b, d)
 
         # 4. Temporal Stream if sequence provided
         if x_temporal is not None:
