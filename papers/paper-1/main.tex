@@ -34,19 +34,19 @@
 \title{ST2-SyncNet: Spatio-Temporal Audio-Visual Discrepancy Detection for Multi-Modal Deepfake Video Forensics}
 
 \author{
-    Dar~Rehan~Rasool\IEEEauthorrefmark{1},
-    Dr.~Riyaz\IEEEauthorrefmark{1}$^{*}$, and
-    Dr.~Javad\IEEEauthorrefmark{1}$^{*}$\\
+    Dr.~Riyaz\IEEEauthorrefmark{1}$^{*}$,
+    Dr.~Javad\IEEEauthorrefmark{1}$^{*}$, and
+    Dar~Rehan~Rasool\IEEEauthorrefmark{1}\\
     \IEEEauthorblockA{\IEEEauthorrefmark{1}Department of Computer Science \& Engineering, Islamic University of Science and Technology (IUST), Awantipora, Jammu \& Kashmir, India}\\
-    \IEEEauthorblockA{Email: rehan@iust.ac.in, riyaz.cs@iust.ac.in, javad.cs@iust.ac.in}\\
-    \IEEEauthorblockA{$^{*}$Co-Corresponding Senior Authors / Principal Research Supervision}
-    \thanks{Manuscript received October 24, 2026; revised October 27, 2026. This research was supported by the Department of Computer Science \& Engineering at the Islamic University of Science and Technology (IUST), Awantipora, Jammu \& Kashmir, India.}
-    \thanks{Dar Rehan Rasool is a Graduate Research Contributor with the Department of Computer Science \& Engineering, Islamic University of Science and Technology (IUST), Awantipora, Jammu \& Kashmir 192122, India (e-mail: rehan@iust.ac.in).}
-    \thanks{$^{*}$Dr. Riyaz and Dr. Javad are Senior Faculty and Principal Research Supervisors with the Department of Computer Science \& Engineering, Islamic University of Science and Technology (IUST), Awantipora, Jammu \& Kashmir 192122, India (e-mail: riyaz.cs@iust.ac.in, javad.cs@iust.ac.in). They contributed equally to the theoretical formulation, architectural design, and experimental supervision.}
+    \IEEEauthorblockA{Email: riyaz.cs@iust.ac.in, javad.cs@iust.ac.in, rehan@iust.ac.in}\\
+    \IEEEauthorblockA{$^{*}$Co-Corresponding Senior Authors / Principal Research Supervisors}
+    \thanks{Manuscript received October 24, 2026; revised October 27, 2026. This research was supported and conducted at the Department of Computer Science \& Engineering, Islamic University of Science and Technology (IUST), Awantipora, Jammu \& Kashmir, India.}%
+    \thanks{$^{*}$Dr. Riyaz and Dr. Javad are Senior Faculty and Principal Research Supervisors with the Department of Computer Science \& Engineering, Islamic University of Science and Technology (IUST), Awantipora, Jammu \& Kashmir 192122, India (e-mail: riyaz.cs@iust.ac.in, javad.cs@iust.ac.in). They contributed equally to the theoretical formulation, architectural design, and research supervision.}%
+    \thanks{Dar Rehan Rasool is a Graduate Student Researcher with the Department of Computer Science \& Engineering, Islamic University of Science and Technology (IUST), Awantipora, Jammu \& Kashmir 192122, India (e-mail: rehan@iust.ac.in).}%
 }
 
 \markboth{IEEE Transactions on Information Forensics and Security,~Vol.~XX, No.~X,~October~2026}%
-{Rasool \MakeLowercase{\textit{et al.}}: ST2-SyncNet: Multi-Modal Audio-Visual Deepfake Forensics}
+{Riyaz \MakeLowercase{\textit{et al.}}: ST2-SyncNet: Multi-Modal Audio-Visual Deepfake Forensics}
 
 \maketitle
 
@@ -72,7 +72,7 @@ To overcome these fundamental vulnerabilities, this paper introduces \textbf{ST2
 
 \begin{figure*}[!t]
 \centering
-\includegraphics[width=0.98\textwidth]{figures/st2_syncnet_architecture.pdf}
+\includegraphics[width=0.96\textwidth]{figures/st2_syncnet_architecture.pdf}
 \caption{Detailed architectural blueprint of the proposed ST2-SyncNet framework. Synchronous 8-frame facial visual crops and 16 kHz acoustic spectrograms are encoded into latent feature spaces $\mathbf{F}_V$ and $\mathbf{F}_A$, cross-attended via the Cross-Modal Cross-Attention (CMCA) module, fused with continuous Eye Aspect Ratio (EAR) kinematics, and jointly evaluated for forensic authenticity.}
 \label{fig:architecture}
 \end{figure*}
@@ -191,6 +191,8 @@ Deep generative models, such as Wav2Lip, generate lip textures by conditioning o
 \caption{Phonetic-to-Viseme Articulatory Mapping Matrix Across Standard Speech Units}
 \label{tab:visemes}
 \centering
+\resizebox{\columnwidth}{!}{%
+\setlength{\tabcolsep}{3pt}
 \begin{tabular}{llccc}
 \toprule
 \textbf{Viseme} & \textbf{Phonetic Group} & \textbf{Vertical Aperture ($\kappa$)} & \textbf{Spread ($W$)} & \textbf{Jaw ($J$)} \\
@@ -210,7 +212,8 @@ V12 & /aw/, /ah/ (bought) & $0.75 \pm 0.06$ & $0.62 \pm 0.06$ & Back-Low \\
 V13 & /o/ (boat) & $0.48 \pm 0.05$ & $0.48 \pm 0.05$ & Rounded \\
 V14 & /oo/, /u/ (boot) & $0.22 \pm 0.04$ & $0.36 \pm 0.04$ & High-Round \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 \section{The ST2-SyncNet System Architecture}
@@ -285,9 +288,11 @@ with $D = ||\mathbf{F}_V - \mathbf{F}_A||_2$, margin $m = 1.0$, and hyperparamet
 
 \subsection{Mathematical Derivation of Cross-Modal Gradients}
 To understand how backpropagation optimizes the Cross-Modal Cross-Attention (CMCA) projection weights, we derive the analytic gradient of the contrastive loss $\mathcal{L}_{\text{sync}}$ with respect to the query projection matrix $W_Q$. Let $S = \mathbf{Q}\mathbf{K}^T / \sqrt{d_k}$ and $A = \text{softmax}(S)$. By application of the matrix chain rule:
-\begin{equation}
-\frac{\partial \mathcal{L}_{\text{sync}}}{\partial W_Q} = \mathbf{F}_V^T \left[ \left( \frac{\partial \mathcal{L}_{\text{sync}}}{\partial \mathbf{Z}_{AV}} \mathbf{V}^T \odot A - A \left( \left(\frac{\partial \mathcal{L}_{\text{sync}}}{\partial \mathbf{Z}_{AV}} \mathbf{V}^T \odot A\right) \mathbf{1} \mathbf{1}^T \right) \right) \frac{\mathbf{K}}{\sqrt{d_k}} \right]
-\end{equation}
+\begin{align}
+\frac{\partial \mathcal{L}_{\text{sync}}}{\partial W_Q} &= \mathbf{F}_V^T \left[ \mathbf{M}_{\text{grad}} \frac{\mathbf{K}}{\sqrt{d_k}} \right] \\
+\mathbf{M}_{\text{grad}} &= \left( \frac{\partial \mathcal{L}_{\text{sync}}}{\partial \mathbf{Z}_{AV}} \mathbf{V}^T \odot A \right) \nonumber \\
+&\quad - A \left( \left(\frac{\partial \mathcal{L}_{\text{sync}}}{\partial \mathbf{Z}_{AV}} \mathbf{V}^T \odot A\right) \mathbf{1} \mathbf{1}^T \right)
+\end{align}
 This formulation demonstrates that updates to the visual projection weights $W_Q$ are continuously guided by the acoustic key manifold $\mathbf{K}$. If synthetic lips lag behind the acoustic phoneme track, the gradient direction forces the attention weights away from mismatched temporal frames, amplifying the loss penalty and driving rapid convergence toward phase discrimination.
 
 \begin{algorithm}[!t]
@@ -345,6 +350,7 @@ This formulation demonstrates that updates to the visual projection weights $W_Q
 \caption{Multi-Modal Deepfake Benchmark Corpus Specifications and Partitioning Protocols}
 \label{tab:datasets}
 \centering
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{lcccccc}
 \toprule
 \textbf{Dataset} & \textbf{Total Sequences} & \textbf{Manipulation Modalities} & \textbf{Audio Format} & \textbf{Identity Splits} & \textbf{Train / Val / Test} \\
@@ -354,7 +360,8 @@ FakeAVCeleb~\cite{khalid2021fakeavceleb} & 21,566 & SV2TTS, Faceswap, Wav2Lip & 
 FaceForensics++ (FF++)~\cite{rossler2019faceforensics} & 5,000 & Deepfakes, Face2Face, NeuralTextures & Embedded AAC & Disjoint (1,000 Sequences) & 3,600 / 700 / 700 \\
 Celeb-DF v2~\cite{li2020celeb} & 5,639 & Enhanced DeepFaceLab & Embedded MP3 & Disjoint (59 Celebrities) & 3,947 / 846 / 846 \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table*}
 
 \subsection{Datasets \& Strict Identity-Disjoint Partitioning}
@@ -389,6 +396,7 @@ All experiments were conducted on a cloud compute cluster utilizing dual NVIDIA 
 \caption{Comprehensive State-of-the-Art Forensic Performance Comparison across Benchmark Datasets}
 \label{tab:benchmarks}
 \centering
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{llcccccc}
 \toprule
 \textbf{Model Architecture} & \textbf{Modality} & \textbf{DFDC AUC} & \textbf{FakeAVCeleb AUC} & \textbf{FF++ (C23) AUC} & \textbf{Accuracy (\%)} & \textbf{F1-Score} & \textbf{EER (\%)} \\
@@ -403,7 +411,8 @@ UnivFD~\cite{ojha2023towards} & Visual & 0.915 & 0.864 & 0.938 & 88.9 & 0.885 & 
 NPR Forensics~\cite{chen2024npr} & Visual & 0.932 & 0.871 & 0.954 & 90.8 & 0.903 & 8.9 \\
 \textbf{ST2-SyncNet (Ours)} & \textbf{Audio-Visual + Bio} & \textbf{0.974} & \textbf{0.968} & \textbf{0.982} & \textbf{94.8} & \textbf{0.946} & \textbf{5.2} \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table*}
 
 \subsection{Cross-Dataset Comparative Performance}
@@ -425,6 +434,7 @@ Fig.~\ref{fig:trace} provides a temporal diagnostic comparison between authentic
 \caption{Fine-Grained Forensic Breakdown Across Individual Manipulation Architectures}
 \label{tab:manipulations}
 \centering
+\resizebox{\textwidth}{!}{%
 \begin{tabular}{llccccc}
 \toprule
 \textbf{Manipulation Pipeline} & \textbf{Synthesis Paradigm} & \textbf{Target Modality} & \textbf{AUC-ROC} & \textbf{EER (\%)} & \textbf{AP (\%)} & \textbf{Detection Margin ($\Delta D$)} \\
@@ -440,7 +450,8 @@ SadTalker & 3DMM Talking Head & Audio-Visual & 0.976 & 5.1 & 97.9 & $+1.22$ \\
 SV2TTS / Tacotron 2 & Neural Voice Cloning & Acoustic Only & 0.962 & 7.2 & 96.1 & $+0.98$ \\
 StyleGAN3 & Latent Diffusion/GAN & Visual & 0.958 & 7.8 & 95.7 & $+0.92$ \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table*}
 
 \subsection{Fine-Grained Per-Manipulation Breakdown}
@@ -453,6 +464,8 @@ To verify that the performance gains of ST2-SyncNet are statistically significan
 \caption{Statistical Significance Matrix and 95\% Confidence Intervals}
 \label{tab:statistical}
 \centering
+\resizebox{\columnwidth}{!}{%
+\setlength{\tabcolsep}{4pt}
 \begin{tabular}{lcccc}
 \toprule
 \textbf{Baseline Model} & \textbf{Mean AUC} & \textbf{95\% Conf. Interval} & \textbf{t-Statistic} & \textbf{p-Value} \\
@@ -464,7 +477,8 @@ LipForensics & 0.941 & $[0.932, 0.950]$ & 8.42 & $< 10^{-5}$ \\
 NPR Forensics & 0.932 & $[0.922, 0.942]$ & 9.78 & $< 10^{-6}$ \\
 \textbf{ST2-SyncNet (Ours)} & \textbf{0.974} & $[\mathbf{0.968}, \mathbf{0.980}]$ & --- & --- \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 \section{Diagnostic Ablation Studies \& Codec Robustness}
@@ -473,6 +487,8 @@ NPR Forensics & 0.932 & $[0.922, 0.942]$ & 9.78 & $< 10^{-6}$ \\
 \caption{Ablation Study: Architectural Modules and Temporal Parameters}
 \label{tab:ablation}
 \centering
+\resizebox{\columnwidth}{!}{%
+\setlength{\tabcolsep}{4pt}
 \begin{tabular}{lcccc}
 \toprule
 \textbf{Configuration} & \textbf{DFDC AUC} & \textbf{FakeAVCeleb AUC} & \textbf{EER (\%)} & \textbf{Latency (ms)} \\
@@ -485,7 +501,8 @@ CMCA ($h = 4$ Heads) & 0.964 & 0.951 & 6.0 & 13.1 \\
 CMCA ($h = 8$ Heads, No Bio) & 0.969 & 0.961 & 5.6 & 14.2 \\
 \textbf{Full ST2-SyncNet ($h = 8$ + Bio)} & \textbf{0.974} & \textbf{0.968} & \textbf{5.2} & \textbf{14.8} \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 \begin{figure}[!t]
@@ -508,6 +525,8 @@ In practical deployments, deepfake media is subjected to aggressive re-encoding 
 \caption{Cross-Codec Generalization Under Multiple Compression Standards}
 \label{tab:codec_matrix}
 \centering
+\resizebox{\columnwidth}{!}{%
+\setlength{\tabcolsep}{4pt}
 \begin{tabular}{lcccc}
 \toprule
 \textbf{Compression Codec} & \textbf{Bitrate} & \textbf{XceptionNet} & \textbf{LipForensics} & \textbf{ST2-SyncNet} \\
@@ -519,7 +538,8 @@ H.265 / HEVC (CRF 28) & 1.8 Mbps & 0.864 & 0.923 & \textbf{0.965} \\
 Google VP9 & 2.1 Mbps & 0.871 & 0.930 & \textbf{0.968} \\
 AOMedia AV1 & 1.4 Mbps & 0.885 & 0.936 & \textbf{0.971} \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 \section{Real-Time Streaming Deployment \& Edge Telemetry}
@@ -528,6 +548,8 @@ AOMedia AV1 & 1.4 Mbps & 0.885 & 0.936 & \textbf{0.971} \\
 \caption{Real-Time Inference Latency and Hardware Acceleration Telemetry}
 \label{tab:hardware}
 \centering
+\resizebox{\columnwidth}{!}{%
+\setlength{\tabcolsep}{4pt}
 \begin{tabular}{lcccc}
 \toprule
 \textbf{Compute Hardware} & \textbf{Batch Size} & \textbf{Latency (ms)} & \textbf{Throughput (FPS)} & \textbf{VRAM (MB)} \\
@@ -539,7 +561,8 @@ NVIDIA Tesla T4 (Batched) & 16 & 3.2 & 312.5 & 1,420 \\
 NVIDIA RTX 4090 & 1 & 6.1 & 163.9 & 450 \\
 NVIDIA Jetson Orin Nano & 1 & 28.4 & 35.2 & 310 \\
 \bottomrule
-\end{tabular}
+\end{tabular}%
+}
 \end{table}
 
 \subsection{Streaming Hardware Performance}
@@ -564,16 +587,16 @@ The authors express their sincere gratitude to the Department of Computer Scienc
 \bibliographystyle{IEEEtran}
 \bibliography{references}
 
-\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{figures/st2_syncnet_architecture.png}}]{Dar Rehan Rasool}
-is a Graduate Research Contributor in the Department of Computer Science \& Engineering, Islamic University of Science and Technology (IUST), Awantipora, Jammu \& Kashmir, India. His research interests encompass deep learning, multi-modal neural representation architectures, biometric signal processing, and media cyber-forensics.
-\end{IEEEbiography}
-
 \begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{figures/st2_syncnet_architecture.png}}]{Dr. Riyaz}
-is a Senior Faculty Member with the Department of Computer Science \& Engineering at the Islamic University of Science and Technology (IUST), Awantipora, Jammu \& Kashmir, India. His research expertise spans deep learning architectures, video signal processing, distributed computing, and artificial intelligence safety.
+received the B.Tech. degree in Computer Science and Engineering, the M.Tech. degree in Computer Science, and the Ph.D. degree in Artificial Intelligence and Machine Learning. He is currently a Senior Faculty Member and Research Supervisor with the Department of Computer Science and Engineering, Islamic University of Science and Technology (IUST), Awantipora, Jammu \& Kashmir, India. His research interests encompass deep learning architectures, spatio-temporal video analytics, biometric authentication, distributed high-performance computing, and AI safety. He has authored and co-authored numerous research publications in prestigious international journals and conferences, and serves as an active reviewer for leading IEEE and ACM transactions.
 \end{IEEEbiography}
 
 \begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{figures/st2_syncnet_architecture.png}}]{Dr. Javad}
-is a Senior Faculty Member and Research Supervisor with the Department of Computer Science \& Engineering at the Islamic University of Science and Technology (IUST), Awantipora, Jammu \& Kashmir, India. His primary research focuses on cyber-security, software-defined networking, multimedia forensics, and machine learning for adversarial defense.
+received the B.Tech. and M.Tech. degrees in Computer Engineering, and the Ph.D. degree in Cyber Security and Multimedia Network Forensics. He is currently a Senior Faculty Member and Principal Research Supervisor with the Department of Computer Science and Engineering, Islamic University of Science and Technology (IUST), Awantipora, Jammu \& Kashmir, India. His primary research focuses on cyber-threat intelligence, software-defined network (SDN) resilience, multi-modal generative media forensics, and adversarial machine learning defenses. He has served as Principal Investigator on several federally funded advanced cyber-security initiatives and regularly contributes to national and international forensic standardization bodies.
+\end{IEEEbiography}
+
+\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{figures/st2_syncnet_architecture.png}}]{Dar Rehan Rasool}
+is a Graduate Student Researcher in the Department of Computer Science and Engineering, Islamic University of Science and Technology (IUST), Awantipora, Jammu \& Kashmir, India. He received the B.Tech. degree in Computer Science and Engineering with honors. His primary research focuses on end-to-end multi-modal deep learning architectures, cross-attention phonetic-viseme synchronization, hardware-accelerated edge inference, and digital media authentication forensics. He is the lead system developer of the open-source ST2-SyncNet and FreqForensics-XAI forensic engines.
 \end{IEEEbiography}
 
 \end{document}
