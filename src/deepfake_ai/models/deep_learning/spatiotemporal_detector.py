@@ -30,6 +30,8 @@ class SpatioTemporalDetector(nn.Module):
         b, s, c, h, w = x.shape
         x_flat = x.view(b * s, c, h, w)
         feats = self.cnn(x_flat).view(b, s, -1)
+        if hasattr(self.lstm, "flatten_parameters"):
+            self.lstm.flatten_parameters()
         lstm_out, _ = self.lstm(feats)
         last_out = lstm_out[:, -1, :]
         return self.fc(last_out)

@@ -234,8 +234,21 @@ def run_kaggle_training(
 
     # Sync all logs to Kaggle working directory for 1-click download
     import shutil
-    shutil.copytree(repo_logs, out_logs_dir, dirs_exist_ok=True)
-    shutil.make_archive(str(out_path / "deepfake_ai_logs"), "zip", repo_logs)
+    try:
+        shutil.copytree(str(repo_logs), str(out_logs_dir), dirs_exist_ok=True)
+    except (TypeError, FileExistsError):
+        # Universal compatibility for Python versions prior to 3.8
+        out_logs_dir.mkdir(parents=True, exist_ok=True)
+        for item in repo_logs.rglob("*"):
+            rel = item.relative_to(repo_logs)
+            target = out_logs_dir / rel
+            if item.is_dir():
+                target.mkdir(parents=True, exist_ok=True)
+            elif item.is_file():
+                target.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(str(item), str(target))
+
+    shutil.make_archive(str(out_path / "deepfake_ai_logs"), "zip", str(repo_logs))
 
     print(f"[✓] Training complete! All logs and checkpoints are stored:")
     print(f"    - In-Repo Logs:        {repo_logs}")

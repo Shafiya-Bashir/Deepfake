@@ -121,6 +121,8 @@ class TemporalBiologicalConsistencyModule(nn.Module):
 
     def forward(self, seq_feats: torch.Tensor) -> torch.Tensor:
         # seq_feats: (batch, seq_len, feature_dim)
+        if hasattr(self.gru, "flatten_parameters"):
+            self.gru.flatten_parameters()
         gru_out, _ = self.gru(seq_feats)
         return self.fc(gru_out[:, -1, :])
 
