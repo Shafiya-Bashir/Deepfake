@@ -1,0 +1,14 @@
+{
+  "generators": [
+    "Midjourney_v5",
+    "Stable_Diffusion_v1_5",
+    "Stable_Diffusion_v2_1",
+    "ADM",
+    "Glide",
+    "VQDM",
+    "Wukong",
+    "BigGAN"
+  ],
+  "image_format": "PNG",
+  "total_images": 2681584
+}

@@ -1,0 +1,40 @@
+{
+  "registry_version": "1.0.0",
+  "project": "DeepFake-AI",
+  "checkpoints": [
+    {
+      "id": "chk_st2_syncnet_best_ep18",
+      "path": "checkpoints/best/st2_syncnet_best.pt",
+      "model": "st2_syncnet",
+      "epoch": 18,
+      "metrics": {
+        "val_auc": 0.9962,
+        "val_eer": 0.0148,
+        "val_acc": 0.9845
+      },
+      "status": "active_sota"
+    },
+    {
+      "id": "chk_xception_best_ep15",
+      "path": "checkpoints/best/xception_best.pt",
+      "model": "xception",
+      "epoch": 15,
+      "metrics": {
+        "val_auc": 0.952,
+        "val_acc": 0.912
+      },
+      "status": "baseline"
+    },
+    {
+      "id": "chk_mesonet_best_ep12",
+      "path": "checkpoints/best/mesonet_best.pt",
+      "model": "mesonet4",
+      "epoch": 12,
+      "metrics": {
+        "val_auc": 0.841,
+        "val_acc": 0.825
+      },
+      "status": "baseline"
+    }
+  ]
+}

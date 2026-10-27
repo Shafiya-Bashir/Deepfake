@@ -7,6 +7,7 @@ from deepfake_ai.models.deep_learning.efficientnet import DeepfakeEfficientNet
 from deepfake_ai.models.deep_learning.frequency_detector import DualStreamFrequencyNet
 from deepfake_ai.models.deep_learning.spatiotemporal_detector import SpatioTemporalDetector
 from deepfake_ai.models.deep_learning.diffusion_detector import DiffusionResidualDetector
+from deepfake_ai.models.deep_learning.st2_syncnet import ST2SyncNet
 from deepfake_ai.models.classical.svm import build_svm
 from deepfake_ai.models.classical.random_forest import build_random_forest
 from deepfake_ai.models.classical.gradient_boosting import build_gradient_boosting
@@ -24,6 +25,7 @@ class ModelFactory:
         'dual_stream_frequency': DualStreamFrequencyNet,
         'spatiotemporal_detector': SpatioTemporalDetector,
         'diffusion_detector': DiffusionResidualDetector,
+        'st2_syncnet': ST2SyncNet,
     }
 
     _CLASSICAL = {

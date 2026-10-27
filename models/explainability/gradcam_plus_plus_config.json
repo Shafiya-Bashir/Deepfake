@@ -1,0 +1,13 @@
+{
+  "target_layers": [
+    "spatial_backbone.layer4.2.conv3",
+    "spectral_pcm.subband_conv"
+  ],
+  "colormaps": [
+    "turbo",
+    "jet",
+    "inferno"
+  ],
+  "overlay_alpha": 0.55,
+  "guided_backprop": true
+}

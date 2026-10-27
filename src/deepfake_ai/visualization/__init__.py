@@ -11,3 +11,6 @@ __all__ = [
     'plot_training_curves',
     'Visualizer',
 ]
+
+from deepfake_ai.visualization.epoch_visualizer import AdvancedEpochVisualizer
+__all__.append('AdvancedEpochVisualizer')

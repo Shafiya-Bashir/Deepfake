@@ -1,0 +1,6 @@
+{
+  "cache_entries": 1200,
+  "transform_type": "2D Haar DWT + 2D DCT Octave Bands",
+  "cache_size_mb": 84.2,
+  "valid": true
+}

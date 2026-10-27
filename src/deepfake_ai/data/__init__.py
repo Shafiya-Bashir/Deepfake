@@ -26,3 +26,6 @@ __all__ = [
     'handle_missing_frames',
     'deduplicate_media_samples',
 ]
+
+from deepfake_ai.data.streaming_dataset import GoogleDriveStreamingDataset, KaggleDriveStreamer
+__all__.extend(['GoogleDriveStreamingDataset', 'KaggleDriveStreamer'])

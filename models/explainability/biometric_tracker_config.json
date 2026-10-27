@@ -1,0 +1,8 @@
+{
+  "ear_threshold": 0.21,
+  "blink_frequency_expected_hz": [
+    0.2,
+    0.4
+  ],
+  "viseme_phoneme_coherence_window": 15
+}

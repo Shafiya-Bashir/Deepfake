@@ -1,0 +1,6 @@
+citation: Li et al., IEEE CVPR 2020
+name: Celeb-DF v2
+real_videos: 590
+resolution: 1080p
+subjects: 59
+synthetic_videos: 5639

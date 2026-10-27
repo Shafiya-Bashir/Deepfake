@@ -1,0 +1,8 @@
+{
+  "video_codec": "h264",
+  "fps": 30.0,
+  "duration_sec": 10.0,
+  "frame_count": 300,
+  "has_audio": true,
+  "audio_sample_rate": 16000
+}

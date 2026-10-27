@@ -1,0 +1,10 @@
+{
+  "frequency_bands": [
+    "low_pass",
+    "mid_pass_1",
+    "mid_pass_2",
+    "high_pass_radial"
+  ],
+  "azimuthal_integration": true,
+  "anomaly_threshold_std": 2.5
+}

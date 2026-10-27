@@ -1,0 +1,15 @@
+{
+  "best_model": "st2_syncnet",
+  "best_epoch": 18,
+  "best_val_auc": 0.9962,
+  "best_val_eer": 0.0148,
+  "best_val_accuracy": 0.9845,
+  "checkpoint_file": "checkpoints/best/st2_syncnet_best.pt",
+  "hash_sha256": "81ec62bf4a9904686720d6e38302f8845312dbb53251651229c6c6aa3d7843bd",
+  "supervisors": [
+    "Dr. Riyaz",
+    "Dr. Javad"
+  ],
+  "contributor": "Dar Rehan Rasool",
+  "institution": "Islamic University of Science and Technology (IUST), Kashmir"
+}

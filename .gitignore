@@ -63,9 +63,6 @@ htmlcov/
 *.swo
 
 # Logs & Temporary Files
-*.log
-logs/application/*.log
-logs/training/*.log
-logs/hardware/*.log
-logs/datasets/*.log
-logs/errors/*.log
+# Exclude runtime temporary logs but track baseline benchmark logs
+*.tmp
+*.log.tmp

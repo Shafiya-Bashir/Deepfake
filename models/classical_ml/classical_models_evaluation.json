@@ -1,0 +1,24 @@
+{
+  "svm_rbf": {
+    "accuracy": 0.865,
+    "auc": 0.912,
+    "f1": 0.861
+  },
+  "random_forest": {
+    "accuracy": 0.885,
+    "auc": 0.931,
+    "f1": 0.883
+  },
+  "gradient_boosting": {
+    "accuracy": 0.892,
+    "auc": 0.94,
+    "f1": 0.891
+  },
+  "feature_count": 32,
+  "feature_categories": [
+    "PRNU_sensor_noise",
+    "steerable_pyramid",
+    "color_covariances",
+    "chroma_subsampling_residuals"
+  ]
+}

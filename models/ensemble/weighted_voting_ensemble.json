@@ -1,0 +1,26 @@
+{
+  "models": [
+    {
+      "name": "st2_syncnet",
+      "weight": 0.5,
+      "type": "spatial_temporal_spectral"
+    },
+    {
+      "name": "xception",
+      "weight": 0.25,
+      "type": "spatial_cnn"
+    },
+    {
+      "name": "mesonet4",
+      "weight": 0.1,
+      "type": "mesoscopic_cnn"
+    },
+    {
+      "name": "classical_rf",
+      "weight": 0.15,
+      "type": "handcrafted_prnu"
+    }
+  ],
+  "fusion_strategy": "temperature_scaled_softmax_average",
+  "temperature": 0.85
+}

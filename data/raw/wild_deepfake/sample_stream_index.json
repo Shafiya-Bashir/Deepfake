@@ -1,0 +1,72 @@
+[
+  {
+    "id": "wild_deepfake_stream_0000",
+    "gdrive_file_id": "1A2B3C4D5E6F7G8H9I0_0",
+    "label": 0,
+    "fps": 30.0,
+    "frames": 300
+  },
+  {
+    "id": "wild_deepfake_stream_0001",
+    "gdrive_file_id": "1A2B3C4D5E6F7G8H9I0_1",
+    "label": 1,
+    "fps": 30.0,
+    "frames": 300
+  },
+  {
+    "id": "wild_deepfake_stream_0002",
+    "gdrive_file_id": "1A2B3C4D5E6F7G8H9I0_2",
+    "label": 0,
+    "fps": 30.0,
+    "frames": 300
+  },
+  {
+    "id": "wild_deepfake_stream_0003",
+    "gdrive_file_id": "1A2B3C4D5E6F7G8H9I0_3",
+    "label": 1,
+    "fps": 30.0,
+    "frames": 300
+  },
+  {
+    "id": "wild_deepfake_stream_0004",
+    "gdrive_file_id": "1A2B3C4D5E6F7G8H9I0_4",
+    "label": 0,
+    "fps": 30.0,
+    "frames": 300
+  },
+  {
+    "id": "wild_deepfake_stream_0005",
+    "gdrive_file_id": "1A2B3C4D5E6F7G8H9I0_5",
+    "label": 1,
+    "fps": 30.0,
+    "frames": 300
+  },
+  {
+    "id": "wild_deepfake_stream_0006",
+    "gdrive_file_id": "1A2B3C4D5E6F7G8H9I0_6",
+    "label": 0,
+    "fps": 30.0,
+    "frames": 300
+  },
+  {
+    "id": "wild_deepfake_stream_0007",
+    "gdrive_file_id": "1A2B3C4D5E6F7G8H9I0_7",
+    "label": 1,
+    "fps": 30.0,
+    "frames": 300
+  },
+  {
+    "id": "wild_deepfake_stream_0008",
+    "gdrive_file_id": "1A2B3C4D5E6F7G8H9I0_8",
+    "label": 0,
+    "fps": 30.0,
+    "frames": 300
+  },
+  {
+    "id": "wild_deepfake_stream_0009",
+    "gdrive_file_id": "1A2B3C4D5E6F7G8H9I0_9",
+    "label": 1,
+    "fps": 30.0,
+    "frames": 300
+  }
+]

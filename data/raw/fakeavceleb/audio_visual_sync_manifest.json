@@ -1,0 +1,10 @@
+{
+  "sampling_rate_audio": 16000,
+  "video_fps": 25,
+  "modalities": [
+    "video_rgb",
+    "audio_wav",
+    "phoneme_timestamps"
+  ],
+  "multimodal_sync_tolerance_ms": 40.0
+}

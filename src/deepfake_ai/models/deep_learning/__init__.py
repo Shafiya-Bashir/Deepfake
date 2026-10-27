@@ -18,3 +18,6 @@ __all__ = [
     'DiffusionResidualDetector',
     'FocalLoss',
 ]
+
+from deepfake_ai.models.deep_learning.st2_syncnet import ST2SyncNet
+__all__.append('ST2SyncNet')

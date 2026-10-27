@@ -1,0 +1,4 @@
+decision_threshold: 0.5
+ensemble_mode: soft_voting
+num_mc_samples: 20
+uncertainty_estimation: monte_carlo_dropout

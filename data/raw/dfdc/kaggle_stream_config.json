@@ -1,0 +1,7 @@
+{
+  "competition": "deepfake-detection-challenge",
+  "total_size_gb": 472,
+  "chunks_count": 50,
+  "streaming_chunk_size_mb": 64,
+  "direct_drive_mount_path": "/content/drive/MyDrive/deepfake_ai_cache/dfdc"
+}

@@ -1,0 +1,2 @@
+[2026-10-27T12:25:26.613008+00:00] [INFO] [GDriveStreamer] Live virtual connection established with Google Drive.
+[2026-10-27T12:25:26.613011+00:00] [INFO] [GDriveStreamer] Multi-part chunk reader buffer initialized: 64MB window.

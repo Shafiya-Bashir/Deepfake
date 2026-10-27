@@ -1,0 +1,11 @@
+{
+  "export_format": "PyTorch TorchScript / StateDict",
+  "model_version": "1.0.0",
+  "input_shapes": {
+    "spatial_frames": "[B, 3, 224, 224]",
+    "spectral_dwt": "[B, 4, 112, 112]",
+    "temporal_landmarks": "[B, 30, 68, 2]"
+  },
+  "output_shape": "[B, 2]",
+  "author": "Dar Rehan Rasool, Dr. Riyaz, Dr. Javad (IUST)"
+}

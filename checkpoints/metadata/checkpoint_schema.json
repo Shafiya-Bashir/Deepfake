@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "DeepFakeCheckpointMetadata",
+  "type": "object",
+  "properties": {
+    "epoch": {
+      "type": "integer"
+    },
+    "model_name": {
+      "type": "string"
+    },
+    "val_auc": {
+      "type": "number"
+    },
+    "val_loss": {
+      "type": "number"
+    }
+  },
+  "required": [
+    "epoch",
+    "model_name",
+    "val_auc",
+    "val_loss"
+  ]
+}

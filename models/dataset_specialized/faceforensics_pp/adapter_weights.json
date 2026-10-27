@@ -1,0 +1,7 @@
+{
+  "dataset": "faceforensics_pp",
+  "domain_adaptation_scaling": 1.0,
+  "spectral_damping_factor": 0.85,
+  "attention_temperature": 0.07,
+  "calibrated_threshold": 0.5
+}

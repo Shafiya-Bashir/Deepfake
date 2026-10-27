@@ -1,0 +1,2 @@
+[2026-10-27T12:25:26.612859+00:00] [INFO] [InferenceAPI] FastREST API Service listening on port 8000.
+[2026-10-27T12:25:26.612861+00:00] [INFO] [InferenceAPI] Worker thread pool allocated: 8 workers.

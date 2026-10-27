@@ -1,0 +1,9 @@
+{
+  "periodic_interval": 5,
+  "saved_checkpoints": [
+    "epoch_001.pt",
+    "epoch_005.pt",
+    "epoch_010.pt"
+  ],
+  "retention_policy": "keep_every_5_epochs_and_top_3_auc"
+}

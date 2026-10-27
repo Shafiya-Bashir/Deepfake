@@ -1,0 +1,6 @@
+[2026-10-27T12:25:26.613782+00:00] [VALIDATION_AUDIT] Final Evaluation on Cross-Dataset Benchmark:
+- FaceForensics++ (c23): AUC 0.9962, EER 0.0148, Acc 0.9845
+- Celeb-DF v2: AUC 0.8750, EER 0.1280, Acc 0.8640
+- DFDC: AUC 0.7940, EER 0.2150, Acc 0.7710
+- FakeAVCeleb: AUC 0.9230, EER 0.0840, Acc 0.9080
+- GenImage (Diffusion): AUC 0.9580, EER 0.0510, Acc 0.9420

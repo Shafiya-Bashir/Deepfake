@@ -1,0 +1,14 @@
+{
+  "c0": {
+    "desc": "Raw uncompressed",
+    "bitrate_mbps": 120.0
+  },
+  "c23": {
+    "desc": "H.264 high quality",
+    "crf": 23
+  },
+  "c40": {
+    "desc": "H.264 low quality heavy compression",
+    "crf": 40
+  }
+}

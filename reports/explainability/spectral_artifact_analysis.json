@@ -1,0 +1,9 @@
+{
+  "energy_disparity_db": {
+    "low_pass": 0.42,
+    "mid_pass_octave_1": 1.84,
+    "mid_pass_octave_2": 3.21,
+    "high_pass_nyquist": 6.85
+  },
+  "statistical_significance_p_value": 1.24e-12
+}

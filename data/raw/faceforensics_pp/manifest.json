@@ -1,0 +1,18 @@
+{
+  "dataset_name": "faceforensics_pp",
+  "streaming_mode": "cloud_virtual_streaming",
+  "storage_backend": "Google Drive / Colab Pro / Kaggle API",
+  "local_footprint_bytes": 0,
+  "total_sequences": 5000,
+  "compression_levels": [
+    "raw",
+    "c23",
+    "c40"
+  ],
+  "split_ratios": {
+    "train": 0.7,
+    "validation": 0.15,
+    "test": 0.15
+  },
+  "status": "READY_FOR_STREAMING"
+}

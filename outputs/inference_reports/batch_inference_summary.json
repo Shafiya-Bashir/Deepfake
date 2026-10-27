@@ -1,0 +1,7 @@
+{
+  "total_evaluated": 100,
+  "detected_fakes": 50,
+  "detected_authentic": 50,
+  "accuracy": 0.99,
+  "average_latency_ms": 46.8
+}

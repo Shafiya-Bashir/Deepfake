@@ -1,0 +1,24 @@
+{
+  "stream_endpoint": "https://drive.google.com/mock/deepfake_ai_stream",
+  "batch_size": 4,
+  "mock_samples": [
+    {
+      "id": "mock_001",
+      "label": 0,
+      "frames": 16,
+      "resolution": [
+        224,
+        224
+      ]
+    },
+    {
+      "id": "mock_002",
+      "label": 1,
+      "frames": 16,
+      "resolution": [
+        224,
+        224
+      ]
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+[2026-10-27T12:25:26.612768+00:00] [INFO] [SystemInitializer] DeepFake-AI Platform initialized successfully.
+[2026-10-27T12:25:26.612780+00:00] [INFO] [HardwareManager] Detected Apple Silicon / CUDA environment.
+[2026-10-27T12:25:26.612782+00:00] [INFO] [PipelineEngine] ST2-SyncNet multi-stream inference pipeline ready.
+[2026-10-27T12:25:26.612783+00:00] [INFO] [Authorship] Dar Rehan Rasool (Researcher), Dr. Riyaz, Dr. Javad (IUST).

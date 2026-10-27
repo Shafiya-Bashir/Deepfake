@@ -1,0 +1,7 @@
+batch_size: 32
+learning_rate: 5.0e-05
+loss_weights:
+  focal: 1.0
+  spectral: 0.4
+  sync: 0.5
+warmup_epochs: 3

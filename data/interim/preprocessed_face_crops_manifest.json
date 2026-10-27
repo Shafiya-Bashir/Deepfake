@@ -1,0 +1,9 @@
+{
+  "crop_resolution": [
+    224,
+    224
+  ],
+  "alignment_method": "5_point_retinaface",
+  "normalization": "ImageNet_standard_RGB",
+  "cached_sequences": 850
+}

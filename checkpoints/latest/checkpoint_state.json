@@ -1,0 +1,8 @@
+{
+  "current_epoch": 20,
+  "total_epochs": 20,
+  "latest_checkpoint": "checkpoints/latest/st2_syncnet_latest.pt",
+  "best_checkpoint": "checkpoints/best/st2_syncnet_best.pt",
+  "status": "COMPLETED_TRAINING",
+  "timestamp": "2026-10-27T12:25:26.234639+00:00Z"
+}

@@ -1,0 +1,15 @@
+{
+  "media_id": "video_sample_0001.mp4",
+  "verdict": "SYNTHETIC_DEEPFAKE",
+  "fake_probability": 0.9842,
+  "domain_scores": {
+    "spatial_boundary_disruption": 0.961,
+    "spectral_phase_coherence_anomaly": 0.9912,
+    "temporal_biological_inconsistency": 0.9425
+  },
+  "saliency_peak_regions": [
+    "mouth_blending_seam",
+    "right_eye_pupil_boundary"
+  ],
+  "analysis_time_ms": 48.2
+}
