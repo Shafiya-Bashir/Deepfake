@@ -28,6 +28,7 @@ import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(PROJECT_ROOT / "src"))
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from deepfake_ai.models.model_factory import ModelFactory
