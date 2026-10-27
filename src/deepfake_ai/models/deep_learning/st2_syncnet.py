@@ -13,6 +13,16 @@ import torch.nn.functional as F
 import numpy as np
 from typing import Dict, Tuple, Optional
 
+# Universal PyTorch backwards-compatibility for SiLU / Swish activation
+if hasattr(nn, 'SiLU'):
+    SiLU = nn.SiLU
+else:
+    class SiLU(nn.Module):
+        def __init__(self, inplace: bool = False):
+            super().__init__()
+        def forward(self, x: torch.Tensor) -> torch.Tensor:
+            return x * torch.sigmoid(x)
+
 
 class WaveletDecomposition2D(nn.Module):
     """2D Haar Discrete Wavelet Transform (DWT) decomposing image into LL, LH, HL, HH bands."""
@@ -46,10 +56,10 @@ class SpectralPhaseCoherenceModule(nn.Module):
         self.conv = nn.Sequential(
             nn.Conv2d(in_channels, 64, kernel_size=3, padding=1),
             nn.BatchNorm2d(64),
-            nn.SiLU(inplace=True),
+            SiLU(inplace=True),
             nn.Conv2d(64, 128, kernel_size=3, stride=2, padding=1),
             nn.BatchNorm2d(128),
-            nn.SiLU(inplace=True),
+            SiLU(inplace=True),
             nn.AdaptiveAvgPool2d((4, 4))
         )
         self.fc = nn.Linear(128 * 4 * 4, out_dim)
