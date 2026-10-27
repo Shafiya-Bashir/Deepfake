@@ -291,7 +291,12 @@ def run_kaggle_training(
     if token_to_use:
         try:
             print("\n[*] Initiating automated GitHub synchronization...")
-            from scripts.kaggle_sync_github import sync_to_github
+            try:
+                from scripts.kaggle_sync_github import sync_to_github
+            except ImportError:
+                sys.path.insert(0, str(PROJECT_ROOT))
+                sys.path.insert(0, str(PROJECT_ROOT / "scripts"))
+                from kaggle_sync_github import sync_to_github
             sync_to_github(
                 token=token_to_use,
                 message=f"Auto-sync from Kaggle GPU: {model_name} Epoch {epochs} (AUC: {best_val_auc:.4f})"
