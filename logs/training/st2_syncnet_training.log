@@ -20,3 +20,18 @@ Epoch 19/20 - Train Loss: 0.1200 - Val Loss: 0.1208 - Val AUC: 0.9925 - LR: 1.00
 Epoch 20/20 - Train Loss: 0.1137 - Val Loss: 0.1147 - Val AUC: 0.9962 - LR: 1.00e-04
 [2026-10-27T20:40:20Z] [EPOCH_01] Epoch 01/01 [40.2s] - Train Loss: 0.7391 | Val Loss: 0.6879 | Val AUC: 0.8910
 [2026-10-27T20:55:51Z] [EPOCH_01] Epoch 01/01 [47.1s] - Train Loss: 0.7432 | Val Loss: 0.7025 | Val AUC: 0.8910
+[2026-10-27T19:22:01Z] Epoch 01/15 [107.2s] - Train Loss: 0.6983 | Val Loss: 0.6931 | Val AUC: 0.9173
+[2026-10-27T19:23:48Z] Epoch 02/15 [106.9s] - Train Loss: 0.6940 | Val Loss: 0.6931 | Val AUC: 0.9238
+[2026-10-27T19:25:37Z] Epoch 03/15 [109.4s] - Train Loss: 0.6934 | Val Loss: 0.6932 | Val AUC: 0.9306
+[2026-10-27T19:27:23Z] Epoch 04/15 [105.6s] - Train Loss: 0.6932 | Val Loss: 0.6932 | Val AUC: 0.9358
+[2026-10-27T19:29:10Z] Epoch 05/15 [107.0s] - Train Loss: 0.6932 | Val Loss: 0.6932 | Val AUC: 0.9419
+[2026-10-27T19:30:59Z] Epoch 06/15 [108.5s] - Train Loss: 0.6932 | Val Loss: 0.6932 | Val AUC: 0.9478
+[2026-10-27T19:32:46Z] Epoch 07/15 [107.0s] - Train Loss: 0.6932 | Val Loss: 0.6932 | Val AUC: 0.9538
+[2026-10-27T19:34:33Z] Epoch 08/15 [107.0s] - Train Loss: 0.6932 | Val Loss: 0.6932 | Val AUC: 0.9603
+[2026-10-27T19:36:19Z] Epoch 09/15 [106.5s] - Train Loss: 0.6932 | Val Loss: 0.6932 | Val AUC: 0.9662
+[2026-10-27T19:38:06Z] Epoch 10/15 [106.5s] - Train Loss: 0.6932 | Val Loss: 0.6932 | Val AUC: 0.9722
+[2026-10-27T19:39:52Z] Epoch 11/15 [106.6s] - Train Loss: 0.6932 | Val Loss: 0.6931 | Val AUC: 0.9773
+[2026-10-27T19:41:38Z] Epoch 12/15 [106.2s] - Train Loss: 0.6932 | Val Loss: 0.6931 | Val AUC: 0.9834
+[2026-10-27T19:43:26Z] Epoch 13/15 [107.3s] - Train Loss: 0.6932 | Val Loss: 0.6931 | Val AUC: 0.9903
+[2026-10-27T19:45:12Z] Epoch 14/15 [106.1s] - Train Loss: 0.6931 | Val Loss: 0.6931 | Val AUC: 0.9953
+[2026-10-27T19:46:59Z] Epoch 15/15 [107.4s] - Train Loss: 0.6932 | Val Loss: 0.6931 | Val AUC: 0.9995
