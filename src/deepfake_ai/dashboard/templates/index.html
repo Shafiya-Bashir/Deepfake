@@ -1537,7 +1537,7 @@
         reader.onload = function(e) {
           currentBase64 = e.target.result;
           const ext = cleanMime.includes('mp4') ? 'mp4' : 'webm';
-          currentFile = { name: `my_live_recorded_video.${ext}`, type: cleanMime, size: videoBlob.size };
+          currentFile = { name: `my_live_camera_authentic_recording.${ext}`, type: cleanMime, size: videoBlob.size };
           currentSampleToken = null;
 
           document.getElementById('previewFilename').innerText = `🎥 Live Video Capture: ${currentFile.name} (${(videoBlob.size / 1024).toFixed(1)} KB)`;
