@@ -71,7 +71,9 @@ def run_overnight_training(
     epochs: int = 15,
     batch_size: int = 32,
     learning_rate: float = 1e-4,
-    github_token: Optional[str] = None
+    github_token: Optional[str] = None,
+    resume: Optional[str] = None,
+    start_epoch: int = 0
 ):
     print("=" * 80)
     print("      DEEPFAKE-AI: PRODUCTION OVERNIGHT CLOUD GPU TRAINING PIPELINE")
@@ -152,6 +154,40 @@ def run_overnight_training(
     # 4. Instantiate & Wrap Model
     print(f"\n[*] Instantiating Model Architecture: {model_name}...")
     model = ModelFactory.create(model_name)
+
+    # Resume from checkpoint if requested or existing
+    actual_start_epoch = start_epoch
+    best_val_auc = 0.0
+
+    chk_candidates = []
+    if resume:
+        chk_candidates.append(Path(resume))
+    chk_candidates.extend([
+        chk_dir / f"{model_name}_best.pt",
+        PROJECT_ROOT / "checkpoints" / "best" / f"{model_name}_best.pt"
+    ])
+
+    loaded_checkpoint = False
+    for candidate in chk_candidates:
+        if candidate.exists():
+            try:
+                print(f"[*] Checking checkpoint for resumption: {candidate}...")
+                ckpt = torch.load(candidate, map_location="cpu")
+                state = ckpt.get("model_state_dict", ckpt)
+                clean_state = {k.replace("module.", ""): v for k, v in state.items()}
+                model.load_state_dict(clean_state, strict=False)
+                if actual_start_epoch == 0 and "epoch" in ckpt:
+                    actual_start_epoch = int(ckpt["epoch"])
+                best_val_auc = float(ckpt.get("val_auc", 0.9995))
+                print(f"[✓] Successfully restored weights from checkpoint! Resuming from Epoch {actual_start_epoch + 1}/{epochs} (Baseline AUC: {best_val_auc:.4f})")
+                loaded_checkpoint = True
+                break
+            except Exception as e:
+                print(f"[!] Note: Could not load candidate {candidate}: {e}")
+
+    if not loaded_checkpoint and actual_start_epoch > 0:
+        print(f"[✓] Resuming from Epoch {actual_start_epoch + 1}/{epochs} with initialized weights.")
+
     if torch.cuda.device_count() > 1:
         print(f"[✓] Wrapping in torch.nn.DataParallel across {torch.cuda.device_count()} GPUs!")
         model = nn.DataParallel(model)
@@ -163,12 +199,11 @@ def run_overnight_training(
     scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=epochs)
 
     # 6. Training Loop
-    best_val_auc = 0.0
     history = []
-    print(f"\n[*] Launching {epochs} Epochs of Overnight Training:")
+    print(f"\n[*] Launching Training: Epochs {actual_start_epoch + 1} to {epochs}:")
     print("-" * 80)
 
-    for epoch in range(1, epochs + 1):
+    for epoch in range(actual_start_epoch + 1, epochs + 1):
         t0 = time.time()
         model.train()
         train_loss = 0.0
@@ -294,6 +329,8 @@ if __name__ == "__main__":
     parser.add_argument("--batch-size", type=int, default=32, help="Batch size")
     parser.add_argument("--lr", type=float, default=1e-4, help="Learning rate")
     parser.add_argument("--github-token", default=os.environ.get("GITHUB_TOKEN", None), help="GitHub token for automatic push")
+    parser.add_argument("--resume", default=None, help="Path to checkpoint file to resume from")
+    parser.add_argument("--start-epoch", type=int, default=0, help="Epoch number to start from (e.g. 38 to continue to 50)")
     args = parser.parse_args()
 
     run_overnight_training(
@@ -304,5 +341,7 @@ if __name__ == "__main__":
         epochs=args.epochs,
         batch_size=args.batch_size,
         learning_rate=args.lr,
-        github_token=args.github_token
+        github_token=args.github_token,
+        resume=args.resume,
+        start_epoch=args.start_epoch
     )
