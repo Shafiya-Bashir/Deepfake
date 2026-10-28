@@ -240,9 +240,6 @@ Deep/
 │   ├── application/api_service.log
 │   ├── hardware/hardware_telemetry.log
 │   └── training/overnight_training.log
-├── papers/
-│   ├── paper-1/main.tex                              # IEEE 10-page research manuscript
-│   └── paper-2/main.tex                              # Cyber-forensics 10-page research manuscript
 ├── scripts/
 │   ├── run_dashboard.py                              # Server launcher (port 8080)
 │   ├── generate_publication_diagrams.py              # 300 DPI diagram generator (zero overflow)

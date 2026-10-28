@@ -74,3 +74,6 @@ data/captured_tests/audio/*
 !data/captured_tests/audio/.gitkeep
 data/captured_tests/video/*
 !data/captured_tests/video/.gitkeep
+
+# Research Paper Manuscripts & Literature PDFs (Kept private locally - never pushed)
+papers/
