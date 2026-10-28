@@ -15,3 +15,31 @@
 [2026-10-27T20:11:59Z] [INFERENCE] Type=Video | File=real_video_sample.mp4 | Verdict=REAL | FakeProb=0.2515 | Latency=0.12ms
 [2026-10-27T20:11:59Z] [INFERENCE] Type=Video | File=fake_video_faceswap.mp4 | Verdict=FAKE | FakeProb=0.7286 | Latency=0.15ms
 [2026-10-27T20:19:23Z] [INFERENCE] Type=Image | File=my_live_webcam_selfie.jpg | Verdict=REAL | FakeProb=0.2328 | Latency=37.7ms
+[2026-10-27T23:44:14Z] [INFERENCE] Type=Audio / Voice | File=fake_cloned_tts_voice.wav | Verdict=FAKE | FakeProb=0.8192 | Latency=52.82ms
+[2026-10-27T23:45:19Z] [INFERENCE] Type=Audio / Voice | File=real_human_voice.wav | Verdict=REAL | FakeProb=0.3233 | Latency=2.37ms
+[2026-10-27T23:45:40Z] [INFERENCE] Type=Image | File=real_portrait_camera.jpg | Verdict=REAL | FakeProb=0.4029 | Latency=31.45ms
+[2026-10-27T23:46:38Z] [INFERENCE] Type=Image | File=my_live_webcam_selfie.jpg | Verdict=REAL | FakeProb=0.2362 | Latency=34.03ms
+[2026-10-27T23:47:45Z] [INFERENCE] Type=Audio / Voice | File=my_live_recorded_voice.wav | Verdict=REAL | FakeProb=0.2836 | Latency=18.75ms
+[2026-10-27T23:48:30Z] [INFERENCE] Type=Audio / Voice | File=my_live_recorded_voice.wav | Verdict=REAL | FakeProb=0.3107 | Latency=31.41ms
+[2026-10-27T23:49:48Z] [INFERENCE] Type=Audio / Voice | File=my_live_recorded_voice.wav | Verdict=REAL | FakeProb=0.264 | Latency=19.56ms
+[2026-10-27T23:50:00Z] [INFERENCE] Type=Audio / Voice | File=my_live_recorded_voice.wav | Verdict=REAL | FakeProb=0.264 | Latency=5.97ms
+[2026-10-27T23:50:09Z] [INFERENCE] Type=Audio / Voice | File=telecom_fraud_voice_clone.wav | Verdict=REAL | FakeProb=0.1912 | Latency=2.43ms
+[2026-10-27T23:50:52Z] [INFERENCE] Type=Image | File=my_live_webcam_selfie.jpg | Verdict=REAL | FakeProb=0.2452 | Latency=36.37ms
+[2026-10-28T00:01:39Z] [INFERENCE] Type=Image | File=my_test_webcam.png | Verdict=FAKE | FakeProb=0.85 | Latency=696.54ms
+[2026-10-28T00:02:18Z] [INFERENCE] Type=Image | File=my_test_live_selfie.png | Verdict=FAKE | FakeProb=0.85 | Latency=14.21ms
+[2026-10-28T00:02:25Z] [INFERENCE] Type=Audio / Voice | File=my_recorded_voice.wav | Verdict=REAL | FakeProb=0.2085 | Latency=5.89ms
+[2026-10-28T00:09:07Z] [INFERENCE] Type=Image | File=my_live_webcam_selfie.jpg | Verdict=REAL | FakeProb=0.2452 | Latency=91.56ms
+[2026-10-28T00:09:38Z] [INFERENCE] Type=Image | File=my_live_webcam_selfie.jpg | Verdict=FAKE | FakeProb=0.7282 | Latency=17.52ms
+[2026-10-28T00:09:58Z] [INFERENCE] Type=Image | File=my_live_webcam_selfie.jpg | Verdict=FAKE | FakeProb=0.7282 | Latency=16.92ms
+[2026-10-28T00:10:18Z] [INFERENCE] Type=Image | File=my_live_webcam_selfie.jpg | Verdict=REAL | FakeProb=0.4247 | Latency=34.67ms
+[2026-10-28T00:10:25Z] [INFERENCE] Type=Image | File=my_live_webcam_selfie.jpg | Verdict=REAL | FakeProb=0.4247 | Latency=9.38ms
+[2026-10-28T00:10:46Z] [INFERENCE] Type=Image | File=my_live_webcam_selfie.jpg | Verdict=REAL | FakeProb=0.4148 | Latency=8.52ms
+[2026-10-28T00:11:24Z] [INFERENCE] Type=Image | File=my_live_webcam_selfie.jpg | Verdict=REAL | FakeProb=0.3402 | Latency=15.28ms
+[2026-10-28T10:49:28Z] [INFERENCE] Type=Image | File=my_live_webcam_selfie.jpg | Verdict=REAL | FakeProb=0.2718 | Latency=1153.17ms
+[2026-10-28T10:52:21Z] [INFERENCE] Type=Audio / Voice | File=training_complete.wav | Verdict=REAL | FakeProb=0.2253 | Latency=14.67ms
+[2026-10-28T11:03:18Z] [INFERENCE] Type=Image | File=my_live_webcam_selfie.jpg | Verdict=REAL | FakeProb=0.2969 | Latency=27.33ms
+[2026-10-28T11:03:20Z] [INFERENCE] Type=Image | File=my_live_webcam_selfie.jpg | Verdict=REAL | FakeProb=0.2969 | Latency=11.41ms
+[2026-10-28T11:18:06Z] [INFERENCE] Type=Image | File=my_live_webcam_selfie.jpg | Verdict=REAL | FakeProb=0.3766 | Latency=1208.87ms
+[2026-10-28T11:18:53Z] [INFERENCE] Type=Audio / Voice | File=training_complete.wav | Verdict=REAL | FakeProb=0.2253 | Latency=11.05ms
+[2026-10-28T13:54:44Z] [INFERENCE] Type=Image | File=my_live_webcam_selfie.jpg | Verdict=REAL | FakeProb=0.288 | Latency=1150.14ms
+[2026-10-28T13:56:02Z] [INFERENCE] Type=Image | File=my_live_webcam_selfie.jpg | Verdict=REAL | FakeProb=0.278 | Latency=28.43ms
