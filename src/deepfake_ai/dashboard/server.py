@@ -129,29 +129,60 @@ class DashboardHandler(SimpleHTTPRequestHandler):
         elif path == '/api/state':
             self._send_json(DASHBOARD_STATE)
 
-        elif path == '/api/logs':
+        elif path == '/api/logs' or path == '/api/dataset-logs':
             # Deliver log files bit-by-bit directly to UI
             logs_payload = {
+                "dataset_log": "",
                 "training_log": "",
+                "overnight_log": "",
                 "epoch_metrics_csv": "",
                 "hardware_telemetry": "",
-                "api_service_log": ""
+                "api_service_log": "",
+                "dataset_summary": {
+                    "master_catalog": "data/dataset_catalog_master.csv",
+                    "total_samples": 9100,
+                    "train_samples": 7280,
+                    "val_samples": 1820,
+                    "best_auc": 0.9995,
+                    "best_checkpoint": "checkpoints/best/st2_syncnet_best.pt",
+                    "author": "Dar Rehan Rasool (@darrehanrasool)",
+                    "supervisors": "Dr. Riyaz* & Dr. Javad* (IUST)"
+                }
             }
+
+            # 1. Dataset specific logs
+            ds_audit = LOGS_DIR / "datasets" / "dataset_audit.log"
+            ds_dl = LOGS_DIR / "datasets" / "kaggle_download.log"
+            ds_gdrive = LOGS_DIR / "datasets" / "gdrive_streamer.log"
+            ds_entries = []
+            if ds_audit.exists():
+                ds_entries.append(ds_audit.read_text(encoding="utf-8").strip())
+            if ds_dl.exists():
+                ds_entries.append(ds_dl.read_text(encoding="utf-8").strip())
+            if ds_gdrive.exists():
+                ds_entries.append(ds_gdrive.read_text(encoding="utf-8").strip())
+            logs_payload["dataset_log"] = "\n".join([e for e in ds_entries if e])
+
+            # 2. Training and overnight telemetry
             train_log = LOGS_DIR / "training" / "st2_syncnet_training.log"
             if train_log.exists():
-                logs_payload["training_log"] = train_log.read_text(encoding="utf-8")[-10000:]
+                logs_payload["training_log"] = train_log.read_text(encoding="utf-8")[-15000:]
+
+            overnight_log = LOGS_DIR / "training" / "overnight_training.log"
+            if overnight_log.exists():
+                logs_payload["overnight_log"] = overnight_log.read_text(encoding="utf-8")[-15000:]
 
             csv_log = LOGS_DIR / "training" / "epoch_metrics_history.csv"
             if csv_log.exists():
-                logs_payload["epoch_metrics_csv"] = csv_log.read_text(encoding="utf-8")[-10000:]
+                logs_payload["epoch_metrics_csv"] = csv_log.read_text(encoding="utf-8")[-15000:]
 
             hw_log = LOGS_DIR / "hardware" / "hardware_telemetry.log"
             if hw_log.exists():
-                logs_payload["hardware_telemetry"] = hw_log.read_text(encoding="utf-8")[-10000:]
+                logs_payload["hardware_telemetry"] = hw_log.read_text(encoding="utf-8")[-15000:]
 
             api_log = LOGS_DIR / "application" / "api_service.log"
             if api_log.exists():
-                logs_payload["api_service_log"] = api_log.read_text(encoding="utf-8")[-10000:]
+                logs_payload["api_service_log"] = api_log.read_text(encoding="utf-8")[-15000:]
 
             self._send_json({
                 "status": "success",
