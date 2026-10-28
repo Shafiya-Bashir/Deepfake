@@ -46,3 +46,19 @@
 [2026-10-28T18:44:59Z] [INFERENCE] Type=Image | File=my_live_webcam_selfie.jpg | Verdict=REAL | FakeProb=0.2162 | Latency=630.18ms
 [2026-10-28T18:45:04Z] [INFERENCE] Type=Image | File=my_live_webcam_selfie.jpg | Verdict=REAL | FakeProb=0.2162 | Latency=13.25ms
 [2026-10-28T18:45:31Z] [INFERENCE] Type=Image | File=20261028_001018_REAL_my_live_webcam_selfie.jpg | Verdict=FAKE | FakeProb=0.85 | Latency=197.18ms
+[2026-10-28T19:15:59Z] [INFERENCE] Type=Video | File=dfdc_manipulated_face_sample.mp4 | Verdict=FAKE | FakeProb=0.7286 | Latency=9.23ms
+[2026-10-28T19:16:01Z] [INFERENCE] Type=Video | File=dfdc_authentic_interview.mp4 | Verdict=REAL | FakeProb=0.2515 | Latency=0.34ms
+[2026-10-28T19:16:03Z] [INFERENCE] Type=Audio / Voice | File=telecom_fraud_voice_clone.wav | Verdict=REAL | FakeProb=0.1912 | Latency=6.12ms
+[2026-10-28T19:16:08Z] [INFERENCE] Type=Audio / Voice | File=human_natural_speech.wav | Verdict=REAL | FakeProb=0.2197 | Latency=0.51ms
+[2026-10-28T19:16:14Z] [INFERENCE] Type=Image | File=diffusion_gan_generated_face.png | Verdict=FAKE | FakeProb=0.85 | Latency=652.32ms
+[2026-10-28T19:16:16Z] [INFERENCE] Type=Image | File=dslr_photographic_portrait.jpg | Verdict=FAKE | FakeProb=0.85 | Latency=8.7ms
+[2026-10-28T19:21:08Z] [INFERENCE] Type=Video | File=my_live_recorded_video.webm | Verdict=FAKE | FakeProb=0.5713 | Latency=1.57ms
+[2026-10-28T19:33:59Z] [INFERENCE] Type=Video | File=my_live_recorded_video.webm | Verdict=REAL | FakeProb=0.4371 | Latency=11.23ms
+[2026-10-28T19:35:32Z] [INFERENCE] Type=Video | File=my_live_recorded_video.webm | Verdict=FAKE | FakeProb=0.5365 | Latency=1.05ms
+[2026-10-28T19:36:26Z] [INFERENCE] Type=Video | File=my_live_recorded_video.webm | Verdict=REAL | FakeProb=0.4388 | Latency=7.45ms
+[2026-10-28T19:37:20Z] [INFERENCE] Type=Video | File=my_live_recorded_video.webm | Verdict=FAKE | FakeProb=0.5263 | Latency=14.23ms
+[2026-10-28T19:38:19Z] [INFERENCE] Type=Video | File=my_live_recorded_video.webm | Verdict=REAL | FakeProb=0.4917 | Latency=11.78ms
+[2026-10-28T19:40:44Z] [INFERENCE] Type=Video | File=my_live_recorded_video.webm | Verdict=FAKE | FakeProb=0.5202 | Latency=12.19ms
+[2026-10-28T19:43:08Z] [INFERENCE] Type=Video | File=my_live_recorded_video.webm | Verdict=REAL | FakeProb=0.4873 | Latency=2.44ms
+[2026-10-28T19:45:37Z] [INFERENCE] Type=Video | File=my_live_camera_authentic_recording.webm | Verdict=REAL | FakeProb=0.2375 | Latency=0.66ms
+[2026-10-28T19:47:46Z] [INFERENCE] Type=Video | File=my_live_camera_authentic_recording.webm | Verdict=REAL | FakeProb=0.2375 | Latency=5.94ms
