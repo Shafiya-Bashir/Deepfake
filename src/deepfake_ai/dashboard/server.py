@@ -379,11 +379,24 @@ class DashboardHandler(SimpleHTTPRequestHandler):
                 mime_type = body.get('mime_type', '')
                 file_data_str = body.get('file_data', '')
 
-                # Decode base64
-                if ',' in file_data_str:
+                # Robust base64 extraction (handles Data URLs with codec params, e.g. data:video/webm;codecs=vp9,opus;base64,...)
+                if ';base64,' in file_data_str:
+                    file_data_str = file_data_str.split(';base64,', 1)[1]
+                elif ',' in file_data_str:
                     file_data_str = file_data_str.split(',', 1)[1]
 
-                media_bytes = base64.b64decode(file_data_str) if file_data_str else b''
+                file_data_str = "".join(file_data_str.split())
+                missing_padding = len(file_data_str) % 4
+                if missing_padding == 1:
+                    file_data_str = file_data_str[:-1]
+                elif missing_padding in (2, 3):
+                    file_data_str += '=' * (4 - missing_padding)
+
+                try:
+                    media_bytes = base64.b64decode(file_data_str) if file_data_str else b''
+                except Exception as b64_err:
+                    logger.warning(f"Initial base64 decode failed ({b64_err}), attempting padding fallback...")
+                    media_bytes = base64.b64decode(file_data_str + '===') if file_data_str else b''
 
                 # Check if testing via sample token
                 sample_token = body.get('sample_token', '')

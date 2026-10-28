@@ -1531,12 +1531,13 @@
 
       videoMediaRecorder.onstop = function() {
         const actualMime = (videoMediaRecorder && videoMediaRecorder.mimeType) ? videoMediaRecorder.mimeType : 'video/webm';
-        const videoBlob = new Blob(recordedVideoChunks, { type: actualMime });
+        const cleanMime = actualMime.includes('mp4') ? 'video/mp4' : 'video/webm';
+        const videoBlob = new Blob(recordedVideoChunks, { type: cleanMime });
         const reader = new FileReader();
         reader.onload = function(e) {
           currentBase64 = e.target.result;
-          const ext = actualMime.includes('mp4') ? 'mp4' : 'webm';
-          currentFile = { name: `my_live_recorded_video.${ext}`, type: actualMime, size: videoBlob.size };
+          const ext = cleanMime.includes('mp4') ? 'mp4' : 'webm';
+          currentFile = { name: `my_live_recorded_video.${ext}`, type: cleanMime, size: videoBlob.size };
           currentSampleToken = null;
 
           document.getElementById('previewFilename').innerText = `🎥 Live Video Capture: ${currentFile.name} (${(videoBlob.size / 1024).toFixed(1)} KB)`;
