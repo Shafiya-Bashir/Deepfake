@@ -66,3 +66,11 @@ htmlcov/
 # Exclude runtime temporary logs but track baseline benchmark logs
 *.tmp
 *.log.tmp
+
+# Privacy: User Captured Live Test Media (Webcam selfies, recorded live videos, mic audio)
+data/captured_tests/images/*
+!data/captured_tests/images/.gitkeep
+data/captured_tests/audio/*
+!data/captured_tests/audio/.gitkeep
+data/captured_tests/video/*
+!data/captured_tests/video/.gitkeep
