@@ -1,5 +1,25 @@
 [
   {
+    "timestamp": "2026-10-28T18:45:04Z",
+    "filename": "20261028_184504_REAL_my_live_webcam_selfie.jpg",
+    "original_filename": "my_live_webcam_selfie.jpg",
+    "relative_path": "data/captured_tests/images/20261028_184504_REAL_my_live_webcam_selfie.jpg",
+    "media_type": "Image",
+    "verdict": "REAL",
+    "fake_probability": 0.2162,
+    "size_bytes": 81999
+  },
+  {
+    "timestamp": "2026-10-28T18:44:59Z",
+    "filename": "20261028_184459_REAL_my_live_webcam_selfie.jpg",
+    "original_filename": "my_live_webcam_selfie.jpg",
+    "relative_path": "data/captured_tests/images/20261028_184459_REAL_my_live_webcam_selfie.jpg",
+    "media_type": "Image",
+    "verdict": "REAL",
+    "fake_probability": 0.2162,
+    "size_bytes": 81999
+  },
+  {
     "timestamp": "2026-10-28T13:56:02Z",
     "filename": "20261028_135602_REAL_my_live_webcam_selfie.jpg",
     "original_filename": "my_live_webcam_selfie.jpg",
