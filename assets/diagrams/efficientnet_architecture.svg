@@ -1,0 +1,212 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1320 800" width="100%" height="100%">
+        <!-- Background Canvas -->
+        <rect width="1320" height="800" fill="url(#bg-grad)" rx="12" />
+        <rect width="1320" height="800" fill="none" stroke="#1e293b" stroke-width="2" rx="12" />
+        
+        <defs>
+            <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#070c18" />
+                <stop offset="100%" stop-color="#0d1527" />
+            </linearGradient>
+            <linearGradient id="header-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#38bdf8" />
+                <stop offset="50%" stop-color="#818cf8" />
+                <stop offset="100%" stop-color="#c084fc" />
+            </linearGradient>
+            <linearGradient id="card-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#141e33" />
+                <stop offset="100%" stop-color="#0f172a" />
+            </linearGradient>
+            <linearGradient id="card-real-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#062e1e" />
+                <stop offset="100%" stop-color="#041f14" />
+            </linearGradient>
+            <linearGradient id="card-fake-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#360a0f" />
+                <stop offset="100%" stop-color="#24070a" />
+            </linearGradient>
+            <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="4" />
+                <feOffset dx="0" dy="4" />
+                <feComponentTransfer><feFuncA type="linear" slope="0.4" /></feComponentTransfer>
+                <feMerge>
+                    <feMergeNode />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+            <filter id="glow-cyan" x="-10%" y="-10%" width="120%" height="120%">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+            <!-- Arrow Markers -->
+            <marker id="arrow-cyan" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+            </marker>
+            <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981" />
+            </marker>
+            <marker id="arrow-red" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f87171" />
+            </marker>
+            <marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#c084fc" />
+            </marker>
+            <marker id="arrow-amber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#fbbf24" />
+            </marker>
+            <marker id="arrow-gray" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#64748b" />
+            </marker>
+        </defs>
+        
+
+        <!-- Header Banner -->
+        <g class="header">
+            <text x="660.0" y="36" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="800" fill="url(#header-grad)" text-anchor="middle" letter-spacing="0.5">Deepfake EfficientNet-B4: Compound Scaled Inverted Bottleneck</text>
+            <text x="660.0" y="56" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" fill="#94a3b8" text-anchor="middle">Compound Scaled MBConv Feature Hierarchy with SiLU / Swish Activations and Spatial Attention Pooling</text>
+            <line x1="40" y1="72" x2="1280" y2="72" stroke="#1e293b" stroke-width="1.2" />
+        </g>
+
+        <!-- Diagram Elements -->
+        
+        <g class="stage-banner">
+            <rect x="40" y="85" width="230" height="24" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1" />
+            <text x="155.0" y="101" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#38bdf8" text-anchor="middle" letter-spacing="0.3">IMAGE INPUT</text>
+        </g>
+        
+        <g class="stage-banner">
+            <rect x="310" y="85" width="420" height="24" rx="6" fill="#1e293b" stroke="#818cf8" stroke-width="1" />
+            <text x="520.0" y="101" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#818cf8" text-anchor="middle" letter-spacing="0.3">COMPOUND SCALED STAGES</text>
+        </g>
+        
+        <g class="stage-banner">
+            <rect x="770" y="85" width="260" height="24" rx="6" fill="#1e293b" stroke="#c084fc" stroke-width="1" />
+            <text x="900.0" y="101" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#c084fc" text-anchor="middle" letter-spacing="0.3">GLOBAL POOLING</text>
+        </g>
+        
+        <g class="stage-banner">
+            <rect x="1070" y="85" width="210" height="24" rx="6" fill="#1e293b" stroke="#34d399" stroke-width="1" />
+            <text x="1175.0" y="101" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#34d399" text-anchor="middle" letter-spacing="0.3">CLASSIFIER HEAD</text>
+        </g>
+        
+        <g class="card">
+            <rect x="40" y="240" width="230" height="240" rx="10" fill="url(#card-grad)" stroke="#38bdf8" stroke-width="1.6" filter="url(#shadow)" />
+            <rect x="41" y="241" width="228" height="3" rx="1" fill="#38bdf8" opacity="0.8" />
+            <text x="155.0" y="264" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="700" fill="#38bdf8" text-anchor="middle">High-Res Query Face</text>
+        
+            <text x="155.0" y="282" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-style="italic" fill="#94a3b8" text-anchor="middle">Input Image</text>
+            
+            <line x1="52" y1="294" x2="258" y2="294" stroke="#1e293b" stroke-width="1" />
+        
+            <text x="54" y="308" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Resolution: 3 x 380 x 380</text>
+            
+            <text x="54" y="326" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Normalized (ImageNet stats)</text>
+            
+            <text x="54" y="344" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Compound Resolution Scaling</text>
+            
+            <text x="54" y="362" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Captures subtle GAN pixel blurs</text>
+            
+            <rect x="140.0" y="460" width="120.0" height="15" rx="7.5" fill="#1e293b" stroke="#38bdf8" stroke-width="0.8" />
+            <text x="200.0" y="471" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8.5" font-weight="600" fill="#38bdf8" text-anchor="middle">[B, 3, 380, 380]</text>
+            </g>
+        <g class="card">
+            <rect x="310" y="160" width="420" height="420" rx="10" fill="url(#card-grad)" stroke="#818cf8" stroke-width="1.6" filter="url(#shadow)" />
+            <rect x="311" y="161" width="418" height="3" rx="1" fill="#818cf8" opacity="0.8" />
+            <text x="520.0" y="184" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="700" fill="#38bdf8" text-anchor="middle">Multi-Stage MBConv Pipeline</text>
+        
+            <text x="520.0" y="202" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-style="italic" fill="#94a3b8" text-anchor="middle">Inverted Residuals &amp; Linear Bottlenecks</text>
+            
+            <line x1="322" y1="214" x2="718" y2="214" stroke="#1e293b" stroke-width="1" />
+        
+            <text x="324" y="228" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Stage 1 (Stem):</text>
+            
+            <text x="324" y="246" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    Conv2d(3→32, k=3, s=2, p=1, bias=False)</text>
+            
+            <text x="324" y="264" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    BatchNorm2d(32) + SiLU (Swish: x · σ(x))</text>
+            
+            <text x="324" y="282" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Stage 2 (Expansion &amp; Depthwise):</text>
+            
+            <text x="324" y="300" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    Conv2d(32→64, k=3, s=2, p=1, bias=False)</text>
+            
+            <text x="324" y="318" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    BatchNorm2d(64) + SiLU</text>
+            
+            <text x="324" y="336" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Stage 3 (Deep Feature Extraction):</text>
+            
+            <text x="324" y="354" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    Conv2d(64→128, k=3, s=2, p=1, bias=False)</text>
+            
+            <text x="324" y="372" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    BatchNorm2d(128) + SiLU</text>
+            
+            <text x="324" y="390" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Preserves gradient backpropagation across deep layers</text>
+            
+            <rect x="600.0" y="560" width="120.0" height="15" rx="7.5" fill="#1e293b" stroke="#818cf8" stroke-width="0.8" />
+            <text x="660.0" y="571" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8.5" font-weight="600" fill="#818cf8" text-anchor="middle">MBConv Hierarchy</text>
+            </g>
+        <g class="card">
+            <rect x="770" y="220" width="260" height="300" rx="10" fill="url(#card-grad)" stroke="#c084fc" stroke-width="1.6" filter="url(#glow-cyan)" />
+            <rect x="771" y="221" width="258" height="3" rx="1" fill="#c084fc" opacity="0.8" />
+            <text x="900.0" y="244" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="700" fill="#38bdf8" text-anchor="middle">Spatial Pooling Module</text>
+        
+            <text x="900.0" y="262" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-style="italic" fill="#94a3b8" text-anchor="middle">Global Feature Aggregation</text>
+            
+            <line x1="782" y1="274" x2="1018" y2="274" stroke="#1e293b" stroke-width="1" />
+        
+            <text x="784" y="288" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Adaptive Average Pooling:</text>
+            
+            <text x="784" y="306" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    AdaptiveAvgPool2d((1, 1))</text>
+            
+            <text x="784" y="324" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Channel Dimension Reduction</text>
+            
+            <text x="784" y="342" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Flattening: R^[B, 128]</text>
+            
+            <text x="784" y="360" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Invariant to Face Pose Variations</text>
+            
+            <rect x="900.0" y="500" width="120.0" height="15" rx="7.5" fill="#1e293b" stroke="#c084fc" stroke-width="0.8" />
+            <text x="960.0" y="511" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8.5" font-weight="600" fill="#c084fc" text-anchor="middle">f_effnet ∈ R^128</text>
+            </g>
+        <g class="card">
+            <rect x="1070" y="240" width="210" height="260" rx="10" fill="url(#card-real-grad)" stroke="#34d399" stroke-width="1.6" filter="url(#shadow)" />
+            <rect x="1071" y="241" width="208" height="3" rx="1" fill="#34d399" opacity="0.8" />
+            <text x="1175.0" y="264" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="700" fill="#38bdf8" text-anchor="middle">Forensic Classifier</text>
+        
+            <text x="1175.0" y="282" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-style="italic" fill="#94a3b8" text-anchor="middle">Binary Output</text>
+            
+            <line x1="1082" y1="294" x2="1268" y2="294" stroke="#1e293b" stroke-width="1" />
+        
+            <text x="1084" y="308" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Dropout(p = 0.40)</text>
+            
+            <text x="1084" y="326" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Linear(128 → 2)</text>
+            
+            <text x="1084" y="344" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Real vs Synthetic Softmax</text>
+            
+            <text x="1084" y="362" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Low Latency: 2.1ms</text>
+            
+            <rect x="1208.5" y="480" width="61.5" height="15" rx="7.5" fill="#1e293b" stroke="#34d399" stroke-width="0.8" />
+            <text x="1239.25" y="491" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8.5" font-weight="600" fill="#34d399" text-anchor="middle">Softmax</text>
+            </g>
+        <g class="connector">
+            <line x1="270" y1="360" x2="310" y2="360" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arrow-cyan)"  />
+        
+            <text x="290.0" y="354.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600" fill="#38bdf8" text-anchor="middle">380x380 RGB</text>
+            </g>
+        <g class="connector">
+            <line x1="730" y1="360" x2="770" y2="360" stroke="#818cf8" stroke-width="1.8" marker-end="url(#arrow-purple)"  />
+        
+            <text x="750.0" y="354.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600" fill="#818cf8" text-anchor="middle">Features</text>
+            </g>
+        <g class="connector">
+            <line x1="1030" y1="360" x2="1070" y2="360" stroke="#c084fc" stroke-width="1.8" marker-end="url(#arrow-purple)"  />
+        
+            <text x="1050.0" y="354.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600" fill="#c084fc" text-anchor="middle">128-D</text>
+            </g>
+
+        <!-- Footer / Attribution -->
+        <g class="footer">
+            <line x1="40" y1="772" x2="1280" y2="772" stroke="#1e293b" stroke-width="1" />
+            <text x="40" y="788" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" fill="#64748b">DeepFake-AI Cyber-Forensics Research Suite • Lead Author: Dar Rehan Rasool (@darrehanrasool) • Supervisors: Dr. Riyaz &amp; Dr. Javad (IUST)</text>
+            <text x="1280" y="788" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="9.5" fill="#38bdf8" text-anchor="end">Publication-Grade Vector Diagram (Scalable SVG)</text>
+        </g>
+        </svg>
+        

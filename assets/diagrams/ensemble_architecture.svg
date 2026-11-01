@@ -1,0 +1,311 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1380 880" width="100%" height="100%">
+        <!-- Background Canvas -->
+        <rect width="1380" height="880" fill="url(#bg-grad)" rx="12" />
+        <rect width="1380" height="880" fill="none" stroke="#1e293b" stroke-width="2" rx="12" />
+        
+        <defs>
+            <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#070c18" />
+                <stop offset="100%" stop-color="#0d1527" />
+            </linearGradient>
+            <linearGradient id="header-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#38bdf8" />
+                <stop offset="50%" stop-color="#818cf8" />
+                <stop offset="100%" stop-color="#c084fc" />
+            </linearGradient>
+            <linearGradient id="card-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#141e33" />
+                <stop offset="100%" stop-color="#0f172a" />
+            </linearGradient>
+            <linearGradient id="card-real-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#062e1e" />
+                <stop offset="100%" stop-color="#041f14" />
+            </linearGradient>
+            <linearGradient id="card-fake-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#360a0f" />
+                <stop offset="100%" stop-color="#24070a" />
+            </linearGradient>
+            <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="4" />
+                <feOffset dx="0" dy="4" />
+                <feComponentTransfer><feFuncA type="linear" slope="0.4" /></feComponentTransfer>
+                <feMerge>
+                    <feMergeNode />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+            <filter id="glow-cyan" x="-10%" y="-10%" width="120%" height="120%">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+            <!-- Arrow Markers -->
+            <marker id="arrow-cyan" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+            </marker>
+            <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981" />
+            </marker>
+            <marker id="arrow-red" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f87171" />
+            </marker>
+            <marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#c084fc" />
+            </marker>
+            <marker id="arrow-amber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#fbbf24" />
+            </marker>
+            <marker id="arrow-gray" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#64748b" />
+            </marker>
+        </defs>
+        
+
+        <!-- Header Banner -->
+        <g class="header">
+            <text x="690.0" y="36" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="800" fill="url(#header-grad)" text-anchor="middle" letter-spacing="0.5">Multi-Modal Ensemble Architecture (Voting &amp; Stacking Meta-Learner)</text>
+            <text x="690.0" y="56" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" fill="#94a3b8" text-anchor="middle">Confidence-Weighted Soft Voting &amp; Stacking Logistic Meta-Learner with Temperature-Scaled Calibration</text>
+            <line x1="40" y1="72" x2="1340" y2="72" stroke="#1e293b" stroke-width="1.2" />
+        </g>
+
+        <!-- Diagram Elements -->
+        
+        <g class="stage-banner">
+            <rect x="40" y="85" width="260" height="24" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1" />
+            <text x="170.0" y="101" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#38bdf8" text-anchor="middle" letter-spacing="0.3">LEVEL-0 BASE ESTIMATORS</text>
+        </g>
+        
+        <g class="stage-banner">
+            <rect x="340" y="85" width="340" height="24" rx="6" fill="#1e293b" stroke="#818cf8" stroke-width="1" />
+            <text x="510.0" y="101" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#818cf8" text-anchor="middle" letter-spacing="0.3">PARALLEL ENSEMBLE PATHS</text>
+        </g>
+        
+        <g class="stage-banner">
+            <rect x="720" y="85" width="320" height="24" rx="6" fill="#1e293b" stroke="#c084fc" stroke-width="1" />
+            <text x="880.0" y="101" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#c084fc" text-anchor="middle" letter-spacing="0.3">STACKING META-LEARNER</text>
+        </g>
+        
+        <g class="stage-banner">
+            <rect x="1080" y="85" width="260" height="24" rx="6" fill="#1e293b" stroke="#34d399" stroke-width="1" />
+            <text x="1210.0" y="101" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#34d399" text-anchor="middle" letter-spacing="0.3">CALIBRATED OUTPUTS</text>
+        </g>
+        
+        <g class="card">
+            <rect x="40" y="130" width="260" height="680" rx="10" fill="url(#card-grad)" stroke="#38bdf8" stroke-width="1.6" filter="url(#shadow)" />
+            <rect x="41" y="131" width="258" height="3" rx="1" fill="#38bdf8" opacity="0.8" />
+            <text x="170.0" y="154" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="700" fill="#38bdf8" text-anchor="middle">Base Model Zoo (M=6)</text>
+        
+            <text x="170.0" y="172" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-style="italic" fill="#94a3b8" text-anchor="middle">Specialized Feature Extractors</text>
+            
+            <line x1="52" y1="184" x2="288" y2="184" stroke="#1e293b" stroke-width="1" />
+        
+            <text x="54" y="198" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">1. MesoNet (Meso-4 &amp; MesoInception-4)</text>
+            
+            <text x="54" y="216" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    - Fast Edge Analysis (28k params)</text>
+            
+            <text x="54" y="234" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    - Output: P_1(Fake)</text>
+            
+            <text x="54" y="252" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1"></text>
+            
+            <text x="54" y="270" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">2. Deepfake XceptionNet</text>
+            
+            <text x="54" y="288" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    - Depthwise Separable Boundary (256-D)</text>
+            
+            <text x="54" y="306" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    - Output: P_2(Fake)</text>
+            
+            <text x="54" y="324" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1"></text>
+            
+            <text x="54" y="342" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">3. Deepfake EfficientNet-B4</text>
+            
+            <text x="54" y="360" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    - Compound Scaled MBConv (128-D)</text>
+            
+            <text x="54" y="378" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    - Output: P_3(Fake)</text>
+            
+            <text x="54" y="396" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1"></text>
+            
+            <text x="54" y="414" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">4. DualStream FrequencyNet</text>
+            
+            <text x="54" y="432" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    - 2D-DCT Spectral Saliency (2048-D)</text>
+            
+            <text x="54" y="450" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    - Output: P_4(Fake)</text>
+            
+            <text x="54" y="468" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1"></text>
+            
+            <text x="54" y="486" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">5. SpatioTemporal VideoNet</text>
+            
+            <text x="54" y="504" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    - Bi-LSTM Inter-Frame Jitter (256-D)</text>
+            
+            <text x="54" y="522" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    - Output: P_5(Fake)</text>
+            
+            <text x="54" y="540" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1"></text>
+            
+            <text x="54" y="558" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">6. ST2-SyncNet (Flagship)</text>
+            
+            <text x="54" y="576" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    - Cross-Attention Wavelet Sync (AUC: 0.9995)</text>
+            
+            <text x="54" y="594" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    - Output: P_6(Fake)</text>
+            
+            <rect x="111.5" y="790" width="178.5" height="15" rx="7.5" fill="#1e293b" stroke="#38bdf8" stroke-width="0.8" />
+            <text x="200.75" y="801" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8.5" font-weight="600" fill="#38bdf8" text-anchor="middle">Base Logit Vector z ∈ R^6</text>
+            </g>
+        <g class="card">
+            <rect x="340" y="150" width="340" height="310" rx="10" fill="url(#card-grad)" stroke="#818cf8" stroke-width="1.6" filter="url(#shadow)" />
+            <rect x="341" y="151" width="338" height="3" rx="1" fill="#818cf8" opacity="0.8" />
+            <text x="510.0" y="174" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="700" fill="#38bdf8" text-anchor="middle">Path A: Soft Voting Ensemble</text>
+        
+            <text x="510.0" y="192" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-style="italic" fill="#94a3b8" text-anchor="middle">Confidence-Weighted Averaging</text>
+            
+            <line x1="352" y1="204" x2="668" y2="204" stroke="#1e293b" stroke-width="1" />
+        
+            <text x="354" y="218" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Normalized Model Weights:</text>
+            
+            <text x="354" y="236" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    w = [w_1, w_2, ..., w_6] where Σ w_i = 1</text>
+            
+            <text x="354" y="254" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Weighted Softmax Combination:</text>
+            
+            <text x="354" y="272" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    P_vote(Fake) = Σ ( w_i · P_i(Fake) )</text>
+            
+            <text x="354" y="290" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Optimal Weights via Validation Grid Search:</text>
+            
+            <text x="354" y="308" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    ST2-SyncNet: 0.40 | FreqNet: 0.20</text>
+            
+            <text x="354" y="326" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    SpatioTemporal: 0.15 | EfficientNet: 0.10</text>
+            
+            <text x="354" y="344" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    Xception: 0.10 | MesoNet: 0.05</text>
+            
+            <text x="354" y="362" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Resilient to Single-Model Noise</text>
+            
+            <rect x="563.0" y="440" width="107.0" height="15" rx="7.5" fill="#1e293b" stroke="#818cf8" stroke-width="0.8" />
+            <text x="616.5" y="451" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8.5" font-weight="600" fill="#818cf8" text-anchor="middle">Voting Softmax</text>
+            </g>
+        <g class="card">
+            <rect x="340" y="500" width="340" height="310" rx="10" fill="url(#card-grad)" stroke="#f59e0b" stroke-width="1.6" filter="url(#shadow)" />
+            <rect x="341" y="501" width="338" height="3" rx="1" fill="#f59e0b" opacity="0.8" />
+            <text x="510.0" y="524" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="700" fill="#38bdf8" text-anchor="middle">Path B: Stacking Input Feeder</text>
+        
+            <text x="510.0" y="542" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-style="italic" fill="#94a3b8" text-anchor="middle">Cross-Validated Meta Features</text>
+            
+            <line x1="352" y1="554" x2="668" y2="554" stroke="#1e293b" stroke-width="1" />
+        
+            <text x="354" y="568" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Out-of-Fold (OOF) Prediction Matrix:</text>
+            
+            <text x="354" y="586" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    X_meta = [P_1, P_2, P_3, P_4, P_5, P_6]</text>
+            
+            <text x="354" y="604" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Identity-Disjoint Split Partitioning</text>
+            
+            <text x="354" y="622" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Eliminates Target Leakage</text>
+            
+            <text x="354" y="640" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Passes 6-Dimensional Prediction Vector to Meta-Learner</text>
+            
+            <rect x="530.5" y="790" width="139.5" height="15" rx="7.5" fill="#1e293b" stroke="#f59e0b" stroke-width="0.8" />
+            <text x="600.25" y="801" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8.5" font-weight="600" fill="#f59e0b" text-anchor="middle">Meta Feature Matrix</text>
+            </g>
+        <g class="card">
+            <rect x="720" y="280" width="320" height="380" rx="10" fill="url(#card-grad)" stroke="#c084fc" stroke-width="1.6" filter="url(#glow-cyan)" />
+            <rect x="721" y="281" width="318" height="3" rx="1" fill="#c084fc" opacity="0.8" />
+            <text x="880.0" y="304" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="700" fill="#38bdf8" text-anchor="middle">Stacking Meta-Classifier</text>
+        
+            <text x="880.0" y="322" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-style="italic" fill="#94a3b8" text-anchor="middle">L2-Regularized Logistic Regression</text>
+            
+            <line x1="732" y1="334" x2="1028" y2="334" stroke="#1e293b" stroke-width="1" />
+        
+            <text x="734" y="348" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Scikit-Learn Logistic Regression:</text>
+            
+            <text x="734" y="366" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    z_meta = W^T · X_meta + b</text>
+            
+            <text x="734" y="384" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• L2 Weight Decay Regularization (C = 1.0)</text>
+            
+            <text x="734" y="402" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Learns Optimal Non-Linear Inter-Model Trust</text>
+            
+            <text x="734" y="420" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Platt Scaling Calibration:</text>
+            
+            <text x="734" y="438" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    P_calibrated = σ( z_meta / Temperature )</text>
+            
+            <text x="734" y="456" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Cross-Entropy Log-Loss Minimized</text>
+            
+            <text x="734" y="474" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Cross-Dataset Generalization AUC: 0.984</text>
+            
+            <rect x="890.5" y="640" width="139.5" height="15" rx="7.5" fill="#1e293b" stroke="#c084fc" stroke-width="0.8" />
+            <text x="960.25" y="651" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8.5" font-weight="600" fill="#c084fc" text-anchor="middle">Meta Logistic Model</text>
+            </g>
+        <g class="card">
+            <rect x="1080" y="160" width="260" height="240" rx="10" fill="url(#card-real-grad)" stroke="#10b981" stroke-width="1.6" filter="url(#shadow)" />
+            <rect x="1081" y="161" width="258" height="3" rx="1" fill="#10b981" opacity="0.8" />
+            <text x="1210.0" y="184" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="700" fill="#34d399" text-anchor="middle">Verified Authentic</text>
+        
+            <text x="1210.0" y="202" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-style="italic" fill="#94a3b8" text-anchor="middle">P(Fake) &lt; 0.50 | Organic</text>
+            
+            <line x1="1092" y1="214" x2="1328" y2="214" stroke="#1e293b" stroke-width="1" />
+        
+            <text x="1094" y="228" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Green Forensic Beacon</text>
+            
+            <text x="1094" y="246" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Harmonic Audio Chime (C5→E5)</text>
+            
+            <text x="1094" y="264" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• High Cross-Model Consensus</text>
+            
+            <text x="1094" y="282" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• True Positive Confidence &gt; 98%</text>
+            
+            <rect x="1242.5" y="380" width="87.5" height="15" rx="7.5" fill="#1e293b" stroke="#10b981" stroke-width="0.8" />
+            <text x="1286.25" y="391" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8.5" font-weight="600" fill="#10b981" text-anchor="middle">REAL BEACON</text>
+            </g>
+        <g class="card">
+            <rect x="1080" y="480" width="260" height="240" rx="10" fill="url(#card-fake-grad)" stroke="#f87171" stroke-width="1.6" filter="url(#shadow)" />
+            <rect x="1081" y="481" width="258" height="3" rx="1" fill="#f87171" opacity="0.8" />
+            <text x="1210.0" y="504" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="700" fill="#f87171" text-anchor="middle">Critical: Fake Detected</text>
+        
+            <text x="1210.0" y="522" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-style="italic" fill="#94a3b8" text-anchor="middle">P(Fake) ≥ 0.50 | Synthetic</text>
+            
+            <line x1="1092" y1="534" x2="1328" y2="534" stroke="#1e293b" stroke-width="1" />
+        
+            <text x="1094" y="548" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Flashing Red Alarm Beacon</text>
+            
+            <text x="1094" y="566" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• 880Hz Pulsing Audio Alert</text>
+            
+            <text x="1094" y="584" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Synthesized Seams or Noise Confirmed</text>
+            
+            <text x="1094" y="602" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Full XAI Decomposition Telemetry</text>
+            
+            <rect x="1249.0" y="700" width="81.0" height="15" rx="7.5" fill="#1e293b" stroke="#f87171" stroke-width="0.8" />
+            <text x="1289.5" y="711" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8.5" font-weight="600" fill="#f87171" text-anchor="middle">FAKE ALARM</text>
+            </g>
+        <g class="connector">
+            <line x1="300" y1="305" x2="340" y2="305" stroke="#818cf8" stroke-width="1.8" marker-end="url(#arrow-purple)"  />
+        
+            <text x="320.0" y="299.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600" fill="#818cf8" text-anchor="middle">Predictions P_i</text>
+            </g>
+        <g class="connector">
+            <line x1="300" y1="655" x2="340" y2="655" stroke="#f59e0b" stroke-width="1.8" marker-end="url(#arrow-amber)"  />
+        
+            <text x="320.0" y="649.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600" fill="#f59e0b" text-anchor="middle">Logits z_i</text>
+            </g>
+        <g class="connector">
+            <line x1="680" y1="655" x2="720" y2="470" stroke="#f59e0b" stroke-width="1.8" marker-end="url(#arrow-amber)"  />
+        
+            <text x="700.0" y="556.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600" fill="#f59e0b" text-anchor="middle">X_meta (6-D)</text>
+            </g>
+        <g class="connector">
+            <line x1="680" y1="305" x2="720" y2="430" stroke="#818cf8" stroke-width="1.8" marker-end="url(#arrow-purple)"  />
+        
+            <text x="700.0" y="361.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600" fill="#818cf8" text-anchor="middle">Voting Prior</text>
+            </g>
+        <g class="connector">
+            <path d="M 1040 440 L 1060 440 L 1060 280 L 1080 280 " fill="none" stroke="#10b981" stroke-width="1.8" marker-end="url(#arrow-green)" />
+        
+            <text x="1060.0" y="354.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600" fill="#10b981" text-anchor="middle">P(Real) ≥ 0.50</text>
+            </g>
+        <g class="connector">
+            <path d="M 1040 500 L 1060 500 L 1060 600 L 1080 600 " fill="none" stroke="#f87171" stroke-width="1.8" marker-end="url(#arrow-red)" />
+        
+            <text x="1060.0" y="544.0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9" font-weight="600" fill="#f87171" text-anchor="middle">P(Fake) ≥ 0.50</text>
+            </g>
+
+        <!-- Footer / Attribution -->
+        <g class="footer">
+            <line x1="40" y1="852" x2="1340" y2="852" stroke="#1e293b" stroke-width="1" />
+            <text x="40" y="868" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" fill="#64748b">DeepFake-AI Cyber-Forensics Research Suite • Lead Author: Dar Rehan Rasool (@darrehanrasool) • Supervisors: Dr. Riyaz &amp; Dr. Javad (IUST)</text>
+            <text x="1340" y="868" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="9.5" fill="#38bdf8" text-anchor="end">Publication-Grade Vector Diagram (Scalable SVG)</text>
+        </g>
+        </svg>
+        

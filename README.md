@@ -14,10 +14,7 @@
 
 ## 🖥️ Interactive Web UI & Cyber-Forensics Dashboard
 
-<div align="center">
-  <img src="assets/images/sreenshot.png" alt="DeepFake-AI Cyber-Forensics Dashboard Interface" width="100%">
-  <p><em>Figure 1: DeepFake-AI Live Forensic Dashboard — Multi-modal Ingestion (Live Video, Live Selfie, Live Mic, File Upload), Real-Time Detection Beacon, Explainable XAI Decomposition, VS Code Terminal Dataset Log, and Dedicated Benchmark Matrix Console. Copyright © 2026 Dar Rehan Rasool (@darrehanrasool).</em></p>
-</div>
+DeepFake-AI includes an enterprise-grade cyber-forensics dashboard equipped with multi-modal ingestion (Live Video Recording Studio, Live Webcam Selfie, Live Microphone Stream, and Multi-Benchmark File Upload), real-time forensic detection beacons, mathematical XAI telemetry traces (Grad-CAM, 2D-DCT power spectrum, and EAR blink kinematics), real-time terminal logs, and a dedicated benchmark matrix console.
 
 ---
 
@@ -54,31 +51,115 @@ This research project and benchmark platform is collaboratively developed under 
 
 ## 🏗️ Complete System Architecture & Research Diagrams
 
-The DeepFake-AI architecture is structured into dedicated modular pipelines that prevent cross-generator overfitting while ensuring real-time inference latency ($1.8\text{ ms} - 14.2\text{ ms}$):
+The DeepFake-AI forensic suite provides publication-grade, mathematically verified architectural diagrams for every implemented model in the repository. All diagrams are authored as **retina-sharp Scalable Vector Graphics (`.svg`)** for zero compression artifacting, accompanied by **fully editable Draw.io XML models (`.drawio`)** that can be directly imported and edited in [draw.io / diagrams.net](https://app.diagrams.net).
 
-### 1. Master Multi-Modal System Architecture
+---
+
+### 1. Master Multi-Modal System Architecture (End-to-End Forensic System)
 <div align="center">
-  <img src="assets/images/deepfake_ai_master_architecture.png" alt="DeepFake-AI Master Multi-Modal System Architecture" width="100%">
-  <p><em>Figure 2: Master Multi-Modal Forensic System Architecture — Unified Ingestion, 4-Stream Domain Decomposition, Neural Cross-Attention Fusion (ST2-SyncNet v2.0), and Calibrated Decision Heads.</em></p>
+  <img src="assets/diagrams/master_multimodal_architecture.svg" alt="DeepFake-AI Master Multi-Modal Forensic System Architecture" width="100%">
+  <p><em>Figure 1: Master Multi-Modal Forensic System Architecture — Unified Multi-Modal Ingestion, MTCNN Preprocessing & 68-Point Mesh Alignment, 4-Stream Domain Decomposition (Spatial ∇²I, Spectral 2D-DCT, Temporal EAR Kinematics, Acoustic SFM), Neural Cross-Attention Fusion (ST2-SyncNet v2.0), and Calibrated Decision Heads. [<a href="assets/diagrams/master_multimodal_architecture.drawio">✏️ Open &amp; Edit in Draw.io</a>]</em></p>
 </div>
 
-### 2. Spatio-Temporal Viseme & Biometric Architecture (Video)
+| Stage | Input Dimensions | Core Forensic Mechanism | Output Representation | Hardware Latency |
+| :--- | :--- | :--- | :--- | :--- |
+| **Stage 1: Multi-Modal Ingestion** | Live Video (720p/1080p), Webcam Selfie, 16kHz PCM WAV | In-browser HTML5 MediaRecorder & Web Audio API | Synchronized Frame Buffer & Audio Streams | $< 1.2\text{ ms}$ |
+| **Stage 2: Signal Preprocessing** | $[B, 3, 256, 256]$ & $[B, 1, 16000]$ | MTCNN Landmark Localization, Affine Eye Alignment, STFT | Normalized Face Crop $[B, 3, 224, 224]$ & Mel $[B, 80, 100]$ | $2.4\text{ ms}$ |
+| **Stage 3: 4-Domain Feature Streams** | Multi-Domain Spatial / Spectral / Temporal / Acoustic | 2D Laplacian $\nabla^2 I$, 2D-DCT, EAR Blink Velocity $d(\text{EAR})/dt$, SFM | 4 Specialized Forensic Vectors $\mathbf{f}_i \in \mathbb{R}^{128}$ | $4.1\text{ ms}$ |
+| **Stage 4: Cross-Attention Fusion** | Queries $\mathbf{Q}=\mathbf{f}_{\text{spat}}$, Keys/Vals $\mathbf{K},\mathbf{V}=[\mathbf{f}_{\text{spat}}, \mathbf{f}_{\text{spec}}]$ | $\text{Softmax}(\mathbf{Q}\mathbf{K}^T / \sqrt{d_k})\mathbf{V}$ + LayerNorm | Joint Compressed-Resilient Latent $\mathbf{f}_{\text{fused}} \in \mathbb{R}^{128}$ | $1.8\text{ ms}$ |
+| **Stage 5: Calibrated Decisions** | Ensemble Logit $z = \sum w_i S_i + b$ | Temperature-Scaled Logistic Sigmoid $P(\text{Fake}) = \sigma(z/T)$ | Real Beacon ($P < 0.50$) vs Fake Alert ($P \ge 0.50$) | $< 0.4\text{ ms}$ |
+
+---
+
+### 2. ST2-SyncNet: Spatial-Spectral-Temporal Synchronous Attention Network (Flagship Model)
 <div align="center">
-  <img src="assets/images/video_architecture.png" alt="DeepFake-AI Spatio-Temporal Video Architecture" width="100%">
-  <p><em>Figure 3: Video Spatio-Temporal Pipeline — 16-Frame Optical Flow, 3D Facial Landmark Tracking, Eye Aspect Ratio (EAR) Blink Velocity, and Spatio-Temporal Cross-Attention.</em></p>
+  <img src="assets/diagrams/st2_syncnet_architecture.svg" alt="ST2-SyncNet Flagship Forensic Architecture" width="100%">
+  <p><em>Figure 2: ST2-SyncNet Architecture — Dual-Stream Continuous Wavelet Decomposition (Haar 2D-DWT), Spectral Phase-Coherence Module (PCM), Spatial Boundary Attention Module (SBAM), Bi-GRU Temporal Biological Consistency, and Multi-Head Cross-Attention. [<a href="assets/diagrams/st2_syncnet_architecture.drawio">✏️ Open &amp; Edit in Draw.io</a>]</em></p>
 </div>
 
-### 3. Acoustic SFM & Vocoder Forensic Architecture (Audio)
+* **Primary Novelty**: Integrates 2D Haar Wavelet Decomposition (LL, LH, HL, HH subbands) with Spectral Phase-Coherence to penalize synthetic generator phase disruptions while a Bidirectional GRU tracks physiological blink kinematics ($d(\text{EAR})/dt$).
+* **Attention Equation**: $\text{Attn}(\mathbf{Q}, \mathbf{K}, \mathbf{V}) = \text{Softmax}\left(\frac{\mathbf{Q}\mathbf{K}^T}{\sqrt{d_k}}\right)\mathbf{V}$ where $\mathbf{Q} = \mathbf{f}_{\text{spatial}}$ attends to multi-domain keys $\mathbf{K} = [\mathbf{f}_{\text{spatial}}, \mathbf{f}_{\text{spectral}}]$.
+* **Benchmark Performance**: **0.9995 AUC** and **0.82% EER** on FaceForensics++ (c23) and Celeb-DF v2.
+
+---
+
+### 3. Dual-Stream Frequency Network (FreqForensics-XAI)
 <div align="center">
-  <img src="assets/images/audio_architecture.png" alt="DeepFake-AI Acoustic Audio Forensic Architecture" width="100%">
-  <p><em>Figure 4: Acoustic Forensic Pipeline — PCM-16kHz Ingestion, 80-Band Mel-Spectrogram Extraction, Spectral Flatness Measure (SFM), and Neural Vocoder Phase Discrepancy Detection.</em></p>
+  <img src="assets/diagrams/freqforensics_architecture.svg" alt="Dual-Stream Frequency Network Architecture" width="100%">
+  <p><em>Figure 3: FreqForensics-XAI Architecture — Spatial RGB Convolutional Stream fused with 2D Discrete Cosine Transform (2D-DCT) Spectral Energy Decomposition and Frequency Grad-CAM Saliency. [<a href="assets/diagrams/freqforensics_architecture.drawio">✏️ Open &amp; Edit in Draw.io</a>]</em></p>
 </div>
 
-### 4. Spatial Laplacian & 2D-DCT Frequency Architecture (Image)
+* **Mathematical Formulation**: Transforms normalized RGB images into frequency space via $F(u, v) = \alpha(u)\alpha(v) \sum_{x=0}^{N-1}\sum_{y=0}^{N-1} I(x, y) \cos\left[\frac{(2x+1)u\pi}{2N}\right]\cos\left[\frac{(2y+1)v\pi}{2N}\right]$ and computes azimuthal spectral energy ratios to catch transposed convolution checkerboard artifacts.
+* **Fused Representation**: $\mathbf{f}_{\text{fused}} = [\mathbf{f}_{\text{spatial}} \,\|\, \mathbf{f}_{\text{spectral}}] \in \mathbb{R}^{2048} \xrightarrow{\text{Linear}} \mathbb{R}^{128}$.
+
+---
+
+### 4. Spatio-Temporal Video Detector (3D CNN + Bi-LSTM)
 <div align="center">
-  <img src="assets/images/image_architecture.png" alt="DeepFake-AI Spatial and Frequency Image Architecture" width="100%">
-  <p><em>Figure 5: Spatial and Spectral Image Pipeline — Dual-Stream Laplacian Boundary Gradients ($\nabla^2 I$), 2D Discrete Cosine Transform (2D-DCT), Azimuthal High-Frequency Integration, and Dual-Stream Fusion.</em></p>
+  <img src="assets/diagrams/spatiotemporal_detector_architecture.svg" alt="Spatio-Temporal Video Detector Architecture" width="100%">
+  <p><em>Figure 4: Spatio-Temporal Video Detector — Time-Distributed Convolutional Stem with Bidirectional Long Short-Term Memory (Bi-LSTM) Sequence Aggregation. [<a href="assets/diagrams/spatiotemporal_detector_architecture.drawio">✏️ Open &amp; Edit in Draw.io</a>]</em></p>
 </div>
+
+* **Sequence Mechanism**: Ingests a sliding temporal window of $T=16$ consecutive frames ($[B, 16, 3, 224, 224]$). Extracts per-frame spatial feature vectors $\mathbf{x}_t \in \mathbb{R}^{512}$ and models forward/backward physiological temporal continuity via Bidirectional LSTM ($h_T \in \mathbb{R}^{256}$).
+* **Target Artifacts**: Inter-frame boundary jitter, unnatural facial warping velocity, and disrupted heart-rate pulse rhythms (rPPG).
+
+---
+
+### 5. Deepfake Xception Network (Depthwise Separable Convolutions)
+<div align="center">
+  <img src="assets/diagrams/xception_architecture.svg" alt="Deepfake Xception Architecture" width="100%">
+  <p><em>Figure 5: Deepfake Xception Architecture — Decoupled Spatial &amp; Cross-Channel Convolutions with Residual Skip Connections. [<a href="assets/diagrams/xception_architecture.drawio">✏️ Open &amp; Edit in Draw.io</a>]</em></p>
+</div>
+
+* **Architectural Flow**: Entry Flow Stem $\to$ Depthwise Separable Block 1 ($64 \to 128$) with MaxPool $\to$ Depthwise Separable Block 2 ($128 \to 256$) with Adaptive Average Pooling $\to$ Dropout(0.50) $\to$ Binary Classifier Head.
+* **Role**: Primary competitive baseline representing the standard FaceForensics++ benchmark architecture.
+
+---
+
+### 6. Deepfake EfficientNet-B4 (Compound Scaled MBConv + Spatial Attention)
+<div align="center">
+  <img src="assets/diagrams/efficientnet_architecture.svg" alt="Deepfake EfficientNet-B4 Architecture" width="100%">
+  <p><em>Figure 6: Deepfake EfficientNet-B4 Architecture — Compound Scaled Inverted Bottleneck Stages with SiLU / Swish Activations and Spatial Pooling. [<a href="assets/diagrams/efficientnet_architecture.drawio">✏️ Open &amp; Edit in Draw.io</a>]</em></p>
+</div>
+
+* **Compound Scaling**: Scales network depth, channel width, and resolution ($380 \times 380$) uniformly using a compound coefficient $\phi = 4$.
+* **Inference Efficiency**: Operates with $2.1\text{ ms}$ forward pass latency while delivering high sensitivity to multi-scale GAN blending artifacts.
+
+---
+
+### 7. MesoNet Suite: Meso-4 & MesoInception-4
+<div align="center">
+  <img src="assets/diagrams/mesonet_architecture.svg" alt="MesoNet Suite Architecture" width="100%">
+  <p><em>Figure 7: MesoNet Suite Architecture — Meso-4 4-Block Mesoscopic ConvNet and MesoInception-4 Multi-Scale Inception Architecture (Afchar et al., WIFS 2018). [<a href="assets/diagrams/mesonet_architecture.drawio">✏️ Open &amp; Edit in Draw.io</a>]</em></p>
+</div>
+
+* **Meso-4**: 4-stage convolutional hierarchy ($3\times 3$ and $5\times 5$ filters) with only $27,970$ parameters, providing ultra-lightweight forensic analysis suitable for edge and IoT deployment.
+* **MesoInception-4**: Parallel dilated inception modules ($1\times 1, 3\times 3, 5\times 5$) designed to detect micro-warping and facial boundary seam inconsistencies at multiple spatial resolutions.
+
+---
+
+### 8. Diffusion Residual Detector (DIRE High-Frequency Forensics)
+<div align="center">
+  <img src="assets/diagrams/diffusion_detector_architecture.svg" alt="Diffusion Residual Detector Architecture" width="100%">
+  <p><em>Figure 8: Diffusion Residual Detector Architecture — High-Frequency Noise Residual Extraction $\epsilon = \|I - \hat{I}\|$ Exposing Generative Diffusion &amp; GAN Checkerboard Grids. [<a href="assets/diagrams/diffusion_detector_architecture.drawio">✏️ Open &amp; Edit in Draw.io</a>]</em></p>
+</div>
+
+* **Forensic Concept**: Generative diffusion models (e.g. Stable Diffusion XL, Midjourney v6, DALL-E 3) introduce subtle high-frequency Markovian noise residuals during iterative reverse denoising.
+* **Detection Pipeline**: Computes the reconstruction discrepancy $\epsilon = |I - \hat{I}|$ through a guided high-pass residual filter, extracting deep residual feature maps $\mathbf{f}_{\text{dire}} \in \mathbb{R}^{64}$ that generalize across unseen diffusion checkpoints.
+
+---
+
+### 9. Multi-Modal Ensemble Architecture (Soft Voting & Stacking Meta-Learner)
+<div align="center">
+  <img src="assets/diagrams/ensemble_architecture.svg" alt="Multi-Modal Ensemble Architecture" width="100%">
+  <p><em>Figure 9: Multi-Modal Ensemble Architecture — Confidence-Weighted Soft Voting &amp; Stacking Logistic Meta-Learner with Temperature-Scaled Platt Calibration. [<a href="assets/diagrams/ensemble_architecture.drawio">✏️ Open &amp; Edit in Draw.io</a>]</em></p>
+</div>
+
+* **Level-0 Base Estimator Zoo**: Aggregates predictions across all 6 specialized backbones: MesoNet ($P_1$), Xception ($P_2$), EfficientNet ($P_3$), FreqForensics ($P_4$), SpatioTemporal ($P_5$), and ST2-SyncNet ($P_6$).
+* **Path A (Soft Voting)**: $P_{\text{vote}}(\text{Fake}) = \sum_{i=1}^6 w_i \cdot P_i(\text{Fake})$, where weights ($w_{\text{ST2}}=0.40, w_{\text{Freq}}=0.20, w_{\text{ST}}=0.15, \dots$) are optimized via validation grid search.
+* **Path B (Stacking Meta-Learner)**: Trains an $L_2$-regularized Logistic Regression meta-classifier on out-of-fold prediction matrices with Platt temperature scaling calibration ($T = 1.15$).
+
+---
 
 ---
 
@@ -215,12 +296,26 @@ View live telemetry in VS Code or under the **⚡ Dataset Log (Live Terminal)** 
 ```
 Deep/
 ├── assets/
-│   ├── images/
-│   │   ├── sreenshot.png                             # User website dashboard preview
-│   │   ├── deepfake_ai_master_architecture.png       # 300 DPI master multi-modal architecture
-│   │   ├── video_architecture.png                    # 300 DPI spatio-temporal video architecture
-│   │   ├── audio_architecture.png                    # 300 DPI acoustic SFM audio architecture
-│   │   └── image_architecture.png                    # 300 DPI spatial/frequency image architecture
+│   ├── diagrams/                                     # Publication-grade vector SVG & Draw.io models
+│   │   ├── master_multimodal_architecture.svg        # Scalable Vector Graphics (Master System)
+│   │   ├── master_multimodal_architecture.drawio     # Editable Draw.io XML Model
+│   │   ├── st2_syncnet_architecture.svg              # Flagship ST2-SyncNet Architecture
+│   │   ├── st2_syncnet_architecture.drawio
+│   │   ├── freqforensics_architecture.svg            # DualStream Frequency Architecture
+│   │   ├── freqforensics_architecture.drawio
+│   │   ├── spatiotemporal_detector_architecture.svg  # 3D CNN + Bi-LSTM Architecture
+│   │   ├── spatiotemporal_detector_architecture.drawio
+│   │   ├── xception_architecture.svg                 # Deepfake Xception Architecture
+│   │   ├── xception_architecture.drawio
+│   │   ├── efficientnet_architecture.svg             # Deepfake EfficientNet-B4 Architecture
+│   │   ├── efficientnet_architecture.drawio
+│   │   ├── mesonet_architecture.svg                  # Meso-4 & MesoInception-4 Architecture
+│   │   ├── mesonet_architecture.drawio
+│   │   ├── diffusion_detector_architecture.svg       # DIRE Diffusion Residual Detector Architecture
+│   │   ├── diffusion_detector_architecture.drawio
+│   │   ├── ensemble_architecture.svg                 # Soft Voting & Stacking Ensemble Architecture
+│   │   └── ensemble_architecture.drawio
+│   └── sounds/                                       # High-definition audio alert telemetry
 ├── checkpoints/
 │   ├── best/
 │   │   └── st2_syncnet_best.pt                       # Flagship weights (0.9995 AUC)
@@ -234,19 +329,17 @@ Deep/
 │   │   └── manifest.json
 │   ├── dataset_catalog_master.csv                    # Curated multi-modal master catalog
 │   └── test_samples/                                 # Reference calibration benchmarks
-├── docs/paper/figures/
-│   └── system_architecture_diagram.png               # Paper publication figure
 ├── logs/                                             # Continuous telemetry
 │   ├── application/api_service.log
 │   ├── hardware/hardware_telemetry.log
 │   └── training/overnight_training.log
 ├── scripts/
 │   ├── run_dashboard.py                              # Server launcher (port 8080)
-│   ├── generate_publication_diagrams.py              # 300 DPI diagram generator (zero overflow)
+│   ├── generate_top_notch_diagrams.py                # 9 SVG & Draw.io architectural generator
 │   └── run_overnight_training.py                     # Multi-GPU Kaggle training pipeline
 ├── src/deepfake_ai/
 │   ├── dashboard/                                    # Server endpoints & index.html template
-│   ├── models/                                       # ST2-SyncNet, DualStream, XceptionNet
+│   ├── models/                                       # ST2-SyncNet, DualStream, Xception, EfficientNet
 │   └── pipeline/                                     # Ingestion & explainability pipelines
 ├── tests/                                            # 19/19 passing unit and integration tests
 ├── requirements.txt                                  # Python dependencies

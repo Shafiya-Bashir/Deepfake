@@ -1,0 +1,262 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1380 880" width="100%" height="100%">
+        <!-- Background Canvas -->
+        <rect width="1380" height="880" fill="url(#bg-grad)" rx="12" />
+        <rect width="1380" height="880" fill="none" stroke="#1e293b" stroke-width="2" rx="12" />
+        
+        <defs>
+            <linearGradient id="bg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#070c18" />
+                <stop offset="100%" stop-color="#0d1527" />
+            </linearGradient>
+            <linearGradient id="header-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stop-color="#38bdf8" />
+                <stop offset="50%" stop-color="#818cf8" />
+                <stop offset="100%" stop-color="#c084fc" />
+            </linearGradient>
+            <linearGradient id="card-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#141e33" />
+                <stop offset="100%" stop-color="#0f172a" />
+            </linearGradient>
+            <linearGradient id="card-real-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#062e1e" />
+                <stop offset="100%" stop-color="#041f14" />
+            </linearGradient>
+            <linearGradient id="card-fake-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stop-color="#360a0f" />
+                <stop offset="100%" stop-color="#24070a" />
+            </linearGradient>
+            <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="4" />
+                <feOffset dx="0" dy="4" />
+                <feComponentTransfer><feFuncA type="linear" slope="0.4" /></feComponentTransfer>
+                <feMerge>
+                    <feMergeNode />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+            <filter id="glow-cyan" x="-10%" y="-10%" width="120%" height="120%">
+                <feGaussianBlur stdDeviation="3" result="blur" />
+                <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                </feMerge>
+            </filter>
+            <!-- Arrow Markers -->
+            <marker id="arrow-cyan" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#38bdf8" />
+            </marker>
+            <marker id="arrow-green" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#10b981" />
+            </marker>
+            <marker id="arrow-red" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#f87171" />
+            </marker>
+            <marker id="arrow-purple" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#c084fc" />
+            </marker>
+            <marker id="arrow-amber" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#fbbf24" />
+            </marker>
+            <marker id="arrow-gray" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 10 5 L 0 9 z" fill="#64748b" />
+            </marker>
+        </defs>
+        
+
+        <!-- Header Banner -->
+        <g class="header">
+            <text x="690.0" y="36" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="800" fill="url(#header-grad)" text-anchor="middle" letter-spacing="0.5">MesoNet Suite: Meso-4 and MesoInception-4 Architectures</text>
+            <text x="690.0" y="56" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11.5" fill="#94a3b8" text-anchor="middle">Afchar et al. (WIFS 2018) Forensic Baselines: Mesoscopic Image Analysis with Multi-Scale Inception Modules</text>
+            <line x1="40" y1="72" x2="1340" y2="72" stroke="#1e293b" stroke-width="1.2" />
+        </g>
+
+        <!-- Diagram Elements -->
+        
+        <g class="stage-banner">
+            <rect x="40" y="85" width="620" height="24" rx="6" fill="#1e293b" stroke="#38bdf8" stroke-width="1" />
+            <text x="350.0" y="101" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#38bdf8" text-anchor="middle" letter-spacing="0.3">PANEL A: MESO-4 ARCHITECTURE (4 CONVOLUTIONAL BLOCKS)</text>
+        </g>
+        
+        <g class="stage-banner">
+            <rect x="720" y="85" width="620" height="24" rx="6" fill="#1e293b" stroke="#a855f7" stroke-width="1" />
+            <text x="1030.0" y="101" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="11" font-weight="700" fill="#a855f7" text-anchor="middle" letter-spacing="0.3">PANEL B: MESOINCEPTION-4 ARCHITECTURE (MULTI-SCALE INCEPTION)</text>
+        </g>
+        
+        <g class="card">
+            <rect x="40" y="130" width="190" height="320" rx="10" fill="url(#card-grad)" stroke="#38bdf8" stroke-width="1.6" filter="url(#shadow)" />
+            <rect x="41" y="131" width="188" height="3" rx="1" fill="#38bdf8" opacity="0.8" />
+            <text x="135.0" y="154" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="700" fill="#38bdf8" text-anchor="middle">Meso-4 Input &amp; Conv1-2</text>
+        
+            <text x="135.0" y="172" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-style="italic" fill="#94a3b8" text-anchor="middle">Low-Level Analysis</text>
+            
+            <line x1="52" y1="184" x2="218" y2="184" stroke="#1e293b" stroke-width="1" />
+        
+            <text x="54" y="198" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Input: 3 x 256 x 256</text>
+            
+            <text x="54" y="216" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Block 1:</text>
+            
+            <text x="54" y="234" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    Conv2d(3→8, k=3, p=1)</text>
+            
+            <text x="54" y="252" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    BatchNorm2d(8) + ReLU</text>
+            
+            <text x="54" y="270" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    MaxPool2d(2, 2)</text>
+            
+            <text x="54" y="288" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Block 2:</text>
+            
+            <text x="54" y="306" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    Conv2d(8→8, k=5, p=2)</text>
+            
+            <text x="54" y="324" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    BatchNorm2d(8) + ReLU</text>
+            
+            <text x="54" y="342" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    MaxPool2d(2, 2)</text>
+            
+            <rect x="158.5" y="430" width="61.5" height="15" rx="7.5" fill="#1e293b" stroke="#38bdf8" stroke-width="0.8" />
+            <text x="189.25" y="441" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8.5" font-weight="600" fill="#38bdf8" text-anchor="middle">8x64x64</text>
+            </g>
+        <g class="card">
+            <rect x="250" y="130" width="190" height="320" rx="10" fill="url(#card-grad)" stroke="#818cf8" stroke-width="1.6" filter="url(#shadow)" />
+            <rect x="251" y="131" width="188" height="3" rx="1" fill="#818cf8" opacity="0.8" />
+            <text x="345.0" y="154" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="700" fill="#38bdf8" text-anchor="middle">Meso-4 Conv3-4</text>
+        
+            <text x="345.0" y="172" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-style="italic" fill="#94a3b8" text-anchor="middle">Mid-Level Features</text>
+            
+            <line x1="262" y1="184" x2="428" y2="184" stroke="#1e293b" stroke-width="1" />
+        
+            <text x="264" y="198" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Block 3:</text>
+            
+            <text x="264" y="216" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    Conv2d(8→16, k=5, p=2)</text>
+            
+            <text x="264" y="234" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    BatchNorm2d(16) + ReLU</text>
+            
+            <text x="264" y="252" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    MaxPool2d(2, 2)</text>
+            
+            <text x="264" y="270" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Block 4:</text>
+            
+            <text x="264" y="288" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    Conv2d(16→16, k=5, p=2)</text>
+            
+            <text x="264" y="306" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    BatchNorm2d(16) + ReLU</text>
+            
+            <text x="264" y="324" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    MaxPool2d(2, 2)</text>
+            
+            <text x="264" y="342" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Output: 16 x 14 x 14</text>
+            
+            <rect x="362.0" y="430" width="68.0" height="15" rx="7.5" fill="#1e293b" stroke="#818cf8" stroke-width="0.8" />
+            <text x="396.0" y="441" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8.5" font-weight="600" fill="#818cf8" text-anchor="middle">16x14x14</text>
+            </g>
+        <g class="card">
+            <rect x="460" y="130" width="200" height="320" rx="10" fill="url(#card-real-grad)" stroke="#34d399" stroke-width="1.6" filter="url(#shadow)" />
+            <rect x="461" y="131" width="198" height="3" rx="1" fill="#34d399" opacity="0.8" />
+            <text x="560.0" y="154" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="700" fill="#38bdf8" text-anchor="middle">Meso-4 Dense Head</text>
+        
+            <text x="560.0" y="172" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-style="italic" fill="#94a3b8" text-anchor="middle">Fully Connected Layers</text>
+            
+            <line x1="472" y1="184" x2="648" y2="184" stroke="#1e293b" stroke-width="1" />
+        
+            <text x="474" y="198" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Flattening: 16*14*14 = 3136</text>
+            
+            <text x="474" y="216" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Linear(3136 → 16)</text>
+            
+            <text x="474" y="234" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• ReLU Activation</text>
+            
+            <text x="474" y="252" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Dropout(p = 0.50)</text>
+            
+            <text x="474" y="270" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Linear(16 → 2)</text>
+            
+            <text x="474" y="288" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Binary Classification Logits</text>
+            
+            <rect x="549.5" y="430" width="100.5" height="15" rx="7.5" fill="#1e293b" stroke="#34d399" stroke-width="0.8" />
+            <text x="599.75" y="441" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8.5" font-weight="600" fill="#34d399" text-anchor="middle">Meso-4 Output</text>
+            </g>
+        <g class="connector">
+            <line x1="230" y1="290" x2="250" y2="290" stroke="#38bdf8" stroke-width="1.8" marker-end="url(#arrow-cyan)"  />
+        </g>
+        <g class="connector">
+            <line x1="440" y1="290" x2="460" y2="290" stroke="#818cf8" stroke-width="1.8" marker-end="url(#arrow-purple)"  />
+        </g>
+        <g class="card">
+            <rect x="720" y="130" width="290" height="320" rx="10" fill="url(#card-grad)" stroke="#a855f7" stroke-width="1.6" filter="url(#shadow)" />
+            <rect x="721" y="131" width="288" height="3" rx="1" fill="#a855f7" opacity="0.8" />
+            <text x="865.0" y="154" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="700" fill="#38bdf8" text-anchor="middle">Inception Modules 1-2</text>
+        
+            <text x="865.0" y="172" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-style="italic" fill="#94a3b8" text-anchor="middle">Multi-Kernel Convolutions</text>
+            
+            <line x1="732" y1="184" x2="998" y2="184" stroke="#1e293b" stroke-width="1" />
+        
+            <text x="734" y="198" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Parallel Multi-Scale Kernels:</text>
+            
+            <text x="734" y="216" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    1x1 Conv (Channel Compression)</text>
+            
+            <text x="734" y="234" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    3x3 Conv (Local Gradients)</text>
+            
+            <text x="734" y="252" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">    5x5 Conv (Mesoscopic Patches)</text>
+            
+            <text x="734" y="270" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Inception 1: 3 → 16 channels</text>
+            
+            <text x="734" y="288" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• MaxPool2d(2, 2)</text>
+            
+            <text x="734" y="306" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Inception 2: 16 → 32 channels</text>
+            
+            <text x="734" y="324" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• MaxPool2d(2, 2)</text>
+            
+            <rect x="880.0" y="430" width="120.0" height="15" rx="7.5" fill="#1e293b" stroke="#a855f7" stroke-width="0.8" />
+            <text x="940.0" y="441" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8.5" font-weight="600" fill="#a855f7" text-anchor="middle">Inception Blocks</text>
+            </g>
+        <g class="card">
+            <rect x="1050" y="130" width="290" height="320" rx="10" fill="url(#card-real-grad)" stroke="#34d399" stroke-width="1.6" filter="url(#shadow)" />
+            <rect x="1051" y="131" width="288" height="3" rx="1" fill="#34d399" opacity="0.8" />
+            <text x="1195.0" y="154" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="700" fill="#38bdf8" text-anchor="middle">Conv3 &amp; Dense Classifier</text>
+        
+            <text x="1195.0" y="172" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-style="italic" fill="#94a3b8" text-anchor="middle">Adaptive Pooling &amp; Decision</text>
+            
+            <line x1="1062" y1="184" x2="1328" y2="184" stroke="#1e293b" stroke-width="1" />
+        
+            <text x="1064" y="198" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Conv3: Conv2d(32→64, k=3, p=1)</text>
+            
+            <text x="1064" y="216" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• AdaptiveAvgPool2d((7, 7))</text>
+            
+            <text x="1064" y="234" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Flattening: 64 * 7 * 7 = 3136</text>
+            
+            <text x="1064" y="252" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Dropout(p = 0.50)</text>
+            
+            <text x="1064" y="270" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Linear(3136 → 64) + ReLU</text>
+            
+            <text x="1064" y="288" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Linear(64 → 2)</text>
+            
+            <text x="1064" y="306" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Output Softmax Probabilities</text>
+            
+            <rect x="1197.0" y="430" width="133.0" height="15" rx="7.5" fill="#1e293b" stroke="#34d399" stroke-width="0.8" />
+            <text x="1263.5" y="441" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8.5" font-weight="600" fill="#34d399" text-anchor="middle">MesoInception Head</text>
+            </g>
+        <g class="connector">
+            <line x1="1010" y1="290" x2="1050" y2="290" stroke="#a855f7" stroke-width="1.8" marker-end="url(#arrow-purple)"  />
+        </g>
+        <g class="card">
+            <rect x="40" y="500" width="1300" height="300" rx="10" fill="url(#card-grad)" stroke="#fbbf24" stroke-width="1.6" filter="url(#shadow)" />
+            <rect x="41" y="501" width="1298" height="3" rx="1" fill="#fbbf24" opacity="0.8" />
+            <text x="690.0" y="524" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="12.5" font-weight="700" fill="#38bdf8" text-anchor="middle">Comparative Forensic Evaluation &amp; Architectural Analysis</text>
+        
+            <text x="690.0" y="542" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" font-style="italic" fill="#94a3b8" text-anchor="middle">MesoNet Suite Tradeoffs</text>
+            
+            <line x1="52" y1="554" x2="1328" y2="554" stroke="#1e293b" stroke-width="1" />
+        
+            <text x="54" y="568" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Meso-4 Structural Advantage: Ultra-lightweight (27,970 parameters), minimal compute overhead, ideal for edge IoT microcontrollers.</text>
+            
+            <text x="54" y="586" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• MesoInception-4 Advantage: Inception blocks capture multi-scale facial warping artifacts simultaneously across varying compression rates.</text>
+            
+            <text x="54" y="604" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Limitation: Susceptible to high compression blur (c40 degradation) due to lack of explicit frequency/wavelet decomposition.</text>
+            
+            <text x="54" y="622" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Resolution in DeepFake-AI: MesoNet backbones are used as lightweight base estimators inside our Calibrated Stacking Ensemble.</text>
+            
+            <text x="54" y="640" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="10" fill="#cbd5e1">• Benchmark Performance (FaceForensics++ c23): Meso-4 AUC = 0.842 | MesoInception-4 AUC = 0.887 | ST2-SyncNet (Ours) AUC = 0.9995</text>
+            
+            <rect x="1171.0" y="780" width="159.0" height="15" rx="7.5" fill="#1e293b" stroke="#fbbf24" stroke-width="0.8" />
+            <text x="1250.5" y="791" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="8.5" font-weight="600" fill="#fbbf24" text-anchor="middle">MesoNet vs ST2-SyncNet</text>
+            </g>
+
+        <!-- Footer / Attribution -->
+        <g class="footer">
+            <line x1="40" y1="852" x2="1340" y2="852" stroke="#1e293b" stroke-width="1" />
+            <text x="40" y="868" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" fill="#64748b">DeepFake-AI Cyber-Forensics Research Suite • Lead Author: Dar Rehan Rasool (@darrehanrasool) • Supervisors: Dr. Riyaz &amp; Dr. Javad (IUST)</text>
+            <text x="1340" y="868" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="9.5" fill="#38bdf8" text-anchor="end">Publication-Grade Vector Diagram (Scalable SVG)</text>
+        </g>
+        </svg>
+        
