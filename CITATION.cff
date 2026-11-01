@@ -4,7 +4,8 @@ authors:
   - family-names: "Rasool"
     given-names: "Dar Rehan"
     affiliation: "Islamic University of Science and Technology (IUST), Kashmir"
-    role: "Research Contributor & Student Researcher"
+    role: "Lead Author & Principal Researcher"
+    email: "darrehanrasool@gmail.com"
   - family-names: "Riyaz"
     given-names: "Dr."
     affiliation: "Islamic University of Science and Technology (IUST), Kashmir"
@@ -16,7 +17,7 @@ authors:
 title: "DeepFake-AI: Unified Multi-Modal Spatial-Frequency and Temporal Forensics Benchmark"
 version: 1.0.0
 date-released: 2026-10-27
-url: "https://github.com/darrehanrasool/DeepFake-AI"
+url: "https://github.com/darrehanrasool/Deepfake"
 license: "MIT"
 keywords:
   - deepfake-detection

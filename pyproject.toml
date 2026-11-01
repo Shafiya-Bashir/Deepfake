@@ -7,7 +7,7 @@ name = "deepfake-ai"
 version = "1.0.0"
 description = "Enterprise-Grade Multi-Modal Deepfake Detection, Media Forensics, and Synthetic Artifact Analysis Platform"
 authors = [
-    { name = "Dar Rehan Rasool (Research Contributor)", email = "research@deepfake-ai.internal" },
+    { name = "Dar Rehan Rasool (Lead Author & Principal Researcher)", email = "darrehanrasool@gmail.com" },
     { name = "Dr. Riyaz (Faculty Supervisor)" },
     { name = "Dr. Javad (Faculty Supervisor)" }
 ]
