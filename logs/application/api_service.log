@@ -62,3 +62,9 @@
 [2026-10-28T19:43:08Z] [INFERENCE] Type=Video | File=my_live_recorded_video.webm | Verdict=REAL | FakeProb=0.4873 | Latency=2.44ms
 [2026-10-28T19:45:37Z] [INFERENCE] Type=Video | File=my_live_camera_authentic_recording.webm | Verdict=REAL | FakeProb=0.2375 | Latency=0.66ms
 [2026-10-28T19:47:46Z] [INFERENCE] Type=Video | File=my_live_camera_authentic_recording.webm | Verdict=REAL | FakeProb=0.2375 | Latency=5.94ms
+[2026-11-08T14:13:52Z] [INFERENCE] Type=Video | File=fake_video_faceswap.mp4 | Verdict=FAKE | FakeProb=0.7286 | Latency=7.24ms
+[2026-11-08T14:22:08Z] [INFERENCE] Type=Video | File=my_live_camera_authentic_recording.webm | Verdict=REAL | FakeProb=0.2375 | Latency=66.8ms
+[2026-11-08T14:22:35Z] [INFERENCE] Type=Image | File=my_live_webcam_selfie.jpg | Verdict=REAL | FakeProb=0.2285 | Latency=4953.79ms
+[2026-11-08T14:23:03Z] [INFERENCE] Type=Audio / Voice | File=my_live_recorded_voice.wav | Verdict=REAL | FakeProb=0.2657 | Latency=59.93ms
+[2026-11-08T14:24:24Z] [INFERENCE] Type=Image | File=my_live_webcam_selfie.jpg | Verdict=REAL | FakeProb=0.2461 | Latency=60.94ms
+[2026-11-08T14:24:47Z] [INFERENCE] Type=Audio / Voice | File=my_live_recorded_voice.wav | Verdict=REAL | FakeProb=0.4357 | Latency=35.08ms
