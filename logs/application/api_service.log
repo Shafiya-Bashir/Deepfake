@@ -68,3 +68,8 @@
 [2026-11-08T14:23:03Z] [INFERENCE] Type=Audio / Voice | File=my_live_recorded_voice.wav | Verdict=REAL | FakeProb=0.2657 | Latency=59.93ms
 [2026-11-08T14:24:24Z] [INFERENCE] Type=Image | File=my_live_webcam_selfie.jpg | Verdict=REAL | FakeProb=0.2461 | Latency=60.94ms
 [2026-11-08T14:24:47Z] [INFERENCE] Type=Audio / Voice | File=my_live_recorded_voice.wav | Verdict=REAL | FakeProb=0.4357 | Latency=35.08ms
+[2026-11-08T17:58:56Z] [INFERENCE] Type=Video | File=my_live_camera_authentic_recording.webm | Verdict=REAL | FakeProb=0.2375 | Latency=12.15ms
+[2026-11-08T17:59:06Z] [INFERENCE] Type=Image | File=my_live_webcam_selfie.jpg | Verdict=REAL | FakeProb=0.228 | Latency=676.52ms
+[2026-11-08T17:59:08Z] [INFERENCE] Type=Image | File=my_live_webcam_selfie.jpg | Verdict=REAL | FakeProb=0.228 | Latency=12.71ms
+[2026-11-08T17:59:25Z] [INFERENCE] Type=Audio / Voice | File=my_live_recorded_voice.wav | Verdict=REAL | FakeProb=0.4207 | Latency=6.43ms
+[2026-11-08T17:59:29Z] [INFERENCE] Type=Audio / Voice | File=my_live_recorded_voice.wav | Verdict=REAL | FakeProb=0.4207 | Latency=3.9ms
