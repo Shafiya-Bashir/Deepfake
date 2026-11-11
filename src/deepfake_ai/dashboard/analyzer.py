@@ -7,7 +7,7 @@ Supports:
 
 Research Attribution:
     Faculty Supervisors: Dr. Riyaz & Dr. Javad (IUST)
-    Research Contributor & Graduate Student: Dar Rehan Rasool
+    Research Contributor & M.Tech. Student: Dar Rehan Rasool
 """
 
 import io
