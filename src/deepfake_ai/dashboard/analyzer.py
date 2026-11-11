@@ -6,8 +6,8 @@ Supports:
 - Audio / Voice Deepfakes (Telecom Fraud, ASVspoof, Synthetic Voice Clones: Tacotron, ElevenLabs, SV2TTS)
 
 Research Attribution:
-    Faculty Supervisors: Dr. Riyaz & Dr. Javad (IUST)
-    Research Contributor & M.Tech. Student: Dar Rehan Rasool
+    M.Tech Students, Centre for Artificial Intelligence, IUST:
+    Dar Rehan Rasool, Dr. Riyaz, Dr. Javad
 """
 
 import io

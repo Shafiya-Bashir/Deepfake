@@ -3,17 +3,17 @@ message: "If you use this software or deepfake research benchmark in your work, 
 authors:
   - family-names: "Rasool"
     given-names: "Dar Rehan"
-    affiliation: "Islamic University of Science and Technology (IUST), Kashmir"
-    role: "Lead Author & Principal Researcher"
+    affiliation: "Centre for Artificial Intelligence, IUST, Kashmir"
+    role: "M.Tech Student"
     email: "darrehanrasool@gmail.com"
   - family-names: "Riyaz"
     given-names: "Dr."
-    affiliation: "Islamic University of Science and Technology (IUST), Kashmir"
-    role: "Faculty Research Supervisor"
+    affiliation: "Centre for Artificial Intelligence, IUST, Kashmir"
+    role: "M.Tech Student"
   - family-names: "Javad"
     given-names: "Dr."
-    affiliation: "Islamic University of Science and Technology (IUST), Kashmir"
-    role: "Faculty Research Supervisor"
+    affiliation: "Centre for Artificial Intelligence, IUST, Kashmir"
+    role: "M.Tech Student"
 title: "DeepFake-AI: Unified Multi-Modal Spatial-Frequency and Temporal Forensics Benchmark"
 version: 1.0.0
 date-released: 2026-10-27

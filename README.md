@@ -34,18 +34,17 @@ DeepFake-AI includes an enterprise-grade cyber-forensics dashboard equipped with
 
 ## 👥 Research Team & Authorship
 
-This research project and benchmark platform is collaboratively developed under faculty guidance and supervision:
+This research project and benchmark platform is developed at the Centre for Artificial Intelligence, IUST:
 
-| Role | Name | Designation & Affiliation | Research & Project Contribution |
+| Name | Role & Designation | Affiliation | Research & Project Contribution |
 | :--- | :--- | :--- | :--- |
-| **Faculty Research Supervisor** | **Dr. Riyaz\*** | Professor & Faculty Supervisor, Dept. of CSE | Project Supervision, Research Direction, Theoretical Review & Methodological Oversight |
-| **Faculty Research Supervisor** | **Dr. Javad\*** | Professor & Faculty Supervisor, Dept. of CSE | Co-Supervision, System Architecture Advisory, Academic Validation & Verification Review |
-| **Lead Author & Principal Researcher** | **Dar Rehan Rasool** | Lead Architect & Researcher (`@darrehanrasool`) | Multi-Domain Architecture, ST2-SyncNet Model, Multi-Modal Ingestion Pipeline, Dashboard & Benchmarks |
+| **Dar Rehan Rasool** | M.Tech Student | Centre for Artificial Intelligence, IUST | Multi-Domain Architecture, ST2-SyncNet Model, Multi-Modal Ingestion Pipeline, Dashboard & Benchmarks |
+| **Dr. Riyaz** | M.Tech Student | Centre for Artificial Intelligence, IUST | Project Collaboration, Theoretical Review & Methodological Analysis |
+| **Dr. Javad** | M.Tech Student | Centre for Artificial Intelligence, IUST | Project Collaboration, System Architecture Advisory & Verification Analysis |
 
-- **Academic Unit**: Department of Computer Science & Engineering (CSE)
+- **Academic Unit**: Centre for Artificial Intelligence (CAI)
 - **Institution**: Islamic University of Science and Technology (IUST), Kashmir, India
 - **Copyright & Handle**: `@darrehanrasool` • [GitHub: darrehanrasool](https://github.com/darrehanrasool)
-- *\* Denotes corresponding/supervising senior faculty authors.*
 
 ---
 

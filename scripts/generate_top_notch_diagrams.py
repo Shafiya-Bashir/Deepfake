@@ -501,7 +501,7 @@ def build_master_multimodal():
 def build_st2_syncnet():
     w, h = 1380, 920
     title = "ST2-SyncNet: Spatial-Spectral-Temporal Synchronous Attention Network"
-    subtitle = "Lead Architecture: 2D Haar Wavelet Decomposition, Spectral Phase-Coherence Module (PCM), Bi-GRU Biological Continuity & Cross-Attention"
+    subtitle = "System Architecture: 2D Haar Wavelet Decomposition, Spectral Phase-Coherence Module (PCM), Bi-GRU Biological Continuity & Cross-Attention"
     svg = SvgDiagramBuilder(w, h, title, subtitle, "ST2SyncNetArchitecture")
 
     svg.add_stage_header(40, 85, 230, "DUAL-INPUT DOMAIN", "#38bdf8")

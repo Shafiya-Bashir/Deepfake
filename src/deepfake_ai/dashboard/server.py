@@ -8,8 +8,8 @@ Provides:
 - Synchronized server and browser alerts (Audio beeps/chimes and Neon Red/Green beacons)
 
 Research Attribution:
-    Faculty Supervisors: Dr. Riyaz & Dr. Javad (IUST)
-    Research Contributor & M.Tech. Student: Dar Rehan Rasool
+    M.Tech Students, Centre for Artificial Intelligence, IUST:
+    Dar Rehan Rasool, Dr. Riyaz, Dr. Javad
 """
 
 import base64
