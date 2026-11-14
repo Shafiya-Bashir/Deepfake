@@ -1,7 +1,7 @@
 # Kaggle to Google Drive Direct Cloud Downloader Guide
 
 **Project**: DeepFake-AI Research Platform  
-**Research Team**: Dar Rehan Rasool (*Research Contributor*), Dr. Riyaz (*Supervisor*), Dr. Javad (*Supervisor*)  
+**Research Team**: Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad (M.Tech Students, Centre for Artificial Intelligence, IUST)  
 **Affiliation**: Islamic University of Science and Technology (IUST), Kashmir  
 
 ---

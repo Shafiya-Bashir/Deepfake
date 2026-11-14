@@ -4,8 +4,8 @@
 Creates test media in data/test_samples/ for instant drag-and-drop into the DeepFake-AI Dashboard.
 
 Research Attribution:
-    Faculty Supervisors: Dr. Riyaz & Dr. Javad (IUST)
-    Research Contributor & Graduate Student: Dar Rehan Rasool
+    Research Team: Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad
+    Affiliation: M.Tech Students, Centre for Artificial Intelligence, IUST
 """
 
 import sys

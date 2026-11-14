@@ -5,8 +5,7 @@ kaggle_sync_github.py
 Automated GitHub Synchronization for Kaggle GPU Training Workflows.
 Syncs trained model checkpoints (.pt) and forensic logs from Kaggle directly to GitHub.
 
-Author: Dar Rehan Rasool
-Supervisors: Dr. Riyaz, Dr. Javad (IUST)
+Research Team: Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad (M.Tech Students, Centre for Artificial Intelligence, IUST)
 """
 
 import argparse

@@ -7,10 +7,11 @@
   "checkpoint_file": "checkpoints/best/st2_syncnet_best.pt",
   "size_bytes": 13083051,
   "hash_sha256": "61fe0f9453145bde98f906fa45d1f3bbe2ac5e8ee3f58a9cda1ccde6d8e6d153",
-  "supervisors": [
-    "Dr. Riyaz*",
-    "Dr. Javad*"
+  "collaborators": [
+    "Dr. Riyaz Ahmed",
+    "Dr. M. Abdul Jawad"
   ],
-  "contributor": "Dar Rehan Rasool",
+  "author": "Dar Rehan Rasool",
+  "role": "M.Tech Student, Centre for Artificial Intelligence, IUST",
   "institution": "Islamic University of Science and Technology (IUST), Kashmir"
 }

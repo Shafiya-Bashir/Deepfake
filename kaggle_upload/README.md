@@ -17,8 +17,8 @@ This directory contains the production-grade assets for submitting the **ST2-Syn
 
 ## 👥 Authorship & Research Attribution
 * **Dar Rehan Rasool** (M.Tech Student, Centre for Artificial Intelligence, IUST)
-* **Dr. Riyaz** (M.Tech Student, Centre for Artificial Intelligence, IUST)
-* **Dr. Javad** (M.Tech Student, Centre for Artificial Intelligence, IUST)
+* **Dr. Riyaz Ahmed** (M.Tech Student, Centre for Artificial Intelligence, IUST)
+* **Dr. M. Abdul Jawad** (M.Tech Student, Centre for Artificial Intelligence, IUST)
 * **Institution:** Islamic University of Science and Technology (IUST), Kashmir, India
 
 ---

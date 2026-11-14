@@ -3,11 +3,11 @@
 ## Slide 1: Title & Executive Summary
 - **Title**: DeepFake-AI: Multi-Modal Media Forensics and Synthetic Artifact Analysis
 - **Research Team**:
-  - **Dar Rehan Rasool** (Student & Research Contributor)
-  - **Dr. Riyaz** (Faculty Research Supervisor)
-  - **Dr. Javad** (Faculty Research Supervisor)
+  - **Dar Rehan Rasool** (M.Tech Student, Centre for Artificial Intelligence, IUST)
+  - **Dr. Riyaz Ahmed** (M.Tech Student, Centre for Artificial Intelligence, IUST)
+  - **Dr. M. Abdul Jawad** (M.Tech Student, Centre for Artificial Intelligence, IUST)
 - **Institution**: Islamic University of Science and Technology (IUST), Kashmir
-- **Speaker Script**: "Good afternoon. Under the supervision of Dr. Riyaz and Dr. Javad, I present DeepFake-AI, a unified research framework addressing one of the most critical threats of our time: digital impersonation and photorealistic deepfakes."
+- **Speaker Script**: "Good afternoon. Together with Dr. Riyaz Ahmed and Dr. M. Abdul Jawad at the Centre for Artificial Intelligence, IUST, I present DeepFake-AI, a unified research framework addressing one of the most critical threats of our time: digital impersonation and photorealistic deepfakes."
 
 ## Slide 2: The Evolving Threat Landscape
 - **Bullet Points**:

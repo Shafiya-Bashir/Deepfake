@@ -7,8 +7,8 @@ Builds full-scale identity-disjoint manifests:
 - Partitions: Strict Identity-Disjoint Train (70%), Validation (15%), Test (15%)
 
 Research Attribution:
-    Faculty Supervisors: Dr. Riyaz & Dr. Javad (IUST)
-    Research Contributor & Graduate Student: Dar Rehan Rasool
+    Research Team: Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad
+    Affiliation: M.Tech Students, Centre for Artificial Intelligence, IUST
 """
 
 import random

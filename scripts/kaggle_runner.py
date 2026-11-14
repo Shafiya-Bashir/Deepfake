@@ -9,8 +9,8 @@ Optimized for:
 - PyTorch backwards-compatible activations and attention heads
 
 Research Attribution:
-    Faculty Supervisors: Dr. Riyaz & Dr. Javad (IUST)
-    Research Contributor & Graduate Student: Dar Rehan Rasool
+    Research Team: Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad
+    Affiliation: M.Tech Students, Centre for Artificial Intelligence, IUST
 """
 
 import sys
@@ -77,7 +77,8 @@ def run_kaggle_training(
 ):
     print("=" * 80)
     print("        DEEPFAKE-AI: KAGGLE GPU PRODUCTION TRAINING PIPELINE")
-    print("   Research Team: Dar Rehan Rasool, Dr. Riyaz, Dr. Javad (IUST)")
+    print("   Research Team: Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad")
+    print("   Affiliation: M.Tech Students, Centre for Artificial Intelligence, IUST")
     print("=" * 80)
 
     # 1. GPU Acceleration Audit
@@ -244,7 +245,7 @@ def run_kaggle_training(
                 "optimizer_state_dict": optimizer.state_dict(),
                 "val_auc": val_auc,
                 "val_loss": val_loss,
-                "author": "Dar Rehan Rasool, Dr. Riyaz, Dr. Javad (IUST)"
+                "author": "Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad (M.Tech Students, Centre for Artificial Intelligence, IUST)"
             }
             torch.save(chk_payload, chk_dir / f"{model_name}_best.pt")
             repo_best = PROJECT_ROOT / "checkpoints" / "best" / f"{model_name}_best.pt"

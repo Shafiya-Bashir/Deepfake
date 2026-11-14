@@ -2,8 +2,8 @@
 
 ### Model Details
 - **Model Type**: Tri-Modal Neural Forensic Architecture
-- **Authors**: Dar Rehan Rasool, Dr. Riyaz, Dr. Javad
-- **Affiliation**: Islamic University of Science and Technology (IUST), Kashmir
+- **Authors**: Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad
+- **Affiliation**: M.Tech Students, Centre for Artificial Intelligence, Islamic University of Science and Technology (IUST), Kashmir
 - **License**: MIT
 
 ### Intended Use

@@ -4,12 +4,12 @@ project:
   version: "1.0.0"
   authors:
     - name: "Dar Rehan Rasool"
-      role: "Student & Research Contributor"
-    - name: "Dr. Riyaz"
-      role: "Faculty Research Supervisor"
-    - name: "Dr. Javad"
-      role: "Faculty Research Supervisor"
-  institution: "Islamic University of Science and Technology (IUST), Kashmir"
+      role: "M.Tech Student, Centre for Artificial Intelligence, IUST"
+    - name: "Dr. Riyaz Ahmed"
+      role: "M.Tech Student, Centre for Artificial Intelligence, IUST"
+    - name: "Dr. M. Abdul Jawad"
+      role: "M.Tech Student, Centre for Artificial Intelligence, IUST"
+  institution: "Centre for Artificial Intelligence, Islamic University of Science and Technology (IUST), Kashmir"
   license: "MIT"
   created_at: "2026-10-27"
 

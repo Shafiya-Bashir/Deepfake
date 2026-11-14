@@ -6,8 +6,7 @@ Systematically populates all specialized directories, serialized model checkpoin
 classical ML models, test fixtures, dataset streaming manifests, hardware telemetry logs,
 and benchmark reports across the entire repository.
 
-Authors: Dar Rehan Rasool (Research Contributor), Dr. Riyaz, Dr. Javad
-Institution: Islamic University of Science and Technology (IUST), Kashmir
+Authors: Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad (M.Tech Students, Centre for Artificial Intelligence, IUST)
 """
 
 import os
@@ -70,7 +69,7 @@ def create_checkpoints():
         },
         "created_at": datetime.now(timezone.utc).isoformat() + "Z",
         "device": "mps/cuda",
-        "author": "Dar Rehan Rasool, Dr. Riyaz, Dr. Javad (IUST)"
+        "author": "Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad (M.Tech Students, Centre for Artificial Intelligence, IUST)"
     }
     torch.save(best_payload, best_dir / "st2_syncnet_best.pt")
     torch.save(st2_model.state_dict(), dl_models_dir / "st2_syncnet.pt")
@@ -137,9 +136,9 @@ def create_checkpoints():
         "best_val_accuracy": 0.9845,
         "checkpoint_file": "checkpoints/best/st2_syncnet_best.pt",
         "hash_sha256": hashlib.sha256(open(best_dir / "st2_syncnet_best.pt", "rb").read()).hexdigest(),
-        "supervisors": ["Dr. Riyaz", "Dr. Javad"],
-        "contributor": "Dar Rehan Rasool",
-        "institution": "Islamic University of Science and Technology (IUST), Kashmir"
+        "collaborators": ["Dr. Riyaz Ahmed", "Dr. M. Abdul Jawad"],
+        "author": "Dar Rehan Rasool",
+        "affiliation": "M.Tech Students, Centre for Artificial Intelligence, IUST"
     }
     with open(best_dir / "best_model_summary.json", "w") as f:
         json.dump(best_summary, f, indent=2)
@@ -415,7 +414,7 @@ def create_logs():
         f.write(f"[{datetime.now(timezone.utc).isoformat()}] [INFO] [SystemInitializer] DeepFake-AI Platform initialized successfully.\n"
                 f"[{datetime.now(timezone.utc).isoformat()}] [INFO] [HardwareManager] Detected Apple Silicon / CUDA environment.\n"
                 f"[{datetime.now(timezone.utc).isoformat()}] [INFO] [PipelineEngine] ST2-SyncNet multi-stream inference pipeline ready.\n"
-                f"[{datetime.now(timezone.utc).isoformat()}] [INFO] [Authorship] Dar Rehan Rasool (Researcher), Dr. Riyaz, Dr. Javad (IUST).\n")
+                f"[{datetime.now(timezone.utc).isoformat()}] [INFO] [Authorship] Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad (M.Tech Students, Centre for Artificial Intelligence, IUST).\n")
 
     with open(PROJECT_ROOT / "logs" / "application" / "api_service.log", "w") as f:
         f.write(f"[{datetime.now(timezone.utc).isoformat()}] [INFO] [InferenceAPI] FastREST API Service listening on port 8000.\n"
@@ -608,7 +607,7 @@ def create_outputs_and_reports():
                 "- **Spatial Stream**: Boundary warping detected around lower jawline ($S_{\\text{spatial}} = 0.961$).\n"
                 "- **Spectral Stream**: Elevated high-frequency roll-off anomaly characteristic of transposed convolution ($S_{\\text{spec}} = 0.991$).\n"
                 "- **Biological Consistency**: Eye-blink velocity irregular ($S_{\\text{temp}} = 0.943$).\n\n"
-                "**Investigator Team**: Dar Rehan Rasool, Dr. Riyaz, Dr. Javad (IUST)\n")
+                "**Investigator Team**: Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad (M.Tech Students, Centre for Artificial Intelligence, IUST)\n")
 
     with open(inf_dir / "batch_inference_summary.json", "w") as f:
         json.dump({
@@ -663,7 +662,7 @@ def create_outputs_and_reports():
                 "temporal_landmarks": "[B, 30, 68, 2]"
             },
             "output_shape": "[B, 2]",
-            "author": "Dar Rehan Rasool, Dr. Riyaz, Dr. Javad (IUST)"
+            "author": "Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad (M.Tech Students, Centre for Artificial Intelligence, IUST)"
         }, f, indent=2)
 
     # Reports: Explainability
@@ -692,8 +691,8 @@ def create_outputs_and_reports():
         f.write("# Model Card: ST2-SyncNet (Spatial-Temporal-Spectral Synchronization Network)\n\n"
                 "### Model Details\n"
                 "- **Model Type**: Tri-Modal Neural Forensic Architecture\n"
-                "- **Authors**: Dar Rehan Rasool, Dr. Riyaz, Dr. Javad\n"
-                "- **Affiliation**: Islamic University of Science and Technology (IUST), Kashmir\n"
+                "- **Authors**: Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad\n"
+                "- **Affiliation**: M.Tech Students, Centre for Artificial Intelligence, Islamic University of Science and Technology (IUST), Kashmir\n"
                 "- **License**: MIT\n\n"
                 "### Intended Use\n"
                 "- Verification of facial video and image authenticity against deepfake tampering, GAN generation, and diffusion synthesis.\n\n"
@@ -742,7 +741,8 @@ def create_test_fixtures():
 if __name__ == "__main__":
     print("=================================================================")
     print("DeepFake-AI: Comprehensive Artifact and Model Artifact Generator")
-    print("Research Team: Dar Rehan Rasool, Dr. Riyaz, Dr. Javad (IUST)")
+    print("Research Team: Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad")
+    print("Affiliation: M.Tech Students, Centre for Artificial Intelligence, IUST")
     print("=================================================================")
     create_checkpoints()
     create_classical_ml_models()

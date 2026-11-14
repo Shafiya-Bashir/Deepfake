@@ -7,4 +7,4 @@
 - **Spectral Stream**: Elevated high-frequency roll-off anomaly characteristic of transposed convolution ($S_{\text{spec}} = 0.991$).
 - **Biological Consistency**: Eye-blink velocity irregular ($S_{\text{temp}} = 0.943$).
 
-**Investigator Team**: Dar Rehan Rasool, Dr. Riyaz, Dr. Javad (IUST)
+**Investigator Team**: Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad (M.Tech Students, Centre for Artificial Intelligence, IUST)

@@ -9,7 +9,7 @@ Provides:
 
 Research Attribution:
     M.Tech Students, Centre for Artificial Intelligence, IUST:
-    Dar Rehan Rasool, Dr. Riyaz, Dr. Javad
+    Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad
 """
 
 import base64
@@ -146,7 +146,7 @@ class DashboardHandler(SimpleHTTPRequestHandler):
                     "best_auc": 0.9995,
                     "best_checkpoint": "checkpoints/best/st2_syncnet_best.pt",
                     "author": "Dar Rehan Rasool (@darrehanrasool)",
-                    "supervisors": "Dr. Riyaz* & Dr. Javad* (IUST)"
+                    "collaborators": "Dr. Riyaz Ahmed & Dr. M. Abdul Jawad (IUST)"
                 }
             }
 
@@ -315,7 +315,7 @@ class DashboardHandler(SimpleHTTPRequestHandler):
                     {"model": "XceptionNet", "modality": "Spatial Frame", "auc": 0.9420, "eer": 0.0810, "citation": "Rössler et al. (ICCV 2019)"},
                     {"model": "EfficientNet-B4", "modality": "Spatial Frame", "auc": 0.9510, "eer": 0.0720, "citation": "Tan & Le (ICML 2019)"},
                     {"model": "Audio-SFM Vocoder", "modality": "Acoustic Spectrum", "auc": 0.9120, "eer": 0.0980, "citation": "Todisco et al. (ASVspoof)"},
-                    {"model": "ST2-SyncNet (Ours)", "modality": "Multi-Modal Spatial-Spectral-Temporal-Acoustic", "auc": 0.9995, "eer": 0.0052, "citation": "Dar Rehan Rasool, Dr. Riyaz*, Dr. Javad* (2026)"}
+                    {"model": "ST2-SyncNet (Ours)", "modality": "Multi-Modal Spatial-Spectral-Temporal-Acoustic", "auc": 0.9995, "eer": 0.0052, "citation": "Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad (2026)"}
                 ]
             }
             self._send_json({"status": "success", "data": stats})

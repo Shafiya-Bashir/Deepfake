@@ -7,7 +7,7 @@ Supports:
 
 Research Attribution:
     M.Tech Students, Centre for Artificial Intelligence, IUST:
-    Dar Rehan Rasool, Dr. Riyaz, Dr. Javad
+    Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad
 """
 
 import io

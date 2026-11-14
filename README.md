@@ -39,8 +39,8 @@ This research project and benchmark platform is developed at the Centre for Arti
 | Name | Role & Designation | Affiliation | Research & Project Contribution |
 | :--- | :--- | :--- | :--- |
 | **Dar Rehan Rasool** | M.Tech Student | Centre for Artificial Intelligence, IUST | Multi-Domain Architecture, ST2-SyncNet Model, Multi-Modal Ingestion Pipeline, Dashboard & Benchmarks |
-| **Dr. Riyaz** | M.Tech Student | Centre for Artificial Intelligence, IUST | Project Collaboration, Theoretical Review & Methodological Analysis |
-| **Dr. Javad** | M.Tech Student | Centre for Artificial Intelligence, IUST | Project Collaboration, System Architecture Advisory & Verification Analysis |
+| **Dr. Riyaz Ahmed** | M.Tech Student | Centre for Artificial Intelligence, IUST | Project Collaboration, Theoretical Review & Methodological Analysis |
+| **Dr. M. Abdul Jawad** | M.Tech Student | Centre for Artificial Intelligence, IUST | Project Collaboration, System Architecture Advisory & Verification Analysis |
 
 - **Academic Unit**: Centre for Artificial Intelligence (CAI)
 - **Institution**: Islamic University of Science and Technology (IUST), Kashmir, India
@@ -280,7 +280,7 @@ Open **[http://127.0.0.1:8080](http://127.0.0.1:8080)** in any modern web browse
 View live telemetry in VS Code or under the **⚡ Dataset Log (Live Terminal)** tab:
 * **Filter Chips**: `All Telemetry`, `[DATASET] Audits & Splits`, `[BENCHMARK] Prior vs ST2-SyncNet`, `[TRAINING] GPU Telemetry`, `[INFERENCE] API Logs`, `[HARDWARE] T4 & Silicon`.
 * Real-time ASCII status table displaying dataset sizes, file counts, and benchmark comparisons.
-* Branded with author `@darrehanrasool` and faculty supervisors `Dr. Riyaz*` & `Dr. Javad*`.
+* Branded with author `@darrehanrasool` and collaborators `Dr. Riyaz Ahmed` & `Dr. M. Abdul Jawad`.
 
 ### 2. Saved Captured Media Library (`data/captured_tests/`)
 * Automatically catalogs all live selfie snaps, recorded live videos, and recorded voice samples.
@@ -378,8 +378,8 @@ curl -s http://127.0.0.1:8080/api/dataset-stats | python3 -m json.tool
 ```bibtex
 @article{rasool2026deepfakeai,
   title={DeepFake-AI: Unified Multi-Modal Spatial-Frequency and Temporal Forensics Benchmark with Real-Time Live Stream Ingestion},
-  author={Rasool, Dar Rehan and Riyaz, Dr.* and Javad, Dr.*},
-  affiliation={Department of Computer Science & Engineering, Islamic University of Science and Technology (IUST), Kashmir, India},
+  author={Rasool, Dar Rehan and Ahmed, Dr. Riyaz and Jawad, Dr. M. Abdul},
+  affiliation={Centre for Artificial Intelligence, Islamic University of Science and Technology (IUST), Kashmir, India},
   journal={arXiv preprint},
   year={2026},
   note={Copyright \copyright 2026 Dar Rehan Rasool (@darrehanrasool). All Rights Reserved.}
@@ -387,4 +387,4 @@ curl -s http://127.0.0.1:8080/api/dataset-stats | python3 -m json.tool
 ```
 
 **Copyright © 2026 Dar Rehan Rasool (`@darrehanrasool`). All Rights Reserved.**  
-Supervised by **Dr. Riyaz\*** & **Dr. Javad\***, Islamic University of Science and Technology (IUST).
+Developed at **Centre for Artificial Intelligence**, Islamic University of Science and Technology (IUST).

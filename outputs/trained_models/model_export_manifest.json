@@ -7,5 +7,5 @@
     "temporal_landmarks": "[B, 30, 68, 2]"
   },
   "output_shape": "[B, 2]",
-  "author": "Dar Rehan Rasool, Dr. Riyaz, Dr. Javad (IUST)"
+  "author": "Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad (M.Tech Students, Centre for Artificial Intelligence, IUST)"
 }

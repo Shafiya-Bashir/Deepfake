@@ -7,9 +7,9 @@ name = "deepfake-ai"
 version = "1.0.0"
 description = "Enterprise-Grade Multi-Modal Deepfake Detection, Media Forensics, and Synthetic Artifact Analysis Platform"
 authors = [
-    { name = "Dar Rehan Rasool (Lead Author & Principal Researcher)", email = "darrehanrasool@gmail.com" },
-    { name = "Dr. Riyaz (Faculty Supervisor)" },
-    { name = "Dr. Javad (Faculty Supervisor)" }
+    { name = "Dar Rehan Rasool (M.Tech Student, Centre for Artificial Intelligence, IUST)", email = "darrehanrasool@gmail.com" },
+    { name = "Dr. Riyaz Ahmed (M.Tech Student, Centre for Artificial Intelligence, IUST)" },
+    { name = "Dr. M. Abdul Jawad (M.Tech Student, Centre for Artificial Intelligence, IUST)" }
 ]
 readme = "README.md"
 requires-python = ">=3.10"

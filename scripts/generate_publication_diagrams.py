@@ -5,8 +5,8 @@ Invokes the primary diagram generator: scripts/generate_top_notch_diagrams.py
 Generates 9 Scalable Vector Graphics (.svg) and editable Draw.io (.drawio) models.
 
 Research Attribution:
-    Lead Author: Dar Rehan Rasool (@darrehanrasool)
-    Supervisors: Dr. Riyaz* & Dr. Javad* (IUST)
+    Research Team: Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad
+    Affiliation: M.Tech Students, Centre for Artificial Intelligence, IUST
 """
 
 import sys

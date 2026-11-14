@@ -8,8 +8,8 @@ Produces publication-grade dataset catalog documenting:
 - Physical & Mathematical Forensic Targets: S_spatial, S_spectral, S_temporal, S_audio
 
 Research Attribution:
-    Faculty Supervisors: Dr. Riyaz & Dr. Javad (IUST)
-    Research Contributor & Graduate Student: Dar Rehan Rasool
+    Research Team: Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad
+    Affiliation: M.Tech Students, Centre for Artificial Intelligence, IUST
 """
 
 import csv
@@ -195,7 +195,7 @@ def generate_catalog():
     summary_md = f"""# Master Multi-Modal Dataset Catalog & Partition Manifest
 
 **Research Platform**: DeepFake-AI  
-**Research Team**: Dar Rehan Rasool (*Graduate Student & Contributor*), Dr. Riyaz (*Supervisor*), Dr. Javad (*Supervisor*)  
+**Research Team**: Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad (M.Tech Students, Centre for Artificial Intelligence, IUST)  
 **Institution**: Islamic University of Science and Technology (IUST), Kashmir  
 **Total Documented Samples**: {len(df)}  
 

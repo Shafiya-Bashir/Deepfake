@@ -7,7 +7,7 @@ for both research papers:
  - Paper 1: ST2-SyncNet (Audio-Visual Multi-Modal Forensics)
  - Paper 2: FreqForensics-XAI (Frequency Domain & Explainable Edge Forensics)
 
-Authors: Dar Rehan Rasool (Contributor), Dr. Riyaz*, Dr. Javad* (IUST)
+Authors: Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad (M.Tech Students, Centre for Artificial Intelligence, IUST)
 """
 
 import os

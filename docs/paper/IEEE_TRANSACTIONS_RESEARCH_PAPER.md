@@ -1,7 +1,7 @@
 # ST2-SyncNet: Tri-Modal Spatial-Spectral-Temporal Synchronous Attention Network for Robust Deepfake and Diffusion Forensics
 
-**Authors**: Dar Rehan Rasool$^1$ (*Research Contributor & Graduate Student Researcher*), Dr. Riyaz$^2$ (*Faculty Research Supervisor*), Dr. Javad$^2$ (*Faculty Research Supervisor*)  
-**Affiliation**: $^1$Graduate Research Scholar, $^2$Faculty of Artificial Intelligence, Islamic University of Science and Technology (IUST), Kashmir, India  
+**Authors**: Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad  
+**Affiliation**: M.Tech Students, Centre for Artificial Intelligence, Islamic University of Science and Technology (IUST), Kashmir, India  
 **Target Publication Venue**: *IEEE Transactions on Information Forensics and Security (T-IFS)*  
 **Code & Dataset Streaming Repository**: [https://github.com/darrehanrasool/Deepfake.git](https://github.com/darrehanrasool/Deepfake.git)  
 

@@ -7,8 +7,8 @@ Engineered for Dual NVIDIA Tesla T4 Cloud GPUs (30 GB VRAM).
 Configured for safe, uninterrupted 7-8 hour execution within Kaggle's 12-hour limit.
 
 Research Team:
-    Faculty Supervisors: Dr. Riyaz* & Dr. Javad* (IUST)
-    Graduate Research Contributor: Dar Rehan Rasool
+    Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad
+    Affiliation: M.Tech Students, Centre for Artificial Intelligence, IUST
 """
 
 import argparse
@@ -77,8 +77,8 @@ def run_overnight_training(
 ):
     print("=" * 80)
     print("      DEEPFAKE-AI: PRODUCTION OVERNIGHT CLOUD GPU TRAINING PIPELINE")
-    print("   Faculty Supervisors: Dr. Riyaz* & Dr. Javad* (IUST)")
-    print("   Graduate Research Contributor: Dar Rehan Rasool")
+    print("   Research Team: Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad")
+    print("   Affiliation: M.Tech Students, Centre for Artificial Intelligence, IUST")
     print("=" * 80)
 
     # 1. Hardware Inspection
@@ -259,7 +259,7 @@ def run_overnight_training(
                 "optimizer_state_dict": optimizer.state_dict(),
                 "val_auc": val_auc,
                 "val_loss": val_loss,
-                "author": "Dar Rehan Rasool, Dr. Riyaz, Dr. Javad (IUST)"
+                "author": "Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad (M.Tech Students, Centre for Artificial Intelligence, IUST)"
             }
             best_file = chk_dir / f"{model_name}_best.pt"
             torch.save(chk_payload, best_file)

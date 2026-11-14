@@ -11,8 +11,8 @@ Key Capabilities:
 3. Google Drive free space inspection and quota safeguards.
 4. Automatic Kaggle credentials configuration from Drive or environment.
 
-Authors: Dar Rehan Rasool (Research Contributor), Dr. Riyaz, Dr. Javad
-Institution: Islamic University of Science and Technology (IUST), Kashmir
+Authors: Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad
+Affiliation: M.Tech Students, Centre for Artificial Intelligence, IUST, Kashmir
 """
 
 import os

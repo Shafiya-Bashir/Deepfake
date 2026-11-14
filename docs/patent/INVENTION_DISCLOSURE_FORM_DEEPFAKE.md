@@ -4,10 +4,8 @@
 SYSTEM AND METHOD FOR MULTI-DOMAIN DEEPFAKE DETECTION VIA COUPLED SPATIAL-SPECTRAL CROSS-ATTENTION AND TEMPORAL PHYSIOLOGICAL CONSISTENCY
 
 ## 2. Inventors & Research Team
-- **Research Contributor & System Developer**: Dar Rehan Rasool (Graduate Student Researcher)
-- **Faculty Supervisor & Co-Inventor**: Dr. Riyaz (Professor & Faculty Supervisor)
-- **Faculty Supervisor & Co-Inventor**: Dr. Javad (Professor & Faculty Supervisor)
-- **Affiliation**: Department of Artificial Intelligence, Islamic University of Science and Technology (IUST), Kashmir, India
+- **Inventors & Research Team**: Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad
+- **Affiliation**: M.Tech Students, Centre for Artificial Intelligence, Islamic University of Science and Technology (IUST), Kashmir, India
 - **Date**: October 27, 2026
 
 ## 3. Technical Field

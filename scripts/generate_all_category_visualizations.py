@@ -7,8 +7,8 @@ subdirectories (celeb_df, comparisons, data_exploration, data_quality, dfdc, exp
 faceforensics_pp, fakeavceleb, genimage, statistical_analysis, testing, training/per_epoch,
 training/summaries, validation).
 
-Authors: Dar Rehan Rasool (Research Contributor), Dr. Riyaz, Dr. Javad
-Institution: Islamic University of Science and Technology (IUST), Kashmir
+Authors: Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad
+Affiliation: M.Tech Students, Centre for Artificial Intelligence, IUST, Kashmir
 """
 
 import os

@@ -17,8 +17,8 @@ Covering all implemented models:
 9. Multi-Modal Ensemble Architecture (Soft Voting & Stacking Meta-Learner)
 
 Research Attribution:
-    Lead Author & Principal Researcher: Dar Rehan Rasool (@darrehanrasool)
-    Faculty Supervisors: Dr. Riyaz & Dr. Javad (IUST, Dept. of CSE)
+    Research Team: Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad
+    Affiliation: M.Tech Students, Centre for Artificial Intelligence, IUST
 """
 
 import html
@@ -305,7 +305,7 @@ class SvgDiagramBuilder:
         <!-- Footer / Attribution -->
         <g class="footer">
             <line x1="40" y1="{self.height - 28}" x2="{self.width - 40}" y2="{self.height - 28}" stroke="#1e293b" stroke-width="1" />
-            <text x="40" y="{self.height - 12}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" fill="#64748b">DeepFake-AI Cyber-Forensics Research Suite • Lead Author: Dar Rehan Rasool (@darrehanrasool) • Supervisors: Dr. Riyaz &amp; Dr. Javad (IUST)</text>
+            <text x="40" y="{self.height - 12}" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="9.5" fill="#64748b">DeepFake-AI Cyber-Forensics Research Suite • Dar Rehan Rasool, Dr. Riyaz Ahmed, Dr. M. Abdul Jawad (IUST CAI)</text>
             <text x="{self.width - 40}" y="{self.height - 12}" font-family="ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace" font-size="9.5" fill="#38bdf8" text-anchor="end">Publication-Grade Vector Diagram (Scalable SVG)</text>
         </g>
         </svg>
