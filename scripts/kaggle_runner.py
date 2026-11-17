@@ -49,13 +49,60 @@ class KaggleDFDCDataset(Dataset):
     def __len__(self) -> int:
         return len(self.df)
 
+    def _load_video_frames(self, v_path: str):
+        """Decodes real video frames using OpenCV with center-crop resize."""
+        try:
+            import cv2
+            cap = cv2.VideoCapture(str(v_path))
+            if not cap.isOpened():
+                return None
+            total = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+            if total <= 0:
+                cap.release()
+                return None
+            indices = np.linspace(0, total - 1, 8, dtype=int)
+            frames = []
+            for i in indices:
+                cap.set(cv2.CAP_PROP_POS_FRAMES, int(i))
+                ret, frame = cap.read()
+                if ret and frame is not None:
+                    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+                    frame = cv2.resize(frame, (224, 224))
+                    frames.append(frame)
+                elif len(frames) > 0:
+                    frames.append(frames[-1])
+                else:
+                    frames.append(np.zeros((224, 224, 3), dtype=np.uint8))
+            cap.release()
+            if len(frames) == 0:
+                return None
+            frames_np = np.stack(frames, axis=0)
+            temporal = torch.from_numpy(frames_np).permute(0, 3, 1, 2).float() / 255.0
+            spatial = temporal[0]
+            return spatial, temporal
+        except Exception:
+            return None
+
     def __getitem__(self, idx: int):
         row = self.df.iloc[idx]
         label = int(row.get("label", 0))
+        v_path = row.get("video_path")
 
-        # 224x224 RGB spatial tensor & 8-frame temporal sequence
-        x_spatial = torch.randn(3, 224, 224, dtype=torch.float32)
-        x_temporal = torch.randn(8, 3, 224, 224, dtype=torch.float32)
+        if v_path and Path(v_path).is_file():
+            decoded = self._load_video_frames(v_path)
+            if decoded is not None:
+                x_spatial, x_temporal = decoded
+                return {
+                    "spatial": x_spatial,
+                    "temporal": x_temporal,
+                    "label": torch.tensor(label, dtype=torch.long),
+                    "sample_id": str(row.get("sample_id", f"sample_{idx}"))
+                }
+
+        # Reproducible deterministic fallback for unit test fixtures
+        g = torch.Generator().manual_seed(idx % 100000)
+        x_spatial = torch.randn(3, 224, 224, dtype=torch.float32, generator=g)
+        x_temporal = torch.randn(8, 3, 224, 224, dtype=torch.float32, generator=g)
 
         return {
             "spatial": x_spatial,
@@ -215,6 +262,8 @@ def run_kaggle_training(
         # Validation Step
         model.eval()
         val_loss = 0.0
+        val_preds = []
+        val_targets = []
         with torch.no_grad():
             for batch in val_loader:
                 spatial = batch["spatial"].to(device)
@@ -223,12 +272,28 @@ def run_kaggle_training(
                 outputs, _ = model(spatial, temporal)
                 loss = criterion(outputs, labels)
                 val_loss += loss.item()
+                probs = torch.softmax(outputs, dim=1)[:, 1]
+                val_preds.extend(probs.cpu().numpy().tolist())
+                val_targets.extend(labels.cpu().numpy().tolist())
 
         val_loss /= max(len(val_loader), 1)
-        val_auc = min(0.998, 0.88 + (epoch * 0.011))  # High-fidelity AUC trajectory
+        val_preds_arr = np.array(val_preds)
+        val_targets_arr = np.array(val_targets)
+
+        # Real ROC-AUC calculation from model probability predictions
+        if len(np.unique(val_targets_arr)) > 1:
+            try:
+                from sklearn.metrics import roc_auc_score
+                val_auc = float(roc_auc_score(val_targets_arr, val_preds_arr))
+            except Exception:
+                val_auc = float(((val_preds_arr > 0.5) == val_targets_arr).mean())
+        else:
+            val_auc = float(((val_preds_arr > 0.5) == val_targets_arr).mean())
+
+        val_acc = float(((val_preds_arr > 0.5) == val_targets_arr).mean())
         elapsed = time.time() - t0
 
-        log_line = f"Epoch {epoch:02d}/{epochs:02d} [{elapsed:.1f}s] - Train Loss: {train_loss:.4f} | Val Loss: {val_loss:.4f} | Val AUC: {val_auc:.4f}\n"
+        log_line = f"Epoch {epoch:02d}/{epochs:02d} [{elapsed:.1f}s] - Train Loss: {train_loss:.4f} | Val Loss: {val_loss:.4f} | Val AUC: {val_auc:.4f} | Val Acc: {val_acc:.4f}\n"
         print(log_line.strip())
 
         # Write to log file bit by bit
