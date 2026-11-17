@@ -2267,6 +2267,15 @@
     // Initial loads
     fetchLogs();
     fetchSavedTests();
+
+    // Auto-run if query param provided (e.g. ?preset=fake_video)
+    const urlParams = new URLSearchParams(window.location.search);
+    const autoPreset = urlParams.get('preset');
+    if (autoPreset) {
+      setTimeout(() => {
+        runPreset(autoPreset);
+      }, 400);
+    }
   </script>
 </body>
 </html>

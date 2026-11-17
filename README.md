@@ -16,6 +16,18 @@
 
 DeepFake-AI includes an enterprise-grade cyber-forensics dashboard equipped with multi-modal ingestion (Live Video Recording Studio, Live Webcam Selfie, Live Microphone Stream, and Multi-Benchmark File Upload), real-time forensic detection beacons, mathematical XAI telemetry traces (Grad-CAM, 2D-DCT power spectrum, and EAR blink kinematics), real-time terminal logs, and a dedicated benchmark matrix console.
 
+<div align="center">
+  <img src="assets/screenshots/deepfake_ai_dashboard_fake_detected.png" alt="DeepFake-AI Cyber-Forensics Dashboard UI Output - Critical Fake Detected" width="100%">
+  <p><em>UI Output 1: DeepFake-AI Live Cyber-Forensics Dashboard — Real-time multi-modal analysis exhibiting the pulsing Neon-Red Threat Beacon, sub-11ms latency tracking, calibrated probability gauges (72.9% Fake Probability), and Daubert-compliant Mathematical XAI Feature Decomposition ($S_{\text{spatial}} = 0.780$, $S_{\text{spectral}} = 0.720$, $S_{\text{temporal}} = 0.680$, $S_{\text{audio}} = 0.808$).</em></p>
+</div>
+
+<br>
+
+<div align="center">
+  <img src="assets/screenshots/deepfake_ai_dashboard_authentic_verified.png" alt="DeepFake-AI Cyber-Forensics Dashboard UI Output - Authentic Verified" width="100%">
+  <p><em>UI Output 2: DeepFake-AI Authentic Media Verification — Glowing Neon-Green Verification Beacon, 76.3% Organic Sensor Confidence, sub-millisecond inference latency (0.88 ms), and coherent physiological optical flow validation.</em></p>
+</div>
+
 ---
 
 ## 📑 Table of Contents
@@ -272,6 +284,11 @@ Open **[http://127.0.0.1:8080](http://127.0.0.1:8080)** in any modern web browse
 * **Audio Controls**: Built-in Web Audio API synthesizer (no external MP3/WAV download required) with test buttons and mute toggle.
 * **Latency Beacon**: Sub-millisecond tracking display ($1.8\text{ ms} - 12.5\text{ ms}$).
 
+<div align="center">
+  <img src="assets/screenshots/deepfake_ai_dashboard_full_view.png" alt="DeepFake-AI Complete Cyber-Forensics Laboratory View with Live Terminal" width="100%">
+  <p><em>UI Output 3: Complete End-to-End Cyber-Forensics Laboratory View — Integrated sensor ingestion, real-time threat beacon, XAI decomposition matrix, active benchmark comparison table, and bit-by-bit live hardware telemetry log (NVIDIA Dual T4 GPU / Apple Silicon MPS).</em></p>
+</div>
+
 ---
 
 ## 📜 Crystal Clean Dataset Log Terminal & Captured Media Library
@@ -314,6 +331,10 @@ Deep/
 │   │   ├── diffusion_detector_architecture.drawio
 │   │   ├── ensemble_architecture.svg                 # Soft Voting & Stacking Ensemble Architecture
 │   │   └── ensemble_architecture.drawio
+│   ├── screenshots/                                  # High-resolution UI output & verification captures
+│   │   ├── deepfake_ai_dashboard_fake_detected.png   # Real-time critical fake alert & XAI decomposition
+│   │   ├── deepfake_ai_dashboard_authentic_verified.png # Authentic verification beacon & optical metrics
+│   │   └── deepfake_ai_dashboard_full_view.png       # Full laboratory dashboard view & live terminal
 │   └── sounds/                                       # High-definition audio alert telemetry
 ├── checkpoints/
 │   ├── best/
