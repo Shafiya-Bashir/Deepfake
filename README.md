@@ -52,7 +52,7 @@ This research project and benchmark platform is developed at the Centre for Arti
 | :--- | :--- | :--- | :--- |
 | **Faculty Research Supervisor** | **Dr. M. Abdul Jawad\*** | Professor & Faculty Supervisor, Centre for Artificial Intelligence (CAI) | Project Collaboration, System Architecture Advisory & Verification Analysis |
 | **Faculty Research Supervisor** | **Dr. Riyaz Ahmed\*** | Professor & Faculty Supervisor, Centre for Artificial Intelligence (CAI) | Project Collaboration, Theoretical Review & Methodological Analysis |
-| **Project Lead & Contributing Student** | **Dar Rehan Rasool** | M.Tech Student, Centre for Artificial Intelligence, IUST | Multi-Domain Architecture, ST2-SyncNet Model, Multi-Modal Ingestion Pipeline, Dashboard & Benchmarks |
+| **Project Lead & Contributing Student** | [**Dar Rehan Rasool**](https://github.com/darrehanrasool) | M.Tech Student, Centre for Artificial Intelligence, IUST | Multi-Domain Architecture, ST2-SyncNet Model, Multi-Modal Ingestion Pipeline, Dashboard & Benchmarks |
 
 - **Academic Unit**: Centre for Artificial Intelligence (CAI)
 - **Institution**: Islamic University of Science and Technology (IUST), Kashmir, India
