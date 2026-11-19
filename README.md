@@ -5,7 +5,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Code Style: Black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
-[![Lead Author](https://img.shields.io/badge/Lead%20Author-Dar%20Rehan%20Rasool-0284c7.svg)](https://github.com/darrehanrasool)
+[![Project Lead](https://img.shields.io/badge/Project%20Lead-Dar%20Rehan%20Rasool-0284c7.svg)](https://github.com/darrehanrasool)
 [![Copyright](https://img.shields.io/badge/Copyright-%40darrehanrasool-10b981.svg)](https://github.com/darrehanrasool)
 
 **DeepFake-AI** is an enterprise-grade cyber-forensics platform and publication-grade benchmarking suite for synthetic media authentication, multi-modal deepfake detection, and explainable artificial intelligence (XAI). It integrates spatial boundary Laplacian discontinuity analysis, 2D Discrete Cosine Transform (2D-DCT) frequency decomposition, temporal biometric dynamics (Eye Aspect Ratio blink kinematics & viseme alignment), and acoustic speech synthesis forensics (Spectral Flatness Measure across neural vocoders).
@@ -48,11 +48,11 @@ DeepFake-AI includes an enterprise-grade cyber-forensics dashboard equipped with
 
 This research project and benchmark platform is developed at the Centre for Artificial Intelligence, IUST:
 
-| Name | Role & Designation | Affiliation | Research & Project Contribution |
+| Role | Name | Designation & Affiliation | Research & Project Contribution |
 | :--- | :--- | :--- | :--- |
-| **Dar Rehan Rasool** | M.Tech Student | Centre for Artificial Intelligence, IUST | Multi-Domain Architecture, ST2-SyncNet Model, Multi-Modal Ingestion Pipeline, Dashboard & Benchmarks |
-| **Dr. Riyaz Ahmed** | M.Tech Student | Centre for Artificial Intelligence, IUST | Project Collaboration, Theoretical Review & Methodological Analysis |
-| **Dr. M. Abdul Jawad** | M.Tech Student | Centre for Artificial Intelligence, IUST | Project Collaboration, System Architecture Advisory & Verification Analysis |
+| **Faculty Research Supervisor** | **Dr. M. Abdul Jawad\*** | Professor & Faculty Supervisor, Centre for Artificial Intelligence (CAI) | Project Collaboration, System Architecture Advisory & Verification Analysis |
+| **Faculty Research Supervisor** | **Dr. Riyaz Ahmed\*** | Professor & Faculty Supervisor, Centre for Artificial Intelligence (CAI) | Project Collaboration, Theoretical Review & Methodological Analysis |
+| **Project Lead & Contributing Student** | **Dar Rehan Rasool** | M.Tech Student, Centre for Artificial Intelligence, IUST | Multi-Domain Architecture, ST2-SyncNet Model, Multi-Modal Ingestion Pipeline, Dashboard & Benchmarks |
 
 - **Academic Unit**: Centre for Artificial Intelligence (CAI)
 - **Institution**: Islamic University of Science and Technology (IUST), Kashmir, India
